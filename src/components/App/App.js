@@ -1,22 +1,23 @@
 import React, {Component} from 'react';
-import {
-  HashRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from 'react-router-dom';
-
+import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import {connect} from 'react-redux';
-
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+// Import components 
+import UpperNav from '../UpperNav/UpperNav';
+import DashboardNav from '../DashboardNav/DashboardNav';
+import Footer from '../Footer/Footer';
+import AboutUs from '../AboutUs/AboutUs';
+import Teams from '../Teams/Teams';
+import Messenger from '../Messenger/Messenger';
+import Profile from '../Profile/Profile';
+import TeamPlayers from '../TeamPlayers/TeamPlayers';
+import PrivatePosts from '../PrivatePosts/PrivatePosts';
+import DirectMessage from '../DirectMessage/DirectMessage';
+import FollowButton from '../FollowButton/FollowButton';
 
+
+// Import style
 import './App.css';
 
 class App extends Component {
@@ -28,16 +29,32 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          <UpperNav />
+          <DashboardNav/>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/home" />
+            <Redirect exact from="/" to="/profile" />
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
             <Route
               exact
-              path="/about"
-              component={AboutPage}
+              path="/aboutUs"
+              component={AboutUs}
+            />
+             <Route
+              exact
+              path="/teams"
+              component={Teams}
+            />
+             <Route
+              exact
+              path="/messenger"
+              component={Messenger}
+            />
+               <Route
+              exact
+              path="/profile"
+              component={Profile}
             />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
@@ -45,15 +62,23 @@ class App extends Component {
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
             <ProtectedRoute
               exact
-              path="/home"
-              component={UserPage}
+              path="/teamPlayers"
+              component={TeamPlayers}
             />
-            {/* This works the same as the other protected route, except that if the user is logged in,
-            they will see the info page instead. */}
-            <ProtectedRoute
+               <Route
               exact
-              path="/info"
-              component={InfoPage}
+              path="/privatePosts"
+              component={PrivatePosts}
+            />
+               <Route
+              exact
+              path="/directMessage"
+              component={DirectMessage}
+            />
+               <Route
+              exact
+              path="/follow"
+              component={FollowButton}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
