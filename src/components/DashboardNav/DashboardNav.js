@@ -4,22 +4,27 @@ import { connect } from 'react-redux';
 import '../DashboardNav/DashboardNav.css';
 
 const DashboardNav = (props) => (
-  <div className="nav">
+  <div className="dashboardNav">
     <Link to="/profile">
       Profile
     </Link>
+    <br/>
     <Link to="/teamPlayers">
       Team
     </Link>
+    <br/>
     <Link to="/privatePosts">
       Private Posts
     </Link>
+    <br/>
     <Link to="/directMessage">
       Direct Message
     </Link>
+    <br/>
     <Link to="/aboutUs">
       About Us
     </Link>
+    <br/>
     <Link to="/follow">
       Follow Team
     </Link>

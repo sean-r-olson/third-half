@@ -7,9 +7,10 @@
     padding: 10px;
 }
 
-.nav {
+.dashboardNav {
   overflow: hidden;
   background-color: #1d2c69;
+  display: block;
 }
 
 .nav-link {
