@@ -7,10 +7,30 @@
     padding: 10px;
 }
 
+.dashboardNavLink {
+    float: left;
+    color: #f2f2f2;
+    background-color:#1d2c69;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    text-align: initial;
+    font-size: 15px;
+    /* these last two make the logout button in
+    the nav bar look like another link */
+    border:none;
+    cursor: pointer;
+    outline:0;
+  }
+
 .dashboardNav {
   overflow: hidden;
   background-color: #1d2c69;
+  width: 100px;
+  height: 100%;
   display: block;
+  padding: 20px;
+  position:relative;
 }
 
 .nav-link {

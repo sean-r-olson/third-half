@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import UpperNav from '../UpperNav/UpperNav';
+import DashboardNav from '../DashboardNav/DashboardNav';
 
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
+class AboutUs extends Component {
 
-const AboutPage = () => (
-  <div>
+
+    render() {
+    return(
+    
     <div>
-      <p>
-        This about page is for anyone to read!
-      </p>
+      <UpperNav /> 
+      <DashboardNav/>
     </div>
-  </div>
-);
+    )
+}
+}
 
-export default AboutPage;
+export default connect()(AboutUs);

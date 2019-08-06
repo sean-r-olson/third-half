@@ -5,29 +5,31 @@ import '../DashboardNav/DashboardNav.css';
 
 const DashboardNav = (props) => (
   <div className="dashboardNav">
-    <Link to="/profile">
+      <div className="nav-right">
+    <Link to="/profile" className="dashboardNavLink">
       Profile
     </Link>
     <br/>
-    <Link to="/teamPlayers">
+    <Link to="/teamPlayers" className="dashboardNavLink">
       Team
     </Link>
     <br/>
-    <Link to="/privatePosts">
+    <Link to="/privatePosts" className="dashboardNavLink">
       Private Posts
     </Link>
     <br/>
-    <Link to="/directMessage">
+    <Link to="/directMessage" className="dashboardNavLink">
       Direct Message
     </Link>
     <br/>
-    <Link to="/aboutUs">
+    <Link to="/aboutUs" className="dashboardNavLink">
       About Us
     </Link>
     <br/>
-    <Link to="/follow">
+    <Link to="/follow" className="dashboardNavLink">
       Follow Team
     </Link>
+    </div>
     </div>
 );
 
