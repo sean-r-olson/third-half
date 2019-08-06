@@ -8,7 +8,7 @@ function* playersSaga(action) {
         console.log(response.data);
     } catch (error) {
         console.log('error getting player data', error);
-        alert('Error getting data, try again later');
+        alert('Error getting player data, try again later');
     }
 }
 

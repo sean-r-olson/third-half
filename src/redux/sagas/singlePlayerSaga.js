@@ -8,7 +8,7 @@ function* singlePlayerSaga(action) {
         console.log(response.data);
     } catch (error) {
         console.log('error getting single player data', error);
-        alert('Error getting data, try again later');
+        alert('Error getting team data, try again later');
     }
 }
 

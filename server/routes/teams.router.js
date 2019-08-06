@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 // GET to db (get team data from team table)
 router.get('/', (req, res) => {
-    const sqlText=`SELECT * FROM "teams" ORDER BY "id"`;
+    const sqlText=`SELECT * FROM "teams"`;
     pool.query(sqlText)
       .then( (response) => {
         res.send(response.rows);
