@@ -31,14 +31,18 @@ const ProtectedRoute = (props) => {
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
     ComponentToShow = ComponentToProtect;
+    console.log('in user.id');
   } else if (loginMode === 'login') {
     // if they are not logged in, check the loginMode on Redux State
     // if the mode is 'login', show the LoginPage
     ComponentToShow = LoginPage;
+    console.log('in login mode');
+
   } else {
     // the the user is not logged in and the mode is not 'login'
     // show the RegisterPage
     ComponentToShow = RegisterPage;
+    console.log('in logout mode');
   }
 
   // We return a Route component that gets added to our list of routes

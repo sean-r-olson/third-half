@@ -30,4 +30,20 @@ router.get('/:id', (req, res) => {
   })
 })
 
+router.get('/user/:id', (req, res) => {
+  let playerId = req.params.id;
+  const sqlText = `select id, player_name, position, picture from players where id=$1;`;
+  const values = [playerId];
+  pool.query(sqlText, values)
+  .then((response) => {
+    res.send(response.rows[0]);
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('error getting single player data from DB', error);
+    res.sendStatus(500);
+  })
+})
+
+
 module.exports = router;

@@ -17,15 +17,18 @@ render() {
         {this.props.reduxStore.countriesReducer.map(item => {
         return(
           <div key={item.id}>
-            <img class="countryFlag" src={item.flag} alt="country_flag" />
+            <img className="countryFlag" src={item.flag} alt="country_flag" />
           </div>
         )
       })}
       <br/>
         {this.props.reduxStore.teamsReducer.map(item => {
         return(
-          <div key={item.id}>
-            <img class="teamLogo" src={item.logo} alt="team_logo" />
+          <div className="teamInfo" key={item.id}>
+            <img className="teamLogo" src={item.logo} alt="team_logo" />
+            <br/>
+            <p>{item.team_name}</p>
+            <p>{item.city}, {item.state}</p>
           </div>
         )
       })}

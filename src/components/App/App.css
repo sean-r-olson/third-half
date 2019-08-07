@@ -31,7 +31,6 @@ input {
   border: solid  #222 5px;
   display: inline-block;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
 }
 
 
@@ -74,6 +73,12 @@ border: none;
 display: inline-block;
 }
 
+.teamInfo {
+    display: inline-block;
+    text-align: center;
+    margin: 1% 15%;
+}
+
 h1 {
     text-align: center;
 }
@@ -83,4 +88,19 @@ h1 {
     max-width: 300px;
     min-height: 200px;
     max-height: 200px;
+    margin: 1% 38%;
+}
+
+.profilePicture {
+  float: left;
+  width: 20%;
+  min-height: 300px;
+  max-height: 350px;
+  border: solid  #222 5px;
+  display: inline-block;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.profileLayout {
+    display: inline;
 }

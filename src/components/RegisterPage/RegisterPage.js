@@ -53,6 +53,16 @@ class RegisterPage extends Component {
               />
             </label>
           </div>
+          <label htmlFor="username">
+          Team:
+          <select>
+          </select>
+
+
+
+
+          </label>
+         
           <div>
             <label htmlFor="password">
               Password:

@@ -30,7 +30,7 @@ const UpperNav = (props) => (
       {/* Show the link to the logout button if the user is logged in */}
       {props.user.id && (
         <>
-      <LogOutButton className="log-in"/>
+      <LogOutButton className="link-button"/>
         </>
       )}
     </div>

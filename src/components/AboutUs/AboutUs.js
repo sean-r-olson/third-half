@@ -5,16 +5,26 @@ import DashboardNav from '../DashboardNav/DashboardNav';
 
 class AboutUs extends Component {
 
-
     render() {
     return(
     
     <div>
       <UpperNav /> 
       <DashboardNav/>
+      {this.props.reduxStore.teamsReducer.map(item => {
+        return(
+          <div className="teamInfo" key={item.id}>
+            <p> {item.about_us} </p>
+          </div>
+        )
+      })}
     </div>
     )
 }
 }
 
-export default connect()(AboutUs);
+const mapStateToProps = (reduxStore) => ({
+  reduxStore
+})
+
+export default connect(mapStateToProps)(AboutUs);

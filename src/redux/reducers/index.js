@@ -6,6 +6,8 @@ import playersListReducer from './playersReducer';
 import singlePlayerReducer from './singlePlayerReducer';
 import teamsReducer from './teamsReducer';
 import countriesReducer from './countriesReducer';
+import playerProfileReducer from './playerProfileReducer';
+import privatePostsReducer from './privatePostsReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
   singlePlayerReducer,
   teamsReducer,
   countriesReducer,
+  playerProfileReducer,
+  privatePostsReducer,
 });
 
 export default rootReducer;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import '../App/App.css';
 
 const LogOutButton = props => (
   <button

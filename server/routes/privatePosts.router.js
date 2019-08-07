@@ -15,4 +15,16 @@ router.get('/', (req, res) => {
       })
 })
 
+router.post('/', (req, res) => {
+    const sqlText=`INSERT INTO "private_posts"("message") VALUES($1);`;
+    const values =[req.body.message];
+    pool.query(sqlText, values)
+    .then((results)=> {
+      res.sendStatus(201);
+    }).catch((error) => {
+      console.log('error with inster into private posts', error);
+      res.sendStatus(500);
+    })
+})
+
 module.exports = router;

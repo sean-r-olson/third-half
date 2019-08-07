@@ -6,6 +6,9 @@ import playersSaga from './playersSaga';
 import singlePlayerSaga from './singlePlayerSaga';
 import teamsSaga from './teamsSaga';
 import countriesSaga from './countriesSaga';
+import playerProfileSaga from './playerProfileSaga';
+import addPrivatePostSaga from './addPrivatePostSaga';
+import fetchPrivatePostsSaga from './fetchPrivatePostsSaga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -18,6 +21,9 @@ export default function* rootSaga() {
   yield takeLatest('FETCH_PLAYER', singlePlayerSaga);
   yield takeEvery('FETCH_ALL_TEAMS', teamsSaga);
   yield takeEvery('FETCH_COUNTRIES', countriesSaga);
+  yield takeEvery('FETCH_PLAYER_PROFILE', playerProfileSaga);
+  yield takeEvery('ADD_PRIVATE_POST', addPrivatePostSaga);
+  yield takeEvery('FETCH_PRIVATE_POSTS', fetchPrivatePostsSaga);
   yield all([
     loginSaga(),
     registrationSaga(),
@@ -26,5 +32,8 @@ export default function* rootSaga() {
     singlePlayerSaga(),
     teamsSaga(),
     countriesSaga(),
+    playerProfileSaga(),
+    addPrivatePostSaga(),
+    fetchPrivatePostsSaga(),
   ]);
 }
