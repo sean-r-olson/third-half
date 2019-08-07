@@ -11,12 +11,14 @@ class PrivatePosts extends Component {
   }
 
   componentDidMount(){
+
     this.props.dispatch({type: 'FETCH_PRIVATE_POSTS'})
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch({type: 'ADD_PRIVATE_POST', payload: this.state.message});
+    console.log('WHOOOOOOOOOOOOOOOOOOORES',this.state);
+    this.props.dispatch({type: 'ADD_PRIVATE_POST', payload: this.state});
   }
 
   handleChangeFor = (event, propertyName) => {
@@ -48,9 +50,6 @@ class PrivatePosts extends Component {
           </div>
         )
       })}
-      { 
-        JSON.stringify(this.props.reduxStore.privatePostsReducer)
-      }
       </>
     );
   }

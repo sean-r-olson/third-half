@@ -3,6 +3,7 @@ import Axios from 'axios';
 
 function* privatePostsSaga(action) {
     try {
+        console.log(action.payload)
         yield Axios.post(`/privatePosts`, action.payload);
         yield put ({type: 'FETCH_PRIVATE_POSTS'})
     } catch (error) {
