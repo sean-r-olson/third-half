@@ -13,7 +13,6 @@ class TeamPlayers extends Component {
   }
 
 handleToggle = (item) => {
-    this.props.dispatch({ type: 'FETCH_PLAYER', payload: item })
     if (this.state.showPicture === true) {
     console.log(this.state);
     this.setState({

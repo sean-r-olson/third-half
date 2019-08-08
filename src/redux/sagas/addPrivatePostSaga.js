@@ -1,7 +1,7 @@
 import { put } from 'redux-saga/effects';
 import Axios from 'axios';
 
-function* privatePostsSaga(action) {
+function* addPrivatePostsSaga(action) {
     try {
         console.log(action.payload)
         yield Axios.post(`/privatePosts`, action.payload);
@@ -12,4 +12,4 @@ function* privatePostsSaga(action) {
     }
 }
 
-export default privatePostsSaga;
+export default addPrivatePostsSaga;

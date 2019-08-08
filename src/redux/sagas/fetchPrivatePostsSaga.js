@@ -1,9 +1,10 @@
 import { put } from 'redux-saga/effects';
 import Axios from 'axios';
 
-function* fetchPrivatePostsSaga() {
+function* fetchPrivatePostsSaga(action) {
     try {
-        const response = yield Axios.get(`/privatePosts`);
+        console.log(action.payload);
+        const response = yield Axios.get(`/privatePosts/${action.payload}`);
         yield put ({type: 'SET_PRIVATE_POSTS', payload: response.data})
         console.log(response.data);
     } catch (error) {

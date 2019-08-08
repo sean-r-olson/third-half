@@ -9,15 +9,16 @@ class PrivatePosts extends Component {
  state = {
     username: '',
     message: '',
+    team_id: '',
   }
 
-  componentDidMount(){
-    this.props.dispatch({type: 'FETCH_PRIVATE_POSTS'})
-  }
+  // componentDidMount(){
+  //   this.props.dispatch({type: 'FETCH_PRIVATE_POSTS', payload: this.state})
+  // }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state)
+    console.log(this.state);
     this.props.dispatch({type: 'ADD_PRIVATE_POST', payload: this.state});
     
   }
@@ -26,6 +27,7 @@ class PrivatePosts extends Component {
     this.setState({
       ...this.state,
       username: this.props.reduxStore.user.username,
+      team_id: this.props.reduxStore.user.team,
       [propertyName]: event.target.value
     })
   }
