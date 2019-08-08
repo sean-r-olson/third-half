@@ -22,13 +22,15 @@ input {
     margin-bottom: 10px;
 }
 
-.playerImages {
-    margin: 1%;
+.playersDiv {
+    margin: 1% 1% 1% 15%;
+    min-width: 200px;
+    max-width: 200px;
     min-height: 300px;
-    max-height: 350px;
-    border: solid  #222 5px;
+    max-height: 300px;
     display: inline-block;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    align-content: center;
 }
 
 
@@ -98,12 +100,13 @@ h2 {
 }
 
 .profilePicture {
-  width: 20%;
-  min-height: 300px;
-  max-height: 350px;
-  border: solid  #222 5px;
-  display: inline-block;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+border: solid  #222 5px;
+margin: 1% 15%;
+width: 20%;
+min-height: 300px;
+max-height: 350px;
+display: inline-block;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .profileLayout {
@@ -118,4 +121,12 @@ h2 {
     height: 200px;
     margin: 0% 32%;
 
+}
+
+.playerImages {
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 300px;
+    max-height: 300px;
+    border: solid  #222 5px;
 }

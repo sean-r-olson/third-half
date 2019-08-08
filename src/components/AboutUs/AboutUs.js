@@ -6,18 +6,17 @@ import '../App/App.css';
 
 class AboutUs extends Component {
 
+    // componentDidMount(){
+    //   console.log(this.props.reduxStore.user.id)
+    //   // this.props.dispatch({type: 'FETCH_TEAM_DATA', payload: this.props.reduxStore.user.id})
+    // }
+
     render() {
     return(
       <> 
       <UpperNav /> 
       <DashboardNav/>
-      {this.props.reduxStore.teamsReducer.map(item => {
-        return(
-          <div className="teamInfo" key={item.id}>
-            <p> {item.about_us} </p>
-          </div>
-        )
-      })}
+      <p>{this.props.reduxStore.teamDataReducer.about_us}</p>
     </>
     )
 }

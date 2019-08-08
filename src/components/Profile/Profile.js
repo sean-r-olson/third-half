@@ -6,9 +6,9 @@ import '../App/App.css';
 
 class Profile extends Component {
 
-    componentDidMount () {
-        this.props.dispatch({type: 'FETCH_PLAYER_PROFILE', payload: this.props.reduxStore.user.id});
-      }
+componentDidMount () {
+    this.props.dispatch({type: 'FETCH_PLAYER_PROFILE', payload: this.props.reduxStore.user.id});
+}
     
 render() {
     console.log(this.props.reduxStore.playerProfileReducer);

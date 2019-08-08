@@ -34,32 +34,30 @@ render() {
     console.log(this.state);
     if (this.state.showPicture === true) {
     return (
-    <div>
+    <>
       <UpperNav /> 
       <DashboardNav/>
       {this.props.reduxStore.playersListReducer.map(item => {
         return(
-          <div key={item.id}>
-            <img class="playerImages" src={item.picture} alt="player_picture" onClick={(event) => this.handleToggle(item)}/>
+          <div className="playersDiv" key={item.id}>
+            <img className="playerImages" src={item.picture} alt="player_picture" onClick={(event) => this.handleToggle(item)}/>
           </div>
         )
       })}
-    </div>
+    </>
     )} else return (
-      <div>
+      <>
       <UpperNav /> 
       <DashboardNav />
       {this.props.reduxStore.playersListReducer.map(item => {
       return(
-          <div key={item.id}>
-            <div>
-              <img class="playerImages" src={item.picture} alt="player_picture" onClick={(event) => this.handleToggle(item)} />
-            </div>
+          <div className="playersDiv" key={item.id}>
+              <img  src={item.picture} alt="player_picture" onClick={(event) => this.handleToggle(item)} />
           </div>
         )
       })}
       {JSON.stringify(this.props.reduxStore.singlePlayerReducer.position)}
-      </div>
+      </>
     )
     }
 }
