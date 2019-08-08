@@ -5,14 +5,11 @@ import DashboardNav from '../DashboardNav/DashboardNav';
 import '../App/App.css';
 
 class Profile extends Component {
-    state = {
-        id: 4
-    }
 
     componentDidMount () {
-        this.props.dispatch({type: 'FETCH_PLAYER_PROFILE', payload: this.state.id});
+        this.props.dispatch({type: 'FETCH_PLAYER_PROFILE', payload: this.props.reduxStore.user.id});
       }
-
+    
 render() {
     console.log(this.props.reduxStore.playerProfileReducer);
     return (
