@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import UpperNav from '../UpperNav/UpperNav';
 import DashboardNav from '../DashboardNav/DashboardNav';
+import '../App/App.css';
 
 class PrivatePosts extends Component {
 
@@ -11,13 +12,11 @@ class PrivatePosts extends Component {
   }
 
   componentDidMount(){
-
     this.props.dispatch({type: 'FETCH_PRIVATE_POSTS'})
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('WHOOOOOOOOOOOOOOOOOOORES',this.state);
     this.props.dispatch({type: 'ADD_PRIVATE_POST', payload: this.state});
   }
 
@@ -35,21 +34,22 @@ class PrivatePosts extends Component {
       <UpperNav/>
       <DashboardNav/>
       <section>
-        <h2>Add Character</h2>
+        <h2>Add Message</h2>
         <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="message" 
+          <textarea type="text" placeholder="message" 
               onChange={(event) => this.handleChangeFor(event, 'message')}
               value={this.state.message} />
           <button>Submit</button>
         </form>
-      </section>
-      {this.props.reduxStore.privatePostsReducer.map(item => {
+        {this.props.reduxStore.privatePostsReducer.map(item => {
       return(
-          <div key={item.id}>
+          <div className="privatePosts" key={item.id}>
            <p>{item.message}</p> 
           </div>
         )
       })}
+      </section>
+
       </>
     );
   }

@@ -5,7 +5,7 @@ import '../DashboardNav/DashboardNav.css';
 
 const DashboardNav = (props) => (
   <div className="dashboardNav">
-      <div className="nav-right">
+      {/* <div className="nav-right"> */}
     <Link to="/profile" className="dashboardNavLink">
       Profile
     </Link>
@@ -29,7 +29,7 @@ const DashboardNav = (props) => (
     <Link to="/follow" className="dashboardNavLink">
       Follow Team
     </Link>
-    </div>
+    {/* </div> */}
     </div>
 );
 

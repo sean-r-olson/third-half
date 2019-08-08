@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import UpperNav from '../UpperNav/UpperNav';
 import DashboardNav from '../DashboardNav/DashboardNav';
+import '../App/App.css';
 
 class AboutUs extends Component {
 
     render() {
     return(
-    
-    <div>
+      <> 
       <UpperNav /> 
       <DashboardNav/>
       {this.props.reduxStore.teamsReducer.map(item => {
@@ -18,7 +18,7 @@ class AboutUs extends Component {
           </div>
         )
       })}
-    </div>
+    </>
     )
 }
 }

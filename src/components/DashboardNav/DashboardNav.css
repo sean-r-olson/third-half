@@ -24,13 +24,11 @@
   }
 
 .dashboardNav {
-  overflow: hidden;
   background-color: #1d2c69;
   width: 100px;
   height: 100%;
-  display: block;
   padding: 20px;
-  position:relative;
+  position: absolute;
 }
 
 .nav-link {
@@ -54,4 +52,8 @@
 
 .nav-right {
   float: right;
+}
+
+.teamInfo {
+  text-align: center;
 }
