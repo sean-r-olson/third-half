@@ -4,10 +4,12 @@ const pool = require('../modules/pool');
 
 // GET to db (get team data from team table)
 router.get('/', (req, res) => {
-    const sqlText=`SELECT *, now() FROM "private_posts"`;
+    const sqlText=`select "message", "date_time" from "private_posts";
+    `;
     pool.query(sqlText)
       .then( (response) => {
         res.send(response.rows);
+        console.log(response.rows);
       })
       .catch( (error) => {
         console.log(`Error getting shows`, error);
@@ -16,7 +18,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    const sqlText=`INSERT INTO "private_posts"("message") VALUES($1);`;
+    const sqlText=`INSERT INTO "private_posts"("message", "date_time") VALUES($1, clock_timestamp());`;
     const values = [req.body.message];
     console.log(req.body.message)
     pool.query(sqlText, values)

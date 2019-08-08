@@ -45,6 +45,7 @@ class PrivatePosts extends Component {
       return(
           <div className="privatePosts" key={item.id}>
            <p>{item.message}</p> 
+           <p>{item.date_time}</p>
           </div>
         )
       })}
