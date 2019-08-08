@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 // GET to db (get team data from team table)
 router.get('/', (req, res) => {
-    const sqlText=`select "message", "date_time" from "private_posts";
+    const sqlText=`select "username", "message", "date_time" from "private_posts";
     `;
     pool.query(sqlText)
       .then( (response) => {
@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    const sqlText=`INSERT INTO "private_posts"("message", "date_time") VALUES($1, clock_timestamp());`;
-    const values = [req.body.message];
+    const sqlText=`INSERT INTO "private_posts"("username", "message", "date_time") VALUES($1, $2, clock_timestamp());`;
+    const values = [req.body.username, req.body.message];
     console.log(req.body.message)
     pool.query(sqlText, values)
     .then((results)=> {

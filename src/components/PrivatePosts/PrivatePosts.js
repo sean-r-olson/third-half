@@ -7,7 +7,7 @@ import '../App/App.css';
 class PrivatePosts extends Component {
 
  state = {
-    user: '',
+    username: '',
     message: '',
   }
 
@@ -17,12 +17,15 @@ class PrivatePosts extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    console.log(this.state)
     this.props.dispatch({type: 'ADD_PRIVATE_POST', payload: this.state});
+    
   }
 
   handleChangeFor = (event, propertyName) => {
     this.setState({
       ...this.state,
+      username: this.props.reduxStore.user.username,
       [propertyName]: event.target.value
     })
   }
@@ -44,8 +47,8 @@ class PrivatePosts extends Component {
         {this.props.reduxStore.privatePostsReducer.map(item => {
       return(
           <div className="privatePosts" key={item.id}>
-           <p>{item.message}</p> 
-           <p>{item.date_time}</p>
+          <p>{item.username} | {item.date_time}</p> 
+          <p>{item.message}</p>
           </div>
         )
       })}
