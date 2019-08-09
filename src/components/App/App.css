@@ -33,6 +33,10 @@ input {
     align-content: center;
 }
 
+/* .playersDiv:hover {
+    background-color: red;
+    border: 50px;
+} */
 
 .log-in, .log-out, .register {
   background-color: #00acb0;
@@ -130,6 +134,12 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     max-height: 300px;
     border: solid  #222 5px;
 }
+
+.playerImages:hover {
+    border: solid white 5px;
+    background-color: red;
+}
+
 
 .editButton {
     text-align: center;

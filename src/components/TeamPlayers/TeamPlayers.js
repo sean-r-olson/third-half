@@ -59,9 +59,12 @@ handleChange = (event, propertyToChange) => {
   })
 }
 
-handleClickOpen = () => {
+handleClickOpen = (item) => {
   this.setState({
-    open: true
+    open: true, 
+    id: item.id,
+    player_name: item.player_name,
+    position: item.position
   })
 }
 
@@ -72,7 +75,11 @@ handleClose = () => {
 }
 
 handleEdit = () => {
-  this.props.dispatch({type: 'EDIT_ITEM', payload: this.state})
+  this.setState({
+    ...this.state,
+      id: this.props.reduxStore.playersListReducer.id
+    })
+  this.props.dispatch({type: 'EDIT_PLAYER_INFO', payload: this.state})
   this.setState({ open: false })
 }
 
@@ -85,40 +92,38 @@ render() {
     <>
       <UpperNav /> 
       <DashboardNav/>
-      <Button className="editButton" onClick={() => this.handleClickOpen()}>Edit Team</Button>
       <br/>
       <br/>
       {this.props.reduxStore.playersListReducer.map(item => {
         return(
           <div className="playersDiv" key={item.id}>
-            <img className="playerImages" src={item.picture} alt="player_picture"
+            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"
              />
+             <br/>
+             {/* <Button variant="outlined" color="primary" className="editButton" onClick={() => this.handleClickOpen()}>Edit Player</Button> */}
+             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+             <br/>
           </div>
         )
       })}
      <Dialog 
     //  className={classes.modal}
-      open={this.state.open}
+                open={this.state.open}
                 onClose={this.handleClose}
                 >
-                    <DialogTitle id="form-dialog-title">Edit Team</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Edit Player</DialogTitle>
                     <DialogContent>
-                    {this.props.reduxStore.playersListReducer.map(item => {
-                            return(
-                              <div key={item.id}>
-                              <TextField onChange={event => this.handleChange(event, 'player_name')} label={item.player_name}>
+                              <TextField onChange={event => this.handleChange(event, 'player_name')} label={this.state.player_name}>
                               </TextField>
-                              <TextField onChange={event => this.handleChange(event, 'position')} label={item.position}>
+                              <TextField onChange={event => this.handleChange(event, 'position')} label={this.state.position}>
                               </TextField>
-                                <Button variant="outlined" color="secondary">Delete Player</Button>
-                              </div>
-                            )
-                          })}
+                              <DialogActions>
+                              <Button variant="outlined" color="secondary">Delete Player</Button>
+                              <Button variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
+                              </DialogActions>
                     </DialogContent>
                     <br />
-                    <DialogActions>
-                        <Button variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
-                    </DialogActions>
+                    
                 </Dialog>
     </>
     )} else return (

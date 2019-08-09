@@ -10,6 +10,8 @@ import playerProfileSaga from './playerProfileSaga';
 import addPrivatePostSaga from './addPrivatePostSaga';
 import fetchPrivatePostsSaga from './fetchPrivatePostsSaga';
 import fetchTeamDataSaga from './fetchTeamDataSaga';
+import editPlayerInfoSaga from './editPlayerInfoSaga';
+
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -26,7 +28,7 @@ export default function* rootSaga() {
   yield takeEvery('ADD_PRIVATE_POST', addPrivatePostSaga);
   yield takeEvery('FETCH_PRIVATE_POSTS', fetchPrivatePostsSaga);
   yield takeEvery('FETCH_TEAM_DATA', fetchTeamDataSaga);
-
+  yield takeEvery('EDIT_PLAYER_INFO', editPlayerInfoSaga);
   yield all([
     loginSaga(),
     registrationSaga(),
@@ -39,5 +41,6 @@ export default function* rootSaga() {
     addPrivatePostSaga(),
     fetchPrivatePostsSaga(),
     fetchTeamDataSaga(),
+    editPlayerInfoSaga(),
   ]);
 }

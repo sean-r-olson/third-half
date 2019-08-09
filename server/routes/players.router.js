@@ -45,5 +45,17 @@ router.get('/user/:id', (req, res) => {
   })
 })
 
+router.put('/edit/:id', (req, res) => {
+  const sqlText = `update "players" set "player_name"=$1, "position"=$2 where "id"=$3`;
+  const values = [req.body.player_name, req.body.position, req.params.id];
+  pool.query(sqlText, values)
+  .then((response) => {
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('error updating player data for DB', error);
+    res.sendStatus(500);
+  })
+})
 
 module.exports = router;
