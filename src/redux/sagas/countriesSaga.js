@@ -1,7 +1,11 @@
-import { put } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import Axios from 'axios';
 
-function* countriesSaga(action) {
+function* countriesSaga(){
+    yield takeEvery('FETCH_COUNTRIES', fetchCountriesSaga);
+}
+
+function* fetchCountriesSaga(action) {
     try {
         const response = yield Axios.get(`/countries`);
         yield put ({type: 'SET_COUNTRIES', payload: response.data})

@@ -1,7 +1,11 @@
-import { put } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import Axios from 'axios';
 
-function* messageSaga(action) {
+function* messagesSaga(){
+    yield takeEvery('FETCH_MESSAGES', fetchMessagesSaga);
+}
+
+function* fetchMessagesSaga(action) {
     try {
         const response = yield Axios.post(`/messages`, action.payload);
         yield put ({type: 'SET_MESSAGES', payload: response.data})
@@ -12,4 +16,4 @@ function* messageSaga(action) {
     }
 }
 
-export default messageSaga;
+export default messagesSaga;
