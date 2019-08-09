@@ -33,6 +33,10 @@ class TeamPlayers extends Component {
    
   }
 
+
+  componentDidMount(){
+    this.props.dispatch({type:'FETCH_TEAM'})
+  }
 // handleToggle = (item) => {
 //     if (this.state.showPicture === true) {
 //     console.log(this.state);
@@ -133,7 +137,6 @@ render() {
       <>
       <UpperNav /> 
       <DashboardNav />
-      <button className="editButton" onClick={(event) => this.handleEdit()}>Edit Team</button>
       <br/>
       <br/>
       <Dialog>
