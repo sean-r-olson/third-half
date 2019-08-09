@@ -58,4 +58,17 @@ router.put('/edit/:id', (req, res) => {
   })
 })
 
+router.put('/delete/:id', (req, res) => {
+  const sqlText = `delete from players where id=$1;`;
+  const values = [req.params.id];
+  pool.query(sqlText, values)
+  .then((response) => {
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('error updating player data for DB', error);
+    res.sendStatus(500);
+  })
+})
+
 module.exports = router;

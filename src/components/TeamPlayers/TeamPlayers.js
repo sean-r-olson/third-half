@@ -14,7 +14,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-
 const styles = theme => ({
   input: {
       margin: theme.spacing.unit
@@ -83,6 +82,10 @@ handleEdit = () => {
   this.setState({ open: false })
 }
 
+handleDelete = () => {
+  this.props.dispatch({type: 'DELETE_PLAYER', payload: this.state})
+}
+
 render() {
     console.log(this.state);
     console.log(this.props.reduxStore.playersListReducer)
@@ -118,7 +121,7 @@ render() {
                               <TextField onChange={event => this.handleChange(event, 'position')} label={this.state.position}>
                               </TextField>
                               <DialogActions>
-                              <Button variant="outlined" color="secondary">Delete Player</Button>
+                              <Button variant="outlined" color="secondary" onClick={this.handleDelete}>Delete Player</Button>
                               <Button variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
                               </DialogActions>
                     </DialogContent>
