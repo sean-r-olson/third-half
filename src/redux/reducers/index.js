@@ -9,7 +9,7 @@ import countriesReducer from './countriesReducer';
 import playerProfileReducer from './playerProfileReducer';
 import privatePostsReducer from './privatePostsReducer';
 import teamDataReducer from './teamDataReducer';
-
+import messageReducer from './messageReducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -27,6 +27,7 @@ const rootReducer = combineReducers({
   playerProfileReducer,
   privatePostsReducer,
   teamDataReducer,
+  messageReducer,
 });
 
 export default rootReducer;

@@ -4,10 +4,11 @@ const pool = require('../modules/pool');
 
 // GET to db (get team data from team table)
 router.get('/:id', (req, res) => {
-    const sqlText=`
-    select private_posts.message, "user".username, private_posts.date_time, "user".team from private_posts 
-    join "user" on private_posts.team_id = "user".team 
-    join  "teams" on "teams".id = private_posts.team_id where "user".team= $1;`;
+    const sqlText=
+    // select private_posts.message, "user".username, private_posts.date_time, "user".team from private_posts 
+    // join "user" on private_posts.team_id = "user".team 
+    // join  "teams" on "teams".id = private_posts.team_id where "user".team= $1;`
+    `select username, message, date_time from private_posts where team_id=$1;`
     const values = [req.params.id];
     console.log(values);
     pool.query(sqlText, values)

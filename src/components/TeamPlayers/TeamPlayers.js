@@ -26,11 +26,14 @@ const styles = theme => ({
 class TeamPlayers extends Component {
 
   state = {
-    open: false,
+    open_edit: false,
+    open_messages: false,
+    from_id: '',
+    recieved_id: '',
     id: 0, 
     player_name: '',
     position: '',
-   
+    message: '',
   }
 
 
@@ -64,16 +67,22 @@ handleChange = (event, propertyToChange) => {
 
 handleClickOpen = (item) => {
   this.setState({
-    open: true, 
+    open_edit: true, 
     id: item.id,
     player_name: item.player_name,
     position: item.position
   })
 }
 
-handleClose = () => {
+handleCloseEdit = () => {
   this.setState({
-    open: false
+    open_edit: false
+  })
+}
+
+handleCloseMessages = () => {
+  this.setState({
+    open_messages: false,
   })
 }
 
@@ -83,16 +92,32 @@ handleEdit = () => {
       id: this.props.reduxStore.playersListReducer.id
     })
   this.props.dispatch({type: 'EDIT_PLAYER_INFO', payload: this.state})
-  this.setState({ open: false })
+  this.setState({ open_edit: false })
 }
 
 handleDelete = () => {
   this.props.dispatch({type: 'DELETE_PLAYER', payload: this.state})
 }
 
+handleOpenMessages = (item) => {
+  this.setState({
+    open_messages: true,
+    from_id: this.props.reduxStore.user.id,
+    recieved_id: item.id,
+    player_name: item.player_name,
+    position: item.position
+  })
+}
+
+sendMessage = () => {
+  console.log('hit sendMessage Btn')
+  this.props.dispatch({type: 'SEND_MESSAGE', payload: this.state})
+}
+
 render() {
     console.log(this.state);
-    console.log(this.props.reduxStore.playersListReducer)
+    console.log(this.props.reduxStore.messageReducer)
+    console.log(this.props.reduxStore.user)
     // const {classes} = this.props;
     if (this.props.reduxStore.user.admin_level === 1) {
     return (
@@ -104,10 +129,10 @@ render() {
       {this.props.reduxStore.playersListReducer.map(item => {
         return(
           <div className="playersDiv" key={item.id}>
-            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"
-             />
+            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+
              <br/>
-             {/* <Button variant="outlined" color="primary" className="editButton" onClick={() => this.handleClickOpen()}>Edit Player</Button> */}
+             <Button variant="outlined" color="primary" className="editButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
              {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
              <br/>
           </div>
@@ -115,8 +140,8 @@ render() {
       })}
      <Dialog 
     //  className={classes.modal}
-                open={this.state.open}
-                onClose={this.handleClose}
+                open={this.state.open_edit}
+                onClose={this.handleCloseEdit}
                 >
                     <DialogTitle id="form-dialog-title">Edit Player</DialogTitle>
                     <DialogContent>
@@ -131,34 +156,91 @@ render() {
                     </DialogContent>
                     <br />
                     
+                </Dialog> 
+    <Dialog
+              open={this.state.open_messages}
+              onClose={this.handleCloseMessages}
+              >
+                <DialogTitle id="form-dialog-title">Messages</DialogTitle>
+                <DialogContent>
+                {this.props.reduxStore.messageReducer.map(item => {
+                  if (item.recieved_id === this.state.recieved_id)
+                  return(
+                    <div key={item.id}>
+                      <Typography>{item.message}</Typography>
+                    </div>
+                  )
+                })}
+                    <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
+                  <DialogActions>
+                    <Button variant="contained" color="primary" onClick={this.sendMessage}>Send</Button>
+                    </DialogActions>
+                </DialogContent>
                 </Dialog>
     </>
-    )} else return (
-      <>
-      <UpperNav /> 
-      <DashboardNav />
-      <br/>
-      <br/>
-      <Dialog>
-          <DialogTitle> 
-            <DialogContent>
-              <TextField>
-      {this.props.reduxStore.playersListReducer.map(item => {
-      return(
-          <div className="playersDiv" key={item.id}>
-              <img className="playerImages" src={item.picture} alt="player_picture"
-              //  onClick={(event) => this.handleToggle(item)}
-                />
-          </div>
-        )
-      })}
-              </TextField>
-            </DialogContent>
-          </DialogTitle>
-      </Dialog>
-      </>
+    )} else
+    //  if (this.props.reduxStore.messageReducer.recieved_id === this.state.recieved_id) {
+      return (
+          <>
+            <UpperNav /> 
+            <DashboardNav/>
+            <br/>
+            <br/>
+            {this.props.reduxStore.playersListReducer.map(item => {
+              return(
+                <div className="playersDiv" key={item.id}>
+                  <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+      
+                   <br/>
+                   <Button variant="outlined" color="primary" className="editButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
+                   {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+                   <br/>
+                </div>
+              )
+            })}
+           <Dialog 
+          //  className={classes.modal}
+                      open={this.state.open_edit}
+                      onClose={this.handleCloseEdit}
+                      >
+                          <DialogTitle id="form-dialog-title">Edit Player</DialogTitle>
+                          <DialogContent>
+                                    <TextField onChange={event => this.handleChange(event, 'player_name')} label={this.state.player_name}>
+                                    </TextField>
+                                    <TextField onChange={event => this.handleChange(event, 'position')} label={this.state.position}>
+                                    </TextField>
+                                    <DialogActions>
+                                    <Button variant="outlined" color="secondary" onClick={this.handleDelete}>Delete Player</Button>
+                                    <Button variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
+                                    </DialogActions>
+                          </DialogContent>
+                          <br />
+                          
+                      </Dialog> 
+          <Dialog
+                    open={this.state.open_messages}
+                    onClose={this.handleCloseMessages}
+                    >
+                      <DialogTitle id="form-dialog-title">Messages</DialogTitle>
+                      <DialogContent>
+                      
+                      {this.props.reduxStore.messageReducer.map(item => {
+                        return(
+                          <div key={item.id}>
+                            <Typography>{item.message}</Typography>
+                          </div>
+                        )
+                      })}
+                          <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
+                        <DialogActions>
+                          <Button variant="contained" color="primary" onClick={this.sendMessage}>Send</Button>
+                          </DialogActions>
+                      </DialogContent>
+                      </Dialog>
+          </>
     )
-    }
+    // }
+}
 }
 
 const mapStateToProps = (reduxStore) => ({

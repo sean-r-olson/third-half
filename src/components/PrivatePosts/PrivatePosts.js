@@ -13,14 +13,13 @@ class PrivatePosts extends Component {
   }
 
   // componentDidMount(){
-  //   this.props.dispatch({type: 'FETCH_PRIVATE_POSTS', payload: this.state})
+  //   this.props.dispatch({type: 'FETCH_PRIVATE_POSTS', payload: this.state.team_id})
   // }
 
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
     this.props.dispatch({type: 'ADD_PRIVATE_POST', payload: this.state});
-    
   }
 
   handleChangeFor = (event, propertyName) => {

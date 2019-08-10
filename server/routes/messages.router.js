@@ -15,4 +15,33 @@ router.get('/', (req, res) => {
       })
 })
 
+router.post('/', (req, res) => {
+  const sqlText=`insert into messages ("from_id", "recieved_id", "date_time", "message")
+  values ($1, $2, clock_timestamp(), $3);`;
+  const values = [req.body.from_id, req.body.recieved_id, req.body.message];
+  console.log(req.body)
+  pool.query(sqlText, values)
+    .then((results)=> {
+      res.sendStatus(201);
+    }) .catch((error) => {
+      console.log('error sending message to DB', error);
+      res.sendStatus(500);
+    })
+})
+
+// router.post('/', (req, res) => {
+//   const sqlText=`INSERT INTO "private_posts"("username", "message", "team_id", "date_time") VALUES($1, $2, $3, clock_timestamp());`;
+//   const values = [req.body.username, req.body.message, req.body.team_id];
+//   console.log(req.body)
+//   pool.query(sqlText, values)
+//   .then((results)=> {
+//     res.sendStatus(201);
+//     console.log(values)
+//   }).catch((error) => {
+//     console.log('error with insert into private posts', error);
+//     res.sendStatus(500);
+//   })
+// })
+
+
 module.exports = router;
