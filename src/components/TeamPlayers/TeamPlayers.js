@@ -13,6 +13,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { objectExpression } from '@babel/types';
 
 const styles = theme => ({
   input: {
@@ -30,10 +31,13 @@ class TeamPlayers extends Component {
     open_messages: false,
     from_id: '',
     recieved_id: '',
+    from_name: '',
+    recieved_name: '',
     id: 0, 
     player_name: '',
     position: '',
     message: '',
+
   }
 
 
@@ -102,11 +106,14 @@ handleDelete = () => {
 handleOpenMessages = (item) => {
   this.setState({
     open_messages: true,
-    from_id: this.props.reduxStore.user.id,
+    from_id: this.props.reduxStore.playerProfileReducer.id,
     recieved_id: item.id,
+    from_name: this.props.reduxStore.playerProfileReducer.player_name,
+    recieved_name: item.player_name,
     player_name: item.player_name,
     position: item.position
   })
+  console.log(this.state)
 }
 
 sendMessage = () => {
@@ -116,6 +123,8 @@ sendMessage = () => {
 
 render() {
     console.log(this.state);
+    console.log(this.props.reduxStore.playerProfileReducer)
+    console.log(this.props.reduxStore.playersListReducer)
     console.log(this.props.reduxStore.messageReducer)
     console.log(this.props.reduxStore.user)
     // const {classes} = this.props;
@@ -155,7 +164,6 @@ render() {
                               </DialogActions>
                     </DialogContent>
                     <br />
-                    
                 </Dialog> 
     <Dialog
               open={this.state.open_messages}
@@ -164,19 +172,25 @@ render() {
                 <DialogTitle id="form-dialog-title">Messages</DialogTitle>
                 <DialogContent>
                 {this.props.reduxStore.messageReducer.map(item => {
-                  if (item.from_id === this.props.reduxStore.user.id && item.recieved_id === this.state.recieved_id) 
+                  // if the user id (user that's logged in) matches the sender's id, 
+                  if (item.recieved_id === this.props.reduxStore.playerProfileReducer.id
+                    //  && item.recieved_id === this.state.recieved_id
+                     ) {
                   return(
                     <div key={item.id}>
-                      <Typography>Sent from User: {item.from_id}</Typography>
+                      <Typography>{item.from_name}{item.date_time}</Typography>
                       <Typography>{item.message}</Typography>
                     </div>
-                  ); else if (item.recieved_id === this.props.reduxStore.user.id)
-                  return(
-                    <div key={item.id}>
-                      <Typography>Recieved: {item.recieved_id}</Typography> 
+                  )} else if (item.from_id === this.props.reduxStore.playerProfileReducer.id
+                    //  && item.from_id === this.state.from_id
+                     ){
+                    return(
+                      <div key={item.id}>
+                      <Typography>{item.from_name}{item.date_time}</Typography>
                       <Typography>{item.message}</Typography>
                     </div>
-                  );
+                    )
+                  }
                 })}
                     <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
                   <DialogActions>
@@ -231,15 +245,26 @@ render() {
                   <DialogTitle id="form-dialog-title">Messages</DialogTitle>
                   <DialogContent>
                   {this.props.reduxStore.messageReducer.map(item => {
-                    if (item.from_id === this.props.reduxStore.user.id && item.recieved_id === this.state.recieved_id)
+                  // if the user id (user that's logged in) matches the sender's id, 
+                  if (item.recieved_id === this.props.reduxStore.playerProfileReducer.id
+                    //  && item.recieved_id === this.state.recieved_id
+                     ) {
+                  return(
+                    <div key={item.id}>
+                      <Typography>{item.from_name}{item.date_time}</Typography>
+                      <Typography>{item.message}</Typography>
+                    </div>
+                  )} else if (item.from_id === this.props.reduxStore.playerProfileReducer.id
+                    //  && item.from_id === this.state.from_id
+                     ){
                     return(
                       <div key={item.id}>
-                        <Typography>Sent from User: {item.from_id}</Typography>
-                      <Typography>Recieved: {item.recieved_id}</Typography> 
+                      <Typography>{item.from_name}{item.date_time}</Typography>
                       <Typography>{item.message}</Typography>
-                      </div>
+                    </div>
                     )
-                  })}
+                  }
+                })}
                       <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
                     <DialogActions>
                       <Button variant="contained" color="primary" onClick={this.sendMessage}>Send</Button>

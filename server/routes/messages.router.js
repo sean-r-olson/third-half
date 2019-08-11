@@ -16,9 +16,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const sqlText=`insert into messages ("from_id", "recieved_id", "date_time", "message")
-  values ($1, $2, clock_timestamp(), $3);`;
-  const values = [req.body.from_id, req.body.recieved_id, req.body.message];
+  const sqlText=`insert into messages ("from_id", "recieved_id", "date_time", "message", "from_name", "recieved_name")
+  values ($1, $2, clock_timestamp(), $3, $4, $5);`;
+  const values = [req.body.from_id, req.body.recieved_id, req.body.message, req.body.from_name, req.body.recieved_name];
   console.log(req.body)
   pool.query(sqlText, values)
     .then((results)=> {
