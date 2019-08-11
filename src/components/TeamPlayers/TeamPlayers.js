@@ -128,6 +128,7 @@ render() {
     console.log(this.props.reduxStore.messageReducer)
     console.log(this.props.reduxStore.user)
     // const {classes} = this.props;
+    // IF USER'S ADMIN LEVEL IS 1, return the team page with access to editing player information 
     if (this.props.reduxStore.user.admin_level === 1) {
     return (
     <>
@@ -173,21 +174,25 @@ render() {
                 <DialogContent>
                 {this.props.reduxStore.messageReducer.map(item => {
                   // if the user id (user that's logged in) matches the sender's id, 
-                  if (item.recieved_id === this.props.reduxStore.playerProfileReducer.id
-                    //  && item.recieved_id === this.state.recieved_id
+                  if (
+                  // (item.recieved_id === this.props.reduxStore.playerProfileReducer.id
+                  //    && item.recieved_id === this.state.recieved_id
+                     this.state.recieved_id === item.recieved_id 
+                     || this.state.recieved_id === item.from_id 
+                     && this.props.reduxStore.playerProfileReducer.id === item.recieved_id 
+                     || this.props.reduxStore.playerProfileReducer === item.from_id
                      ) {
                   return(
                     <div key={item.id}>
                       <Typography>{item.from_name}{item.date_time}</Typography>
                       <Typography>{item.message}</Typography>
                     </div>
-                  )} else if (item.from_id === this.props.reduxStore.playerProfileReducer.id
+                  )} else {
+                  //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
                     //  && item.from_id === this.state.from_id
-                     ){
                     return(
                       <div key={item.id}>
-                      <Typography>{item.from_name}{item.date_time}</Typography>
-                      <Typography>{item.message}</Typography>
+                      <Typography></Typography>
                     </div>
                     )
                   }
@@ -199,6 +204,7 @@ render() {
                 </DialogContent>
                 </Dialog>
     </>
+    // IF USER'S ADMIN LEVEL IS NOT 1, RETURN THE SAME, BUT WITHOUT EDITING ACCESS
     )} else
     //  if (this.props.reduxStore.messageReducer.recieved_id === this.state.recieved_id) {
       return (
@@ -246,24 +252,28 @@ render() {
                   <DialogContent>
                   {this.props.reduxStore.messageReducer.map(item => {
                   // if the user id (user that's logged in) matches the sender's id, 
-                  if (item.recieved_id === this.props.reduxStore.playerProfileReducer.id
-                    //  && item.recieved_id === this.state.recieved_id
-                     ) {
-                  return(
-                    <div key={item.id}>
-                      <Typography>{item.from_name}{item.date_time}</Typography>
-                      <Typography>{item.message}</Typography>
-                    </div>
-                  )} else if (item.from_id === this.props.reduxStore.playerProfileReducer.id
-                    //  && item.from_id === this.state.from_id
-                     ){
+                  if (
+                    // (item.recieved_id === this.props.reduxStore.playerProfileReducer.id
+                    //    && item.recieved_id === this.state.recieved_id
+                       this.state.recieved_id === item.recieved_id 
+                       || this.state.recieved_id === item.from_id 
+                       && this.props.reduxStore.playerProfileReducer.id === item.recieved_id 
+                       || this.props.reduxStore.playerProfileReducer === item.from_id
+                       ) {
                     return(
                       <div key={item.id}>
-                      <Typography>{item.from_name}{item.date_time}</Typography>
-                      <Typography>{item.message}</Typography>
-                    </div>
-                    )
-                  }
+                        <Typography>{item.from_name}{item.date_time}</Typography>
+                        <Typography>{item.message}</Typography>
+                      </div>
+                    )} else {
+                    //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
+                      //  && item.from_id === this.state.from_id
+                      return(
+                        <div key={item.id}>
+                        <Typography></Typography>
+                      </div>
+                      )
+                    }
                 })}
                       <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
                     <DialogActions>
