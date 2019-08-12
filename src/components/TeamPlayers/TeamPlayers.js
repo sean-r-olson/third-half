@@ -14,6 +14,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { objectExpression } from '@babel/types';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
 
 
 const styles = theme => ({
@@ -129,13 +132,18 @@ render() {
     console.log(this.props.reduxStore.playersListReducer)
     console.log(this.props.reduxStore.messageReducer)
     console.log(this.props.reduxStore.user)
+    console.log(this.props.reduxStore.teamDataReducer)
     // const {classes} = this.props;
     // IF USER'S ADMIN LEVEL IS 1, return the team page with access to editing player information 
     if (this.props.reduxStore.user.admin_level === 1) {
     return (
     <>
       <UpperNav /> 
-      <DashboardNav/>
+      <Grid container spacing={24}>
+        <Grid item xs={2}>
+            <DashboardNav/>
+        </Grid>
+        <Grid item xs={10}>
       <br/>
       <br/>
       {this.props.reduxStore.playersListReducer.map(item => {
@@ -144,7 +152,7 @@ render() {
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
 
              <br/>
-             <Button variant="outlined" color="primary" className="editButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
+             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
              {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
              <br/>
           </div>
@@ -205,6 +213,8 @@ render() {
                     </DialogActions>
                 </DialogContent>
                 </Dialog>
+                </Grid>
+              </Grid>
     </>
     // IF USER'S ADMIN LEVEL IS NOT 1, RETURN THE SAME, BUT WITHOUT EDITING ACCESS
     )} else
@@ -219,11 +229,8 @@ render() {
           return(
             <div className="playersDiv" key={item.id}>
               <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-            
-               <br/>
-               <Button variant="outlined" color="primary" className="editButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
+               <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
                {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
-               <br/>
             </div>
           )
         })}

@@ -22,16 +22,7 @@ input {
     margin-bottom: 10px;
 }
 
-.playersDiv {
-    margin: 1% 1% 1% 15%;
-    min-width: 200px;
-    max-width: 200px;
-    min-height: 300px;
-    max-height: 300px;
-    display: inline-block;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    align-content: center;
-}
+
 
 /* .playersDiv:hover {
     background-color: red;
@@ -127,11 +118,22 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
 }
 
+.playersDiv {
+    margin: 2% 4%;
+    min-width: 160px;
+    max-width: 160px;
+    min-height: 213px;
+    max-height: 213px;
+    display: inline-block;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    align-content: center;  
+}
+
 .playerImages {
-    min-width: 200px;
-    max-width: 200px;
-    min-height: 300px;
-    max-height: 300px;
+    min-width: 160px;
+    max-width: 160px;
+    min-height: 213px;
+    max-height: 213px;
     border: solid  #222 5px;
 }
 
@@ -153,5 +155,10 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 .editButton {
     text-align: center;
     float: right;
-    margin: 1% 1% 0% 1%;
+}
+
+.messageButton {
+    text-align: center;
+    float: center;
+    align-items: center;
 }

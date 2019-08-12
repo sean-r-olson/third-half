@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import UpperNav from '../UpperNav/UpperNav';
 import DashboardNav from '../DashboardNav/DashboardNav';
-import '../App/App.css';
+// import '../App/App.css';
 import Modal from '@material-ui/core/Modal';
 import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -14,6 +14,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { objectExpression } from '@babel/types';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
 
 const styles = theme => ({
     input: {
@@ -81,12 +84,19 @@ render() {
     console.log(this.props.reduxStore.playerProfileReducer);
     console.log(this.state)
     return (
+      
         <>
         <UpperNav /> 
-        <div className="profileLayout">
-        <DashboardNav/>
+        <Grid container spacing={24}>
+          <Grid item xs={2}>
+        {/* <div className="profileLayout"> */}
+            <DashboardNav/>
+          </Grid>
+        <Grid item xs={10}>
         <Button variant="outlined" color="primary" className="editButton" onClick={(event) => this.handleEditProfile()}>Edit Profile</Button>
-        <img className="profilePicture" src={this.props.reduxStore.playerProfileReducer.picture} />
+        <img 
+        className="profilePicture"
+         src={this.props.reduxStore.playerProfileReducer.picture} />
         <Dialog 
                 open={this.state.open_edit}
                 onClose={this.handleCloseEdit}
@@ -104,8 +114,10 @@ render() {
                     </DialogContent>
                     <br />
                 </Dialog> 
-        </div>
+              </Grid>
+            </Grid>
         </>
+        
     )
 }
 }
