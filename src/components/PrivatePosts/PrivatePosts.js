@@ -59,15 +59,18 @@ class PrivatePosts extends Component {
     return (
       <>
       <UpperNav/>
-        <Grid xs item={12}>
+        <Grid xs item={12}
+            alignItems={alignItems}
+            direction={direction}
+            justify={justify}>
           <Grid
             container
             spacing={16}
-          >
+            >
             <Grid item xs={2}>
               <DashboardNav/>
             </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <Card>
               <CardContent>
               <h2>Add Message</h2>
@@ -81,12 +84,12 @@ class PrivatePosts extends Component {
                   {this.props.reduxStore.privatePostsReducer.map(item => {
                   return(
                     <Card 
-                    alignItems={alignItems}
-                    direction={direction}
+                    // alignItems={alignItems}
+                    // direction={direction}
                     // justify={justify}
                     >
                       <CardContent key={item.id}>
-                          <Typography>{item.username} | {item.date_time}</Typography> 
+                          <Typography>{item.username} | {item.to_char}</Typography> 
                           <Typography>{item.message}</Typography>
                       </CardContent>
                     </Card>

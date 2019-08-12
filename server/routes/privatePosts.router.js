@@ -8,7 +8,7 @@ router.get('/:id', (req, res) => {
     // select private_posts.message, "user".username, private_posts.date_time, "user".team from private_posts 
     // join "user" on private_posts.team_id = "user".team 
     // join  "teams" on "teams".id = private_posts.team_id where "user".team= $1;`
-    `select username, message, date_time from private_posts where team_id=$1;`
+    `select username, message, to_char(date_time, 'Mon DD, YYYY HH:MI') from private_posts where team_id=$1 order by to_char desc;`;
     const values = [req.params.id];
     console.log(values);
     pool.query(sqlText, values)
