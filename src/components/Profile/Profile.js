@@ -78,13 +78,11 @@ handleCloseEdit = () => {
       open_edit: false
     })
   }
-
     
 render() {
     console.log(this.props.reduxStore.playerProfileReducer);
     console.log(this.state)
     return (
-      
         <>
         <UpperNav /> 
         <Grid container spacing={24}>
