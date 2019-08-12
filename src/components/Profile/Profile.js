@@ -70,6 +70,11 @@ handleDelete = () => {
     this.props.dispatch({type: 'DELETE_PLAYER', payload: this.state})
 }
   
+handleCloseEdit = () => {
+    this.setState({
+      open_edit: false
+    })
+  }
 
     
 render() {

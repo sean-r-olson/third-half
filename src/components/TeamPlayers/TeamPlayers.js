@@ -15,6 +15,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { objectExpression } from '@babel/types';
 
+
 const styles = theme => ({
   input: {
       margin: theme.spacing.unit
@@ -37,7 +38,7 @@ class TeamPlayers extends Component {
     player_name: '',
     position: '',
     message: '',
-
+    picture: '',
   }
 
 
@@ -74,7 +75,8 @@ handleClickOpen = (item) => {
     open_edit: true, 
     id: item.id,
     player_name: item.player_name,
-    position: item.position
+    position: item.position,
+    picture: item.picture
   })
 }
 
@@ -217,7 +219,7 @@ render() {
           return(
             <div className="playersDiv" key={item.id}>
               <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-  
+            
                <br/>
                <Button variant="outlined" color="primary" className="editButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
                {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
@@ -230,19 +232,11 @@ render() {
                   open={this.state.open_edit}
                   onClose={this.handleCloseEdit}
                   >
-                      <DialogTitle id="form-dialog-title">Edit Player</DialogTitle>
-                      <DialogContent>
-                                <TextField onChange={event => this.handleChange(event, 'player_name')} label={this.state.player_name}>
-                                </TextField>
-                                <TextField onChange={event => this.handleChange(event, 'position')} label={this.state.position}>
-                                </TextField>
-                                <DialogActions>
-                                <Button variant="outlined" color="secondary" onClick={this.handleDelete}>Delete Player</Button>
-                                <Button variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
-                                </DialogActions>
-                      </DialogContent>
-                      <br />
-                      
+                        <DialogContent className="dialogContent">
+                        <img className="playerCloseUp" src={this.state.picture} alt="PlayerPicture"/> 
+                        <Typography> {this.state.player_name}   |   {this.state.position}
+                        </Typography>
+                      </DialogContent>                      
                   </Dialog> 
       <Dialog
                 open={this.state.open_messages}
