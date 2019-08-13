@@ -37,7 +37,12 @@ const styles = theme => ({
   }, 
   dialog: {
     maxwidth: '100px'
-  }
+  },
+  playerRole: {
+    color: '#ff66c4',
+    textShadow: '2px 2px #1d2c69',
+    margin: '5% 0% 0% 0%',
+  }, 
 })
 
 class TeamPlayers extends Component {
@@ -158,17 +163,47 @@ render() {
         <Grid item xs={10}>
       <br/>
       <br/>
+      <h1 className={classes.playerRole}>Coaches</h1>
       {this.props.reduxStore.playersListReducer.map(item => {
-        return(
+          if (item.role === 'coach') {
+            return (
           <div className="playersDiv" key={item.id}>
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
              <br/>
              <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
              {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
              <br/>
-          </div>
-        )
+          </div> 
+          )}
       })}
+      <br/>
+      <h1 className={classes.playerRole}>Forwards</h1>
+       {this.props.reduxStore.playersListReducer.map(item => {
+          if (item.role === 'forward') {
+            return (
+          <div className="playersDiv" key={item.id}>
+            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+             <br/>
+             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
+             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+             <br/>
+          </div> 
+          )}
+      })}
+      <br/>
+      <h1 className={classes.playerRole}>Backs</h1>
+        {this.props.reduxStore.playersListReducer.map(item => {
+          if (item.role === 'back') {
+            return (
+          <div className="playersDiv" key={item.id}>
+            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+            <br/>
+            <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
+            {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+            <br/>
+          </div> 
+          )}
+        })}
      <Dialog 
     //  className={classes.modal}
                 open={this.state.open_edit}
