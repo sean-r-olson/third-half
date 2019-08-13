@@ -17,7 +17,13 @@ import {withStyles} from '@material-ui/core/styles';
 
 const styles = theme => ({
   card: {
-    margin: '5% 0% 0% 0%'
+    margin: '5% 0% 0% 0%',
+    border: 'solid 3px #1d2c69', 
+    borderRadius: '5px',
+    color: '#1d2c69',
+    textShadow: '1px 1px #ff66c4',
+    backgroundColor: 'white',
+    textAlign: 'center',
   },
   media: {
     height: 140,
@@ -39,9 +45,10 @@ const styles = theme => ({
   messageBoardTitle: {
     border: 'solid 3px #1d2c69', 
     borderRadius: '5px',
-    color: '#1d2c69',
+    color: '#ff66c4',
+    textShadow: '2px 2px black',
     margin: '5% 0% 0% 0%',
-    backgroundColor: '#ff66c4'
+    backgroundColor: '#1d2c69'
   }, 
   messageCards: {
     border: 'solid 2px #1d2c69', 
@@ -101,7 +108,7 @@ class PrivatePosts extends Component {
           <Grid item xs={4}>
             <Card className={classes.card}>
               <CardContent>
-              <h3>Add Message</h3>
+              <h2>Add Message</h2>
                 <TextField
                     className="privatePostsTextField" 
                     type="text" 
