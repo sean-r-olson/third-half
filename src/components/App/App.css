@@ -136,12 +136,11 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     max-width: 160px;
     min-height: 213px;
     max-height: 213px;
-    border: solid  #222 5px;
+    border: solid  #1d2c69 5px;
 }
 
 .playerImages:hover {
-    border: solid white 5px;
-    background-color: red;
+    border: solid #ff66c4 5px;
 }
 
 .playerCloseUp {

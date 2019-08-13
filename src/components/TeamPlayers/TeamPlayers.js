@@ -20,11 +20,23 @@ import Grid from '@material-ui/core/Grid';
 
 
 const styles = theme => ({
+  root: {
+    background: 'linear-gradient(45deg, #1d2c69 30%, #ff66c4 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    fontSize: '10px',
+    textAlign: 'center'
+  },
   input: {
       margin: theme.spacing.unit
   },
   modal: {
       margin: theme.spacing.unit
+  }, 
+  dialog: {
+    maxwidth: '100px'
   }
 })
 
@@ -133,7 +145,7 @@ render() {
     console.log(this.props.reduxStore.messageReducer)
     console.log(this.props.reduxStore.user)
     console.log(this.props.reduxStore.teamDataReducer)
-    // const {classes} = this.props;
+    const {classes} = this.props;
     // IF USER'S ADMIN LEVEL IS 1, return the team page with access to editing player information 
     if (this.props.reduxStore.user.admin_level === 1) {
     return (
@@ -150,7 +162,6 @@ render() {
         return(
           <div className="playersDiv" key={item.id}>
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-
              <br/>
              <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
              {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
@@ -217,29 +228,35 @@ render() {
               </Grid>
     </>
     // IF USER'S ADMIN LEVEL IS NOT 1, RETURN THE SAME, BUT WITHOUT EDITING ACCESS
-    )} else
+    )} else 
     //  if (this.props.reduxStore.messageReducer.recieved_id === this.state.recieved_id) {
       return (
         <>
         <UpperNav /> 
-        <DashboardNav/>
-        <br/>
-        <br/>
-        {this.props.reduxStore.playersListReducer.map(item => {
-          return(
-            <div className="playersDiv" key={item.id}>
-              <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-               <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-               {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
-            </div>
-          )
-        })}
-       <Dialog 
+        <Grid container spacing={24}>
+        <Grid item xs={2}>
+            <DashboardNav/>
+        </Grid>
+        <Grid item xs={10}>
+      <br/>
+      <br/>
+      {this.props.reduxStore.playersListReducer.map(item => {
+        return(
+          <div className="playersDiv" key={item.id}>
+            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+             <br/>
+             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
+             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+             <br/>
+          </div>
+        )
+      })}
+       <Dialog className={classes.dialog}
       //  className={classes.modal}
                   open={this.state.open_edit}
                   onClose={this.handleCloseEdit}
                   >
-                        <DialogContent className="dialogContent">
+                        <DialogContent className={classes.root}>
                         <img className="playerCloseUp" src={this.state.picture} alt="PlayerPicture"/> 
                         <Typography> {this.state.player_name}   |   {this.state.position}
                         </Typography>
@@ -282,6 +299,8 @@ render() {
                       </DialogActions>
                   </DialogContent>
                   </Dialog>
+                </Grid>
+                </Grid>
       </>
     )
     // }
@@ -292,4 +311,4 @@ const mapStateToProps = (reduxStore) => ({
   reduxStore
 })
 
-export default connect(mapStateToProps)(TeamPlayers);
+export default withStyles(styles)(connect(mapStateToProps)(TeamPlayers));
