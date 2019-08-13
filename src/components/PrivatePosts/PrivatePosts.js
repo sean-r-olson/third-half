@@ -24,6 +24,7 @@ const styles = theme => ({
     textShadow: '1px 1px #ff66c4',
     backgroundColor: 'white',
     textAlign: 'center',
+    maxHeight: 165
   },
   media: {
     height: 140,
@@ -44,7 +45,7 @@ const styles = theme => ({
   }, 
   messageBoardTitle: {
     border: 'solid 3px #1d2c69', 
-    borderRadius: '5px',
+    borderRadius: '5px 5px 0px 0px',
     color: '#ff66c4',
     textShadow: '2px 2px black',
     margin: '5% 0% 0% 0%',
@@ -52,7 +53,10 @@ const styles = theme => ({
   }, 
   messageCards: {
     border: 'solid 2px #1d2c69', 
-  }
+    borderRight: 'solid 1px #1d2c69',
+    borderLeft: 'solid 7px #1d2c69',
+    borderRadius: '0px'
+  }, 
 });
 
 class PrivatePosts extends Component {
@@ -64,6 +68,7 @@ class PrivatePosts extends Component {
     direction: 'row',
     justify: 'center',
     alignItems: 'center',
+
   }
 
   // componentDidMount(){
@@ -119,7 +124,8 @@ class PrivatePosts extends Component {
                     rowsMax="6"
                     >
                 </TextField>
-                <Button onClick={this.handleSubmit}>Submit</Button>
+                <Button className="submitButton"
+                onClick={this.handleSubmit}>Submit</Button>
                 </CardContent>
             </Card>
             <Typography>

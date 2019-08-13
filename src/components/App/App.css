@@ -199,3 +199,21 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     fontSize: 300px;
     width: 100px;
 }
+
+.submitButton {
+    border: solid 1px #1d2c69;
+    margin: 1%
+}
+
+.submitButton:hover {
+    box-shadow: 2px 2px #1d2c69;
+    border: solid 1.5px #1d2c69;
+    margin: 1%
+}
+
+.submitButton:active {
+    box-shadow: 0px 0px #1d2c69; 
+    border: solid 1px #1d2c69;
+    transform: translateY(4px);
+    margin: 1%;
+}
