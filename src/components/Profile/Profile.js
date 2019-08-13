@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import UpperNav from '../UpperNav/UpperNav';
 import DashboardNav from '../DashboardNav/DashboardNav';
-// import '../App/App.css';
+import '../App/App.css';
 import Modal from '@material-ui/core/Modal';
 import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -90,11 +90,16 @@ render() {
         {/* <div className="profileLayout"> */}
             <DashboardNav/>
           </Grid>
-        <Grid item xs={10}>
-        <Button variant="outlined" color="primary" className="editButton" onClick={(event) => this.handleEditProfile()}>Edit Profile</Button>
-        <img 
-        className="profilePicture"
-         src={this.props.reduxStore.playerProfileReducer.picture} />
+        <Grid item xs={3}>
+        </Grid>
+        <Grid item xs={3}>
+          <img 
+          className="profilePicture"
+          src={this.props.reduxStore.playerProfileReducer.picture} />
+         </Grid>
+         <Grid item xs={4}>
+         <Button variant="outlined" color="primary" className="editButton" onClick={(event) => this.handleEditProfile()}>Edit Profile</Button>
+          </Grid>
         <Dialog 
                 open={this.state.open_edit}
                 onClose={this.handleCloseEdit}
@@ -112,8 +117,8 @@ render() {
                     </DialogContent>
                     <br />
                 </Dialog> 
+                
               </Grid>
-            </Grid>
         </>
         
     )

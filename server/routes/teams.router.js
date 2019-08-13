@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  const sqlText=`select teams.team_name, teams.about_us, players.id, players.team_id, teams.id
+  const sqlText=`select teams.team_name, teams.about_us, players.id, players.team_id, teams.logo, teams.id
   from teams join players on teams.id = players.team_id where players.user_id = $1;`;
   const values = [req.params.id];
   pool.query(sqlText, values)
