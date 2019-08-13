@@ -34,7 +34,7 @@ const UpperNav = (props) => (
         </>
       )}
     </div>
-  </div>
+    </div>
 );
 
 // Instead of taking everything from state, we just want the user

@@ -1,11 +1,14 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0px;
+    background-image: url('https://static.wixstatic.com/media/b0b871_e5982e04f97f4e628d917f4e2070e1c6~mv2.png/v1/fill/w_1680,h_1050/Copy%20of%20Copy%20of%20CONNECT%20(4).png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .alert {
     background-color: #ff4545;
-    margin: 50px;
+    margin: 50px; 
 }
 
 form {
@@ -56,7 +59,7 @@ input {
 }
 
 .teamLogo {
-margin: auto;
+margin: 3%;
 padding: 20px;
 width: 20%;
 min-width: 200px;
@@ -165,4 +168,21 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
 .privatePostsCards {
     max-width: 30%;
+}
+
+.privateMessageInput {
+    margin: 5% 0%;
+}
+
+.privatePostsMessages {
+    margin: 5% 0%;
+}
+
+.privatePostsTitles {
+    font-size: 100px;
+}
+
+.horizontalRows {
+    border: 1px solid #1d2c69;
+    border-radius: 0px;
 }

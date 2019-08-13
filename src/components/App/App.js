@@ -22,12 +22,14 @@ import './App.css';
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
+    this.props.dispatch({type: 'FETCH_GRAPHICS'})
   }
 
   render() {
+    console.log(this.props.reduxStore.graphicsReducer)
     return (
       <Router>
-        <div>
+          <div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -91,4 +93,8 @@ class App extends Component {
   )}
 }
 
-export default connect()(App);
+
+const mapStateToProps = (reduxStore) => ({
+  reduxStore
+})
+export default connect(mapStateToProps)(App);

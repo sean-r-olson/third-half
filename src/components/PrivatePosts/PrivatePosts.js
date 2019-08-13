@@ -71,7 +71,9 @@ class PrivatePosts extends Component {
               <DashboardNav/>
             </Grid>
           <Grid item xs={3}>
-            <Card>
+          </Grid>
+          <Grid item xs={3}>
+            <Card className="privateMessageInput">
               <CardContent>
               <h2>Add Message</h2>
                 <TextField type="text" placeholder="message" 
@@ -81,15 +83,15 @@ class PrivatePosts extends Component {
                 <Button onClick={this.handleSubmit}>Submit</Button>
                 </CardContent>
             </Card>
+            <Typography>
+              <h2>Message Board</h2>
+            </Typography>
                   {this.props.reduxStore.privatePostsReducer.map(item => {
                   return(
-                    <Card 
-                    // alignItems={alignItems}
-                    // direction={direction}
-                    // justify={justify}
-                    >
+                    <Card className="privatePostsMessages">
                       <CardContent key={item.id}>
-                          <Typography>{item.username} | {item.to_char}</Typography> 
+                          <Typography className="privatePostsTitles">{item.username} | {item.to_char}</Typography> 
+                          <hr className="horizontalRows"/>
                           <Typography>{item.message}</Typography>
                       </CardContent>
                     </Card>
