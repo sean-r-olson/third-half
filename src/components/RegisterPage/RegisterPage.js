@@ -27,8 +27,8 @@ const styles = theme => ({
     textShadow: '1px 1px #1d2c69',
   }, 
   register: {
-    margin: theme.spacing.unit
-  }
+    margin: '10% 0%',
+    }, 
 });
 
 class RegisterPage extends Component {
@@ -43,15 +43,13 @@ class RegisterPage extends Component {
     team_name: '',
     team: '',
     open: false,
+    direction: 'row',
+    justify: 'center',
+    alignItems: 'center',
   };
 
   registerUser = (event) => {
-    event.preventDefault();
-
-    if (this.state.username && this.state.password && this.state.team_name === 'Minneapolis Mayhem') {
-      this.setState({
-        team: 1
-      })
+    if (this.state.username && this.state.password) {
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
@@ -59,22 +57,6 @@ class RegisterPage extends Component {
           password: this.state.password,
           team_name: this.state.team_name,
           team: this.state.team
-        },
-      });
-    } else if (this.state.username && this.state.password && this.state.team_name === 'Madison Minotaurs') { 
-      this.setState({
-        team: 2
-      })
-      this.props.dispatch({
-        type: 'REGISTER',
-        payload: {
-          username: this.state.username,
-          password: this.state.password,
-          team_name: this.state.team_name,
-          team: this.state.team,
-          direction: 'row',
-          justify: 'center',
-          alignItems: 'center',
         },
       });
     } else {
@@ -89,7 +71,9 @@ class RegisterPage extends Component {
   }
 
   handleToggle = () => {
-    this.setState(state => ({ open: !state.open }));
+      this.setState(state => ({ 
+      open: !state.open,
+    }))
   };
 
   handleClose = (event) => {
@@ -103,6 +87,15 @@ class RegisterPage extends Component {
       open: false,
       team_name: item.team_name
      });
+     if (item.team_name === 'Minneapolis Mayhem') {
+      this.setState({
+      team: 1
+       })
+     } else if (item.team_name === 'Madison Minotaurs') {
+       this.setState({
+      team: 2
+       })
+     }
   }
 
   render() {
@@ -114,7 +107,7 @@ class RegisterPage extends Component {
   if (this.state.team === '') {
       return (
         <Grid container spacing={16}>
-        <Grid item xs={4} >
+        <Grid item xs={4}>
         </Grid>        
           {this.props.errors.registrationMessage && (
             <h2
@@ -128,95 +121,96 @@ class RegisterPage extends Component {
             alignItems={alignItems}
             direction={direction}
             justify={justify}>
-          <Grid item xs={12}>
-          <Grid item={2}>
-          </Grid>
-          <Grid item xs={8}>
-          <Card className={classes.register}>
-          <center>
-          <CardContent onSubmit={this.registerUser}>
-            <center>
-            <h3 className={classes.registerTitle}>
-            New to 3rd Half?
-            <br/>
-            Register!
-            </h3>
-            </center>
-            <div>
-                <TextField
-                  label={this.state.username}
-                  type="text"
-                  name="username"
-                  placeholder="username"
-                  value={this.state.username}
-                  onChange={this.handleInputChangeFor('username')}
-                />
-            </div>
-            <div>
-                <TextField
-                  label={this.state.password}
-                  placeholder="password"
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleInputChangeFor('password')}
-                />
-            </div>    
-            <Button 
-              buttonRef={node => {
-                this.anchorEl = node;
-              }}
-              aria-owns={open ? 'menu-list-grow' : undefined}
-              aria-haspopup="true"
-              onClick={this.handleToggle}
-            >
-              SELECT TEAM
-            </Button>
-            <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
-              {({ TransitionProps, placement }) => (
-                <Grow
-                  {...TransitionProps}
-                  id="menu-list-grow"
-                  style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                >
-                  <Paper>
-                    <ClickAwayListener onClickAway={this.handleClose}>
-                      <MenuList>
-                        {this.props.state.teamsReducer.map(item => {
-                     return(
-                      <div key={item.id}>
-                        <MenuItem
-                        onClick={(event) => this.handleClose(event)}
-                        onClick={(event) => this.handleTeamName(item)}
+                <Grid item xs={12}>
+                  <Grid item={4}>
+                  </Grid>
+                      <Grid item xs={8}>
+                      <Card className={classes.register}>
+                      <center>
+                      <CardContent >
+                        <center>
+                        <h3 className={classes.registerTitle}>
+                        New to 3rd Half?
+                        <br/>
+                        Register!
+                        </h3>
+                        </center>
+                        <div>
+                            <TextField
+                              label={this.state.username}
+                              type="text"
+                              name="username"
+                              placeholder="username"
+                              value={this.state.username}
+                              onChange={this.handleInputChangeFor('username')}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                              label={this.state.password}
+                              placeholder="password"
+                              type="password"
+                              name="password"
+                              value={this.state.password}
+                              onChange={this.handleInputChangeFor('password')}
+                            />
+                        </div>    
+                        <Button 
+                          buttonRef={node => {
+                            this.anchorEl = node;
+                          }}
+                          aria-owns={open ? 'menu-list-grow' : undefined}
+                          aria-haspopup="true"
+                          onClick={this.handleToggle}
                         >
-                        {item.team_name}
-                        </MenuItem>                   
-                      </div>
-           )
-         })}   
-                      </MenuList>
-                    </ClickAwayListener>
-                  </Paper>
-                </Grow>
-              )}
-            </Popper>
-            <div>
-              {this.state.team_name}
-            </div>
-            <div>
-              <input
-                className="register"
-                type="submit"
-                name="submit"
-                value="Register"
-              />
-            </div>  
-          </CardContent>
-          </center>
-          </Card>
-          </Grid>
-          <Grid item xs={2}>
-          </Grid>
+                          SELECT TEAM
+                        </Button>
+                        <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
+                          {({ TransitionProps, placement }) => (
+                            <Grow
+                              {...TransitionProps}
+                              id="menu-list-grow"
+                              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                            >
+                              <Paper>
+                                <ClickAwayListener onClickAway={this.handleClose}>
+                                  <MenuList>
+                                    {this.props.state.teamsReducer.map(item => {
+                                return(
+                                  <div key={item.id}>
+                                    <MenuItem
+                                    onClick={(event) => this.handleClose(event)}
+                                    onClick={(event) => this.handleTeamName(item)}
+                                    >
+                                    {item.team_name}
+                                    </MenuItem>                   
+                                  </div>
+                      )
+                    })}   
+                                  </MenuList>
+                                </ClickAwayListener>
+                              </Paper>
+                            </Grow>
+                          )}
+                        </Popper>
+                        <div>
+                          {this.state.team_name}
+                        </div>
+                        <div>
+                        <Button onClick={(event) => this.registerUser(event)}
+                          className={classes.registerButton}
+                          type="submit"
+                          name="submit"
+                          value="Register"
+                        > Register 
+                        </Button>
+                        </div>  
+                      </CardContent>
+                      </center>
+                      </Card>
+                      </Grid>
+              <Grid item xs={2}>
+              </Grid>
           </Grid>
           {/* <center>
             <button
@@ -232,10 +226,133 @@ class RegisterPage extends Component {
         </Grid>
         </Grid>
       );
-     
-  } else if (this.state.team === 'Minneapolis Mayhem') {
+  } else if (this.state.team_name === 'Minneapolis Mayhem') {
     return (
-      <div>
+        <Grid container spacing={16}>
+        <Grid item xs={4}>
+        </Grid>        
+          {this.props.errors.registrationMessage && (
+            <h2
+              className="alert"
+              role="alert"
+            >
+              {this.props.errors.registrationMessage}
+            </h2>
+          )}
+          <Grid item xs={4}
+            alignItems={alignItems}
+            direction={direction}
+            justify={justify}>
+                <Grid item xs={12}>
+                  <Grid item={4}>
+                  </Grid>
+                      <Grid item xs={8}>
+                      <Card className={classes.register}>
+                      <center>
+                      <CardContent >
+                        <center>
+                        <h3 className={classes.registerTitle}>
+                        New to 3rd Half?
+                        <br/>
+                        Register!
+                        </h3>
+                        </center>
+                        <div>
+                            <TextField
+                              label={this.state.username}
+                              type="text"
+                              name="username"
+                              placeholder="username"
+                              value={this.state.username}
+                              onChange={this.handleInputChangeFor('username')}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                              label={this.state.password}
+                              placeholder="password"
+                              type="password"
+                              name="password"
+                              value={this.state.password}
+                              onChange={this.handleInputChangeFor('password')}
+                            />
+                        </div>    
+                        <Button 
+                          buttonRef={node => {
+                            this.anchorEl = node;
+                          }}
+                          aria-owns={open ? 'menu-list-grow' : undefined}
+                          aria-haspopup="true"
+                          onClick={this.handleToggle}
+                        >
+                          SELECT TEAM
+                        </Button>
+                        <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
+                          {({ TransitionProps, placement }) => (
+                            <Grow
+                              {...TransitionProps}
+                              id="menu-list-grow"
+                              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                            >
+                              <Paper>
+                                <ClickAwayListener onClickAway={this.handleClose}>
+                                  <MenuList>
+                                    {this.props.state.teamsReducer.map(item => {
+                                return(
+                                  <div key={item.id}>
+                                    <MenuItem
+                                    onClick={(event) => this.handleClose(event)}
+                                    onClick={(event) => this.handleTeamName(item)}
+                                    >
+                                    {item.team_name}
+                                    </MenuItem>                   
+                                  </div>
+                      )
+                    })}   
+                                  </MenuList>
+                                </ClickAwayListener>
+                              </Paper>
+                            </Grow>
+                          )}
+                        </Popper>
+                        <div>
+                          {this.state.team_name}
+                        </div>
+                        <div>
+                        <Button onClick={(event) => this.registerUser(event)}
+                          className={classes.registerButton}
+                          type="submit"
+                          name="submit"
+                          value="Register"
+                        > Register 
+                        </Button>
+                        </div>  
+                      </CardContent>
+                      </center>
+                      </Card>
+                      </Grid>
+              <Grid item xs={2}>
+              </Grid>
+          </Grid>
+          {/* <center>
+            <button
+              type="button"
+              className="link-button"
+              onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+            >
+              Login
+            </button>
+          </center> */}
+        </Grid>
+        <Grid xs item={4}>
+        </Grid>
+        </Grid>
+      );
+  } else if (this.state.team_name === 'Madison Minotaurs') {
+    return (
+      <Grid container spacing={16}>
+      <Grid item xs={4}>
+      </Grid>        
         {this.props.errors.registrationMessage && (
           <h2
             className="alert"
@@ -244,92 +361,102 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <label htmlFor="username">
-          <div className={classes.root}>
-        {/* <Paper className={classes.paper}>
-          <MenuList>
-            <MenuItem>Profile</MenuItem>
-            <MenuItem>My account</MenuItem>
-            <MenuItem>Logout</MenuItem>
-          </MenuList>
-        </Paper> */}
-        <div>
-          <Button
-            buttonRef={node => {
-              this.anchorEl = node;
-            }}
-            aria-owns={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
-            onClick={this.handleToggle}
-          >
-            SELECT TEAM
-          </Button>
-          <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                id="menu-list-grow"
-                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={this.handleClose}>
-                    <MenuList>
-                      {this.props.state.teamsReducer.map(item => {
-                   return(
-                    <div id={item.id}>
-                      <MenuItem onClick={(event) => this.handleClose(event)}
-                        onClick={(event) => this.handleTeamName(item)}>
-                        {item.team_name}
-                        </MenuItem>                 
-                    </div>
-                  )
-            })}   
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-        </div>
-          </div>
-          </label>
-          <div>
-            Team: {this.state.team_name}
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              className="register"
-              type="submit"
-              name="submit"
-              value="Register"
-            />
-          </div>
-        </form>
-        <center>
+        <Grid item xs={4}
+          alignItems={alignItems}
+          direction={direction}
+          justify={justify}>
+              <Grid item xs={12}>
+                <Grid item={4}>
+                </Grid>
+                    <Grid item xs={8}>
+                    <Card className={classes.register}>
+                    <center>
+                    <CardContent >
+                      <center>
+                      <h3 className={classes.registerTitle}>
+                      New to 3rd Half?
+                      <br/>
+                      Register!
+                      </h3>
+                      </center>
+                      <div>
+                          <TextField
+                            label={this.state.username}
+                            type="text"
+                            name="username"
+                            placeholder="username"
+                            value={this.state.username}
+                            onChange={this.handleInputChangeFor('username')}
+                          />
+                      </div>
+                      <div>
+                          <TextField
+                            label={this.state.password}
+                            placeholder="password"
+                            type="password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={this.handleInputChangeFor('password')}
+                          />
+                      </div>    
+                      <Button 
+                        buttonRef={node => {
+                          this.anchorEl = node;
+                        }}
+                        aria-owns={open ? 'menu-list-grow' : undefined}
+                        aria-haspopup="true"
+                        onClick={this.handleToggle}
+                      >
+                        SELECT TEAM
+                      </Button>
+                      <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
+                        {({ TransitionProps, placement }) => (
+                          <Grow
+                            {...TransitionProps}
+                            id="menu-list-grow"
+                            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                          >
+                            <Paper>
+                              <ClickAwayListener onClickAway={this.handleClose}>
+                                <MenuList>
+                                  {this.props.state.teamsReducer.map(item => {
+                              return(
+                                <div key={item.id}>
+                                  <MenuItem
+                                  onClick={(event) => this.handleClose(event)}
+                                  onClick={(event) => this.handleTeamName(item)}
+                                  >
+                                  {item.team_name}
+                                  </MenuItem>                   
+                                </div>
+                    )
+                  })}   
+                                </MenuList>
+                              </ClickAwayListener>
+                            </Paper>
+                          </Grow>
+                        )}
+                      </Popper>
+                      <div>
+                        {this.state.team_name}
+                      </div>
+                      <div>
+                      <Button onClick={(event) => this.registerUser(event)}
+                        className={classes.registerButton}
+                        type="submit"
+                        name="submit"
+                        value="Register"
+                      > Register 
+                      </Button>
+                      </div>  
+                    </CardContent>
+                    </center>
+                    </Card>
+                    </Grid>
+            <Grid item xs={2}>
+            </Grid>
+        </Grid>
+        {/* <center>
           <button
             type="button"
             className="link-button"
@@ -337,119 +464,15 @@ class RegisterPage extends Component {
           >
             Login
           </button>
-        </center>
-      </div>
+        </center> */}
+      </Grid>
+      <Grid xs item={4}>
+      </Grid>
+      </Grid>
     );
-  } else if (this.state.team_name === 'Madison Minotaurs') {
-    return (
-      <div>
-      {this.props.errors.registrationMessage && (
-        <h2
-          className="alert"
-          role="alert"
-        >
-          {this.props.errors.registrationMessage}
-        </h2>
-      )}
-      <form onSubmit={this.registerUser}>
-        <h1>Register User</h1>
-        <div>
-          <label htmlFor="username">
-            Username:
-            <input
-              type="text"
-              name="username"
-              value={this.state.username}
-              onChange={this.handleInputChangeFor('username')}
-            />
-          </label>
-        </div>
-        <label htmlFor="username">
-        <div className={classes.root}>
-      {/* <Paper className={classes.paper}>
-        <MenuList>
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>My account</MenuItem>
-          <MenuItem>Logout</MenuItem>
-        </MenuList>
-      </Paper> */}
-      <div>
-        <Button
-          buttonRef={node => {
-            this.anchorEl = node;
-          }}
-          aria-owns={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
-          onClick={this.handleToggle}
-        >
-          SELECT TEAM
-        </Button>
-        <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              id="menu-list-grow"
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={this.handleClose}>
-                  <MenuList>
-                    {this.props.state.teamsReducer.map(item => {
-                 return(
-                  <div id={item.id}>
-                      <MenuItem onClick={(event) => this.handleClose(event)}
-                        onClick={(event) => this.handleTeamName(item)}>
-                        {item.team_name}
-                        </MenuItem>                 
-                    </div>
-       )
-     })}   
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
-    </div>
-        </label>
-        <div>
-          Team: {this.state.team_name}
-        </div>
-        <div>
-          <label htmlFor="password">
-            Password:
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleInputChangeFor('password')}
-            />
-          </label>
-        </div>
-        <div>
-          <input
-            className="register"
-            type="submit"
-            name="submit"
-            value="Register"
-          />
-        </div>
-      </form>
-      <center>
-        <button
-          type="button"
-          className="link-button"
-          onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-        >
-          Login
-        </button>
-      </center>
-    </div>
-  );
   }
 }
-} 
+}
 
 // Instead of taking everything from state, we just want the error messages.
 // if you wanted you could write this code like this:
