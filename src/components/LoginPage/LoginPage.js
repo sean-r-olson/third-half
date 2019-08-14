@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import '../App/App.css';
 class LoginPage extends Component {
   state = {
     username: '',
@@ -30,6 +30,7 @@ class LoginPage extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div>
         {this.props.errors.loginMessage && (

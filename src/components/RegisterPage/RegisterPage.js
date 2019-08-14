@@ -1,21 +1,65 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import Button from '@material-ui/core/Button';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import { withStyles } from '@material-ui/core/styles';
+
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+  },
+  paper: {
+    marginRight: theme.spacing.unit * 2,
+  },
+});
 
 class RegisterPage extends Component {
+
+  componentDidMount(){
+    this.props.dispatch({type: 'FETCH_ALL_TEAMS'})
+  }
+
   state = {
     username: '',
     password: '',
+    team_name: '',
+    team: '',
+    open: false,
   };
 
   registerUser = (event) => {
     event.preventDefault();
 
-    if (this.state.username && this.state.password) {
+    if (this.state.username && this.state.password && this.state.team_name === 'Minneapolis Mayhem') {
+      this.setState({
+        team: 1
+      })
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
           username: this.state.username,
           password: this.state.password,
+          team_name: this.state.team_name,
+          team: this.state.team
+        },
+      });
+    } else if (this.state.username && this.state.password && this.state.team_name === 'Madison Minotaurs') { 
+      this.setState({
+        team: 2
+      })
+      this.props.dispatch({
+        type: 'REGISTER',
+        payload: {
+          username: this.state.username,
+          password: this.state.password,
+          team_name: this.state.team_name,
+          team: this.state.team
         },
       });
     } else {
@@ -29,7 +73,25 @@ class RegisterPage extends Component {
     });
   }
 
+  handleToggle = () => {
+    this.setState(state => ({ open: !state.open }));
+  };
+
+  handleClose = (event, item) => {
+    if (this.anchorEl.contains(event.target)) {
+      return;
+    }
+    this.setState({
+      open: false,
+      team_name: item.team_name
+     });
+  };
+
   render() {
+  console.log(this.props.state.teamsReducer);
+  console.log(this.state)
+  const { classes } = this.props;
+  const { open } = this.state;
     return (
       <div>
         {this.props.errors.registrationMessage && (
@@ -54,9 +116,54 @@ class RegisterPage extends Component {
             </label>
           </div>
           <label htmlFor="username">
-          Team:
-          <select>
-          </select>
+          <div className={classes.root}>
+        {/* <Paper className={classes.paper}>
+          <MenuList>
+            <MenuItem>Profile</MenuItem>
+            <MenuItem>My account</MenuItem>
+            <MenuItem>Logout</MenuItem>
+          </MenuList>
+        </Paper> */}
+        <div>
+          <Button
+            buttonRef={node => {
+              this.anchorEl = node;
+            }}
+            aria-owns={open ? 'menu-list-grow' : undefined}
+            aria-haspopup="true"
+            onClick={this.handleToggle}
+          >
+            SELECT TEAM
+          </Button>
+          <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                id="menu-list-grow"
+                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={this.handleClose}>
+                    <MenuList>
+                      {this.props.state.teamsReducer.map(item => {
+                   return(
+                    <div id={item.id}>
+                      <MenuItem onClick={event => this.handleClose(event, item)}>{item.team_name}</MenuItem>                   
+                    </div>
+         )
+       })} 
+                      
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </div>
+      </div>
+          
+          
+          
 
 
 
@@ -100,9 +207,14 @@ class RegisterPage extends Component {
 // Instead of taking everything from state, we just want the error messages.
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({errors}) => ({ errors });
-const mapStateToProps = state => ({
-  errors: state.errors,
-});
+// const mapStateToProps = state => ({
+//   errors: state.errors,
+// });
 
-export default connect(mapStateToProps)(RegisterPage);
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+  state
+})
+
+export default withStyles(styles)(connect(mapStateToProps)(RegisterPage));
 

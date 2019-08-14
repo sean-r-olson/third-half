@@ -49,8 +49,8 @@ input {
 /* This line makes the "Register" and "Login" buttons look like links */
 .link-button {
     background:none;
-    color:inherit;
-    border:none;
+    color: #ff66c4;
+    border: solid 2px #ff66c4;
     padding:0;
     font: inherit;
     outline:0;
