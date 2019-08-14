@@ -43,6 +43,20 @@ const styles = theme => ({
     textShadow: '2px 2px #1d2c69',
     margin: '5% 0% 0% 0%',
   }, 
+  teamName: {
+    color: '#1d2c69',
+    textShadow: '2px 2px #ff66c4',
+    margin: '5% 0% 0% 0%',
+    fontSize: '30px'
+  }, 
+  logo: {
+    maxWidth: '50%',
+    maxHeight: '50%',
+    marginLeft: '10%',
+    position: '-webkit-sticky',
+    position: 'sticky',
+    top: '0px',
+  }, 
 })
 
 class TeamPlayers extends Component {
@@ -163,7 +177,7 @@ render() {
         </Grid>
         <Grid item xs={10}>
       <br/>
-      <br/>
+      <img className="teamPlayersTeamLogo" src={this.props.reduxStore.teamDataReducer.logo} />
       <h1 className={classes.playerRole}>Coaches</h1>
       {this.props.reduxStore.playersListReducer.map(item => {
           if (item.role === 'coach') {
