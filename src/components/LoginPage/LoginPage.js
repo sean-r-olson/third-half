@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../App/App.css';
+import RegisterPage from '../RegisterPage/RegisterPage';
+
 class LoginPage extends Component {
   state = {
     username: '',

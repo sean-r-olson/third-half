@@ -78,15 +78,18 @@ class RegisterPage extends Component {
     this.setState(state => ({ open: !state.open }));
   };
 
-  handleClose = (event, item) => {
+  handleClose = (event) => {
     if (this.anchorEl.contains(event.target)) {
       return;
     }
+  };
+
+  handleTeamName = (item) => {
     this.setState({
       open: false,
       team_name: item.team_name
      });
-  };
+  }
 
   render() {
   console.log(this.props.state.teamsReducer);
@@ -117,7 +120,19 @@ class RegisterPage extends Component {
                 />
               </label>
             </div>
-            <label htmlFor="username">
+        
+            
+            <div>
+              <label htmlFor="password">
+                Password:
+                <input
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleInputChangeFor('password')}
+                />
+              </label>
+            </div>    <label htmlFor="username">
             <div className={classes.root}>
           {/* <Paper className={classes.paper}>
             <MenuList>
@@ -149,14 +164,16 @@ class RegisterPage extends Component {
                       <MenuList>
                         {this.props.state.teamsReducer.map(item => {
                      return(
-                      <div id={item.id}>
-                        <MenuItem onClick={event => this.handleClose(event, item)}>{item.team_name}</MenuItem>                   
+                      <div key={item.id}>
+                        <MenuItem
+                        onClick={(event) => this.handleClose(event)}
+                        onClick={(event) => this.handleTeamName(item)}
+                        >
+                        {item.team_name}
+                        </MenuItem>                   
                       </div>
            )
          })}   
-                      <div>
-                        <p>{this.state.team_name}</p>
-                      </div>
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>
@@ -167,15 +184,7 @@ class RegisterPage extends Component {
         </div>
             </label>
             <div>
-              <label htmlFor="password">
-                Password:
-                <input
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleInputChangeFor('password')}
-                />
-              </label>
+              Team: {this.state.team_name}
             </div>
             <div>
               <input
@@ -254,7 +263,10 @@ class RegisterPage extends Component {
                       {this.props.state.teamsReducer.map(item => {
                    return(
                     <div id={item.id}>
-                      <MenuItem onClick={event => this.handleClose(event, item)}>{item.team_name}</MenuItem>                   
+                      <MenuItem onClick={(event) => this.handleClose(event)}
+                        onClick={(event) => this.handleTeamName(item)}>
+                        {item.team_name}
+                        </MenuItem>                 
                     </div>
                   )
             })}   
@@ -268,9 +280,7 @@ class RegisterPage extends Component {
           </div>
           </label>
           <div>
-          <Typography>
-            {this.state.team_name}
-          </Typography>
+            Team: {this.state.team_name}
           </div>
           <div>
             <label htmlFor="password">
@@ -360,8 +370,11 @@ class RegisterPage extends Component {
                     {this.props.state.teamsReducer.map(item => {
                  return(
                   <div id={item.id}>
-                    <MenuItem onClick={event => this.handleClose(event, item)}>{item.team_name}</MenuItem>                   
-                  </div>
+                      <MenuItem onClick={(event) => this.handleClose(event)}
+                        onClick={(event) => this.handleTeamName(item)}>
+                        {item.team_name}
+                        </MenuItem>                 
+                    </div>
        )
      })}   
                   </MenuList>
@@ -373,6 +386,9 @@ class RegisterPage extends Component {
       </div>
     </div>
         </label>
+        <div>
+          Team: {this.state.team_name}
+        </div>
         <div>
           <label htmlFor="password">
             Password:
