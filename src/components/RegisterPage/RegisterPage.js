@@ -9,15 +9,26 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import { TextField } from '@material-ui/core';
+import CardContent from '@material-ui/core/CardContent';
+import { ThemeProvider } from '@material-ui/styles';
 
 
 const styles = theme => ({
   root: {
     display: 'flex',
   },
-  paper: {
-    marginRight: theme.spacing.unit * 2,
-  },
+  registerTitle: {
+    textAlign: 'initial',
+    padding: '5%',
+    color: '#ff66c4',
+    textShadow: '1px 1px #1d2c69',
+  }, 
+  register: {
+    margin: theme.spacing.unit
+  }
 });
 
 class RegisterPage extends Component {
@@ -60,7 +71,10 @@ class RegisterPage extends Component {
           username: this.state.username,
           password: this.state.password,
           team_name: this.state.team_name,
-          team: this.state.team
+          team: this.state.team,
+          direction: 'row',
+          justify: 'center',
+          alignItems: 'center',
         },
       });
     } else {
@@ -96,9 +110,12 @@ class RegisterPage extends Component {
   console.log(this.state)
   const { classes } = this.props;
   const { open } = this.state;
+  const { alignItems, direction, justify } = this.state;
   if (this.state.team === '') {
       return (
-        <div>
+        <Grid container spacing={16}>
+        <Grid item xs={4} >
+        </Grid>        
           {this.props.errors.registrationMessage && (
             <h2
               className="alert"
@@ -107,42 +124,45 @@ class RegisterPage extends Component {
               {this.props.errors.registrationMessage}
             </h2>
           )}
-          <form onSubmit={this.registerUser}>
-            <h1>Register User</h1>
+          <Grid item xs={4}
+            alignItems={alignItems}
+            direction={direction}
+            justify={justify}>
+          <Grid item xs={12}>
+          <Grid item={2}>
+          </Grid>
+          <Grid item xs={8}>
+          <Card className={classes.register}>
+          <center>
+          <CardContent onSubmit={this.registerUser}>
+            <center>
+            <h3 className={classes.registerTitle}>
+            New to 3rd Half?
+            <br/>
+            Register!
+            </h3>
+            </center>
             <div>
-              <label htmlFor="username">
-                Username:
-                <input
+                <TextField
+                  label={this.state.username}
                   type="text"
                   name="username"
+                  placeholder="username"
                   value={this.state.username}
                   onChange={this.handleInputChangeFor('username')}
                 />
-              </label>
             </div>
-        
-            
             <div>
-              <label htmlFor="password">
-                Password:
-                <input
+                <TextField
+                  label={this.state.password}
+                  placeholder="password"
                   type="password"
                   name="password"
                   value={this.state.password}
                   onChange={this.handleInputChangeFor('password')}
                 />
-              </label>
-            </div>    <label htmlFor="username">
-            <div className={classes.root}>
-          {/* <Paper className={classes.paper}>
-            <MenuList>
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>My account</MenuItem>
-              <MenuItem>Logout</MenuItem>
-            </MenuList>
-          </Paper> */}
-          <div>
-            <Button
+            </div>    
+            <Button 
               buttonRef={node => {
                 this.anchorEl = node;
               }}
@@ -180,11 +200,8 @@ class RegisterPage extends Component {
                 </Grow>
               )}
             </Popper>
-          </div>
-        </div>
-            </label>
             <div>
-              Team: {this.state.team_name}
+              {this.state.team_name}
             </div>
             <div>
               <input
@@ -193,9 +210,15 @@ class RegisterPage extends Component {
                 name="submit"
                 value="Register"
               />
-            </div>
-          </form>
-          <center>
+            </div>  
+          </CardContent>
+          </center>
+          </Card>
+          </Grid>
+          <Grid item xs={2}>
+          </Grid>
+          </Grid>
+          {/* <center>
             <button
               type="button"
               className="link-button"
@@ -203,9 +226,13 @@ class RegisterPage extends Component {
             >
               Login
             </button>
-          </center>
-        </div>
+          </center> */}
+        </Grid>
+        <Grid xs item={4}>
+        </Grid>
+        </Grid>
       );
+     
   } else if (this.state.team === 'Minneapolis Mayhem') {
     return (
       <div>
