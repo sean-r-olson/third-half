@@ -121,21 +121,20 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .playersDiv {
-    margin: 2% 4%;
-    min-width: 160px;
-    max-width: 160px;
-    min-height: 213px;
-    max-height: 213px;
+    margin: 3% 5%;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 160px;
+    max-height: 160px;
     display: inline-block;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    align-content: center;  
 }
 
 .playerImages {
-    min-width: 160px;
-    max-width: 160px;
-    min-height: 213px;
-    max-height: 213px;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 160px;
+    max-height: 160px;
     border: solid  #1d2c69 5px;
 }
 

@@ -3,34 +3,126 @@
     width: 50px;
     display: inline-block;
     color: #f2f2f2;
-    padding: 10px;
 }
 
 .dashboardNavLink {
-    float: left;
     color: #f2f2f2;
     background-color:#1d2c69;
-    text-align: center;
-    padding: 10px;
+    /* text-align: center; */
     text-decoration: none;
-    text-align: initial;
+    /* text-align: initial; */
     font-size: 15px;
     /* these last two make the logout button in
     the nav bar look like another link */
-    border:none;
     cursor: pointer;
     outline:0;
+    height: 20px;
+    text-align: inherit;
+    width: 100%;
+    padding: 5% 0%;
+    text-align: center;
+    margin: 5% 0%;
+  }
+
+  .dashboardNavLink:hover {
+    color: black;
+    background-color:#ffffff;
+    /* text-align: center; */
+    text-decoration: none;
+    /* text-align: initial; */
+    font-size: 15px;
+    /* these last two make the logout button in
+    the nav bar look like another link */
+    cursor: pointer;
+    outline:0;
+    height: 20px;
+    text-align: inherit;
+    width: 100%;
+    text-align: center;
+    padding: 5% 0%;
+    margin: 5% 0%;
+  }
+
+  .highlightProfile {
+    color: black;
+    background-color:#ffffff;
+    /* text-align: center; */
+    text-decoration: none;
+    /* text-align: initial; */
+    font-size: 15px;
+    /* these last two make the logout button in
+    the nav bar look like another link */
+    cursor: pointer;
+    height: 20px;
+    text-align: inherit;
+    width: 100%;
+    text-align: center;
+    padding: 5% 0%;
+    margin: 5% 0%;
+  }
+
+  .highlightTeam {
+    color: black;
+    background-color:#ffffff;
+    /* text-align: center; */
+    text-decoration: none;
+    /* text-align: initial; */
+    font-size: 15px;
+    /* these last two make the logout button in
+    the nav bar look like another link */
+    cursor: pointer;
+    height: 20px;
+    text-align: inherit;
+    width: 100%;
+    text-align: center;
+    padding: 5% 0%;
+    margin: 5% 0%;
+  }
+
+  .highlightPrivate {
+    color: black;
+    background-color:#ffffff;
+    /* text-align: center; */
+    text-decoration: none;
+    /* text-align: initial; */
+    font-size: 15px;
+    /* these last two make the logout button in
+    the nav bar look like another link */
+    cursor: pointer;
+    height: 20px;
+    text-align: inherit;
+    width: 100%;
+    text-align: center;
+    padding: 5% 0%;
+    margin: 5% 0%;
+  }
+
+  .highlightAbout {
+    color: black;
+    background-color:#ffffff;
+    /* text-align: center; */
+    text-decoration: none;
+    /* text-align: initial; */
+    font-size: 15px;
+    /* these last two make the logout button in
+    the nav bar look like another link */
+    cursor: pointer;
+    height: 20px;
+    text-align: inherit;
+    width: 100%;
+    text-align: center;
+    padding: 5% 0%;
+    margin: 5% 0%;
   }
 
 .dashboardNav { 
   background-color: #1d2c69;
-  width: 100px;
   height: 1000px;
-  padding: 20px;
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
   display:inline-block;
+  border: solid white 3px;
 }
 
 .nav-link {
@@ -38,7 +130,7 @@
   color: #f2f2f2;
   background-color:#1d2c69;
   text-align: center;
-  padding: 24px 75px 24px 10px;
+  /* padding: 24px 75px 24px 10px; */
   text-decoration: none;
   font-size: 15px;
   /* these last two make the logout button in

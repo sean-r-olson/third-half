@@ -35,6 +35,7 @@ componentDidMount () {
 
 state = {
     open_edit: false,
+    profile: true,
   }
 
 handleChange = (event, propertyToChange) => {
@@ -88,7 +89,7 @@ render() {
         <Grid container spacing={24}>
           <Grid item xs={2}>
         {/* <div className="profileLayout"> */}
-            <DashboardNav/>
+            <DashboardNav profile={this.state.profile}/>
           </Grid>
         <Grid item xs={3}>
         </Grid>

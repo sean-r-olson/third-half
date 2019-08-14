@@ -35,13 +35,16 @@ const styles = theme => ({
     maxWidth: 100,
     textWeight: 900,
     fontSize: 30,
+
   },
   logo: {
-    maxWidth: '50%',
-    maxHeight: '50%',
+    maxWidth: '30%',
+    maxHeight: '30%',
+    position: 'fixed'
+
   }, 
   logoContainer: {
-    margin: '10% 0% 0% 5%'
+    margin: '10% 0% 0% 5%',
   }, 
   messageBoardTitle: {
     border: 'solid 3px #1d2c69', 
@@ -68,7 +71,7 @@ class PrivatePosts extends Component {
     direction: 'row',
     justify: 'center',
     alignItems: 'center',
-
+    private: true,
   }
 
   // componentDidMount(){
@@ -105,7 +108,7 @@ class PrivatePosts extends Component {
             spacing={16}
             >
             <Grid item xs={2}>
-              <DashboardNav/>
+              <DashboardNav private={this.state.private}/>
             </Grid>
           <Grid className={classes.logoContainer} item xs={3}>
             <img className={classes.logo} src={this.props.reduxStore.teamDataReducer.logo} />

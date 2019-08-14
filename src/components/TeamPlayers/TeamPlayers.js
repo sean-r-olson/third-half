@@ -59,6 +59,7 @@ class TeamPlayers extends Component {
     position: '',
     message: '',
     picture: '',
+    team: true,
   }
 
 
@@ -158,7 +159,7 @@ render() {
       <UpperNav /> 
       <Grid container spacing={24}>
         <Grid item xs={2}>
-            <DashboardNav/>
+            <DashboardNav team={this.state.team}/>
         </Grid>
         <Grid item xs={10}>
       <br/>

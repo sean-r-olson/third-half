@@ -14,6 +14,8 @@ import TeamPlayers from '../TeamPlayers/TeamPlayers';
 import PrivatePosts from '../PrivatePosts/PrivatePosts';
 import DirectMessage from '../DirectMessage/DirectMessage';
 import FollowButton from '../FollowButton/FollowButton';
+import DashboardNav from '../DashboardNav/DashboardNav';
+import UpperNav from '../UpperNav/UpperNav';
 
 
 // Import style
@@ -29,7 +31,6 @@ class App extends Component {
     console.log(this.props.reduxStore.graphicsReducer)
     return (
       <Router>
-          <div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -86,9 +87,7 @@ class App extends Component {
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
-            
           </Switch>
-        </div>
       </Router>
   )}
 }
