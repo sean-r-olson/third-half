@@ -11,6 +11,9 @@ import privatePostsReducer from './privatePostsReducer';
 import teamDataReducer from './teamDataReducer';
 import messageReducer from './messageReducer';
 import graphicsReducer from './graphicsReducer';
+import clickedTeamReducer from './clickedTeamReducer';
+import clickedTeamIdReducer from './clickedTeamIdReducer';
+
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -30,6 +33,8 @@ const rootReducer = combineReducers({
   teamDataReducer,
   messageReducer,
   graphicsReducer,
+  clickedTeamReducer,
+  clickedTeamIdReducer,
 });
 
 export default rootReducer;

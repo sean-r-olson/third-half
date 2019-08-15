@@ -58,7 +58,7 @@ const styles = theme => ({
   }, 
 })
 
-class TeamPlayers extends Component {
+class ClickedTeam extends Component {
 
   state = {
     open_edit: false,
@@ -74,29 +74,6 @@ class TeamPlayers extends Component {
     picture: '',
     team: true,
   }
-
-  componentDidMount(){
-      console.log('IN COMP DID MOUNT WITH:', this.props.reduxStore.user.team)
-      this.props.dispatch({type:'FETCH_TEAM', payload: this.props.reduxStore.user.team})
-    }
-  
-// handleToggle = (item) => {
-//     if (this.state.showPicture === true) {
-//     console.log(this.state);
-//     console.log(this.props.reduxStore.user)
-//     this.setState({
-//       showPicture: false,
-//       id: this.props.reduxStore.singlePlayerReducer.id,
-//       position: this.props.reduxStore.singlePlayerReducer.position
-//     })} else {
-//     console.log(this.state);
-//     this.setState({
-//       showPicture: true,
-//       id: this.props.reduxStore.singlePlayerReducer.id,
-//       position: this.props.reduxStore.singlePlayerReducer.position
-//     })
-//     }
-//   }
 
 handleChange = (event, propertyToChange) => {
   this.setState({
@@ -169,7 +146,6 @@ render() {
     console.log(this.props.reduxStore.clickedTeamIdReducer)
     const {classes} = this.props;
     // IF USER'S ADMIN LEVEL IS 1, return the team page with access to editing player information 
-    if (this.props.reduxStore.user.admin_level === 1) {
     return (
     <>
       <UpperNav /> 
@@ -181,7 +157,7 @@ render() {
       <br/>
       <img className="teamPlayersTeamLogo" src={this.props.reduxStore.teamDataReducer.logo} />
       <h1 className={classes.playerRole}>Coaches</h1>
-      {this.props.reduxStore.playersListReducer.map(item => {
+      {this.props.reduxStore.clickedTeamReducer.map(item => {
           if (item.role === 'coach') {
             return (
           <div className="playersDiv" key={item.id}>
@@ -195,7 +171,7 @@ render() {
       })}
       <br/>
       <h1 className={classes.playerRole}>Forwards</h1>
-       {this.props.reduxStore.playersListReducer.map(item => {
+       {this.props.reduxStore.clickedTeamReducer.map(item => {
           if (item.role === 'forward') {
             return (
           <div className="playersDiv" key={item.id}>
@@ -209,7 +185,7 @@ render() {
       })}
       <br/>
       <h1 className={classes.playerRole}>Backs</h1>
-        {this.props.reduxStore.playersListReducer.map(item => {
+        {this.props.reduxStore.clickedTeamReducer.map(item => {
           if (item.role === 'back') {
             return (
           <div className="playersDiv" key={item.id}>
@@ -280,112 +256,7 @@ render() {
               </Grid>
     </>
     // IF USER'S ADMIN LEVEL IS NOT 1, RETURN THE SAME, BUT WITHOUT EDITING ACCESS
-    )} else if (this.props.reduxStore.user.admin_level !== 1)
-    return (
-        <>
-        <UpperNav /> 
-        <Grid container spacing={24}>
-        <Grid item xs={2}>
-            <DashboardNav/>
-        </Grid>
-        <Grid item xs={10}>
-      <br/>
-      <br/>
-      <img className="teamPlayersTeamLogo" src={this.props.reduxStore.teamDataReducer.logo} />
-      <h1 className={classes.playerRole}>Coaches</h1>
-      {this.props.reduxStore.playersListReducer.map(item => {
-          if (item.role === 'coach') {
-            return (
-          <div className="playersDiv" key={item.id}>
-            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-             <br/>
-             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
-             <br/>
-          </div> 
-          )}
-      })}
-      <br/>
-      <h1 className={classes.playerRole}>Forwards</h1>
-       {this.props.reduxStore.playersListReducer.map(item => {
-          if (item.role === 'forward') {
-            return (
-          <div className="playersDiv" key={item.id}>
-            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-             <br/>
-             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
-             <br/>
-          </div> 
-          )}
-      })}
-      <br/>
-      <h1 className={classes.playerRole}>Backs</h1>
-        {this.props.reduxStore.playersListReducer.map(item => {
-          if (item.role === 'back') {
-            return (
-          <div className="playersDiv" key={item.id}>
-            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-            <br/>
-            <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-            {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
-            <br/>
-          </div> 
-          )}
-        })}
-       <Dialog className={classes.dialog}
-      //  className={classes.modal}
-                  open={this.state.open_edit}
-                  onClose={this.handleCloseEdit}
-                  >
-                        <DialogContent className={classes.root}>
-                        <img className="playerCloseUp" src={this.state.picture} alt="PlayerPicture"/> 
-                        <Typography> {this.state.player_name}   |   {this.state.position}
-                        </Typography>
-                      </DialogContent>                      
-                  </Dialog> 
-      <Dialog
-                open={this.state.open_messages}
-                onClose={this.handleCloseMessages}
-                >
-                  <DialogTitle id="form-dialog-title">Messages</DialogTitle>
-                  <DialogContent>
-                  {this.props.reduxStore.messageReducer.map(item => {
-                  // if the user id (user that's logged in) matches the sender's id, 
-                  if (
-                    // (item.recieved_id === this.props.reduxStore.playerProfileReducer.id
-                    //    && item.recieved_id === this.state.recieved_id
-                       this.state.recieved_id === item.recieved_id 
-                       || this.state.recieved_id === item.from_id 
-                       && this.props.reduxStore.playerProfileReducer.id === item.recieved_id 
-                       || this.props.reduxStore.playerProfileReducer === item.from_id
-                       ) {
-                    return(
-                      <div key={item.id}>
-                        <Typography>{item.from_name}{item.date_time}</Typography>
-                        <Typography>{item.message}</Typography>
-                      </div>
-                    )} else {
-                    //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
-                      //  && item.from_id === this.state.from_id
-                      return(
-                        <div key={item.id}>
-                        <Typography></Typography>
-                      </div>
-                      )
-                    }
-                })}
-                      <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
-                    <DialogActions>
-                      <Button variant="contained" color="primary" onClick={this.sendMessage}>Send</Button>
-                      </DialogActions>
-                  </DialogContent>
-                  </Dialog>
-                </Grid>
-                </Grid>
-      </>
     )
-    // }
 }
 }
 
@@ -393,4 +264,4 @@ const mapStateToProps = (reduxStore) => ({
   reduxStore
 })
 
-export default withStyles(styles)(connect(mapStateToProps)(TeamPlayers));
+export default withStyles(styles)(connect(mapStateToProps)(ClickedTeam));

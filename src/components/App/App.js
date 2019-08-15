@@ -16,7 +16,7 @@ import DirectMessage from '../DirectMessage/DirectMessage';
 import FollowButton from '../FollowButton/FollowButton';
 import DashboardNav from '../DashboardNav/DashboardNav';
 import UpperNav from '../UpperNav/UpperNav';
-
+import ClickedTeam from '../ClickedTeam/ClickedTeam';
 
 // Import style
 import './App.css';
@@ -84,6 +84,11 @@ class App extends Component {
               exact
               path="/follow"
               component={FollowButton}
+            />
+              <Route
+              exact
+              path="/clickedTeam"
+              component={ClickedTeam}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

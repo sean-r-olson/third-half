@@ -85,4 +85,19 @@ router.put('/delete/:id', (req, res) => {
   })
 })
 
+router.get('/clickedTeam/:id', (req, res) => {
+  let clickedId = req.params.id;
+  const sqlText = `select * from players where team_id=$1;`;
+  const values = [clickedId];
+  pool.query(sqlText, values)
+  .then((response) => {
+    res.send(response.rows);
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('error getting single player data from DB', error);
+    res.sendStatus(500);
+  })
+})
+
 module.exports = router;
