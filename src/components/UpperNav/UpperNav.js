@@ -19,13 +19,10 @@ const UpperNav = (props) => (
       {/* </Link> */}
       {/* Always show this link since the about page is not protected */}
       <Link className="nav-link" to="/profile">
-        Home
+      <img src="images/MayhemLogo.png" alt="3rdHalf" className="teamLogoNav"/>
       </Link>
       <Link className="nav-link" to="/teams">
         Teams
-      </Link>
-      <Link className="nav-link" to="/messenger">
-        Messenger
       </Link>
       {/* Show the link to the logout button if the user is logged in */}
       {props.user.id && (
@@ -42,7 +39,7 @@ const UpperNav = (props) => (
 // if they are logged in, we show them a few more links 
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({ user }) => ({ user });
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
 });
 

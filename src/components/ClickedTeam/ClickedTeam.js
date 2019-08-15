@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import { objectExpression } from '@babel/types';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-
+import ClickedTeamNav from '../ClickedTeamNav/ClickedTeamNav';
 
 const styles = theme => ({
   root: {
@@ -146,16 +146,20 @@ render() {
     console.log(this.props.reduxStore.clickedTeamIdReducer)
     const {classes} = this.props;
     // IF USER'S ADMIN LEVEL IS 1, return the team page with access to editing player information 
+    if (this.props.reduxStore.user.admin_level === 1) {
     return (
     <>
       <UpperNav /> 
       <Grid container spacing={24}>
-        <Grid item xs={2}>
-            <DashboardNav team={this.state.team}/>
-        </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={12}>
       <br/>
-      <img className="teamPlayersTeamLogo" src={this.props.reduxStore.teamDataReducer.logo} />
+      {/* {this.props.reduxStore.clickedTeamReducer.map(item => {
+          return(
+            <div key={item.id}>
+                 <img className="teamPlayersTeamLogo" src={item.logo} />
+            </div>
+          )
+        })} */}
       <h1 className={classes.playerRole}>Coaches</h1>
       {this.props.reduxStore.clickedTeamReducer.map(item => {
           if (item.role === 'coach') {
@@ -255,10 +259,114 @@ render() {
                 </Grid>
               </Grid>
     </>
-    // IF USER'S ADMIN LEVEL IS NOT 1, RETURN THE SAME, BUT WITHOUT EDITING ACCESS
+    )} else if (this.props.reduxStore.user.admin_level !== 1) {
+    return (
+        <>
+        <UpperNav /> 
+        <Grid container spacing={24}>
+        <Grid item xs={12}>
+      <br/>
+      <br/>
+      <img className="teamPlayersTeamLogo" src={this.props.reduxStore.teamDataReducer.logo} />
+      <h1 className={classes.playerRole}>Coaches</h1>
+      {this.props.reduxStore.playersListReducer.map(item => {
+          if (item.role === 'coach') {
+            return (
+          <div className="playersDiv" key={item.id}>
+            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+             <br/>
+             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
+             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+             <br/>
+          </div> 
+          )}
+      })}
+      <br/>
+      <h1 className={classes.playerRole}>Forwards</h1>
+       {this.props.reduxStore.playersListReducer.map(item => {
+          if (item.role === 'forward') {
+            return (
+          <div className="playersDiv" key={item.id}>
+            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+             <br/>
+             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
+             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+             <br/>
+          </div> 
+          )}
+      })}
+      <br/>
+      <h1 className={classes.playerRole}>Backs</h1>
+        {this.props.reduxStore.playersListReducer.map(item => {
+          if (item.role === 'back') {
+            return (
+          <div className="playersDiv" key={item.id}>
+            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+            <br/>
+            <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
+            {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+            <br/>
+          </div> 
+          )}
+        })}
+       <Dialog className={classes.dialog}
+      //  className={classes.modal}
+                  open={this.state.open_edit}
+                  onClose={this.handleCloseEdit}
+                  >
+                        <DialogContent className={classes.root}>
+                        <img className="playerCloseUp" src={this.state.picture} alt="PlayerPicture"/> 
+                        <Typography> {this.state.player_name}   |   {this.state.position}
+                        </Typography>
+                      </DialogContent>                      
+                  </Dialog> 
+      <Dialog
+                open={this.state.open_messages}
+                onClose={this.handleCloseMessages}
+                >
+                  <DialogTitle id="form-dialog-title">Messages</DialogTitle>
+                  <DialogContent>
+                  {this.props.reduxStore.messageReducer.map(item => {
+                  // if the user id (user that's logged in) matches the sender's id, 
+                  if (
+                    // (item.recieved_id === this.props.reduxStore.playerProfileReducer.id
+                    //    && item.recieved_id === this.state.recieved_id
+                       this.state.recieved_id === item.recieved_id 
+                       || this.state.recieved_id === item.from_id 
+                       && this.props.reduxStore.playerProfileReducer.id === item.recieved_id 
+                       || this.props.reduxStore.playerProfileReducer === item.from_id
+                       ) {
+                    return(
+                      <div key={item.id}>
+                        <Typography>{item.from_name}{item.date_time}</Typography>
+                        <Typography>{item.message}</Typography>
+                      </div>
+                    )} else {
+                    //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
+                      //  && item.from_id === this.state.from_id
+                      return(
+                        <div key={item.id}>
+                        <Typography></Typography>
+                      </div>
+                      )
+                    }
+                })}
+                      <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
+                    <DialogActions>
+                      <Button variant="contained" color="primary" onClick={this.sendMessage}>Send</Button>
+                      </DialogActions>
+                  </DialogContent>
+                  </Dialog>
+                </Grid>
+                </Grid>
+      </>
     )
 }
 }
+}
+
+
+
 
 const mapStateToProps = (reduxStore) => ({
   reduxStore

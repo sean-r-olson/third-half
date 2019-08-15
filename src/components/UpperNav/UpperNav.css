@@ -1,18 +1,29 @@
 .nav-title {
-    min-height: 70px;
-    min-width: 70px;
-    max-height: 100px;
-    max-width: 100px;
+    min-height: 50px;
+    min-width: 50px;
+    max-height: 50px;
+    max-width: 50px;
     display: inline-block;
     color: #f2f2f2;
     padding: 10px;
-    margin: 1%;
+    margin: auto;
     float: left;
+}
+
+.teamLogoNav {
+  min-height: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  max-width: 50px;
+  display: inline-block;
+  margin: -10px 0px 5px 0px;
+  padding: auto;
 }
 
 .nav {
   overflow: hidden;
   background-color: #1d2c69;
+  height: 75px
 }
 
 .nav-link { 
@@ -35,6 +46,5 @@
 }
 
 .nav-right {
-  float: right;
 }
 
