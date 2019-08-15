@@ -16,12 +16,13 @@
     the nav bar look like another link */
     cursor: pointer;
     outline:0;
-    height: 20px;
+    max-height: 20px;
     text-align: inherit;
+    padding: 20px 0px;
     width: 100%;
-    padding: 5% 0%;
     text-align: center;
-    margin: 5% 0%;
+    border-right: solid 0.5px white;
+
   }
 
   .dashboardNavLink:hover {
@@ -35,12 +36,13 @@
     the nav bar look like another link */
     cursor: pointer;
     outline:0;
-    height: 20px;
+    max-height: 20px;
     text-align: inherit;
     width: 100%;
     text-align: center;
-    padding: 5% 0%;
-    margin: 5% 0%;
+    padding: 20px 0px;
+    border-right: solid 0.5px white;
+
   }
 
   .highlightProfile {
@@ -53,12 +55,13 @@
     /* these last two make the logout button in
     the nav bar look like another link */
     cursor: pointer;
-    height: 20px;
+    max-height: 20px;
     text-align: inherit;
     width: 100%;
     text-align: center;
-    padding: 5% 0%;
-    margin: 5% 0%;
+    padding: 20px 0px;
+    border-right: solid 0.5px white;
+
   }
 
   .highlightTeam {
@@ -71,12 +74,11 @@
     /* these last two make the logout button in
     the nav bar look like another link */
     cursor: pointer;
-    height: 20px;
+    max-height: 20px;
     text-align: inherit;
     width: 100%;
     text-align: center;
-    padding: 5% 0%;
-    margin: 5% 0%;
+    padding: 20px 0px;
   }
 
   .highlightPrivate {
@@ -89,12 +91,11 @@
     /* these last two make the logout button in
     the nav bar look like another link */
     cursor: pointer;
-    height: 20px;
+    max-height: 20px;
     text-align: inherit;
     width: 100%;
     text-align: center;
-    padding: 5% 0%;
-    margin: 5% 0%;
+    padding: 20px 0px;
   }
 
   .highlightAbout {
@@ -107,12 +108,11 @@
     /* these last two make the logout button in
     the nav bar look like another link */
     cursor: pointer;
-    height: 20px;
+    max-height: 20px;
     text-align: inherit;
     width: 100%;
     text-align: center;
-    padding: 5% 0%;
-    margin: 5% 0%;
+    padding: 20px 0px;
   }
 
 .dashboardNav { 
@@ -138,6 +138,7 @@
   border:none;
   cursor: pointer;
   outline:0;
+  max-height: 20px;
 }
 
 .nav-link:hover {

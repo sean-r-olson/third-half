@@ -15,25 +15,32 @@ import Button from '@material-ui/core/Button';
 const styles = theme => ({
     card: {
         float: 'right',
-        margin: theme.spacing.unit,
+        marginTop: '5px',
+        marginRight: '5px',
         border: 'solid 3px #1d2c69', 
         borderRadius: '5px',
         color: '#1d2c69',
         textShadow: '1px 1px #ff66c4',
         backgroundColor: 'white',
-        height: '100px',
+        height: '60px',
         maxWidth: '100%',
         fontSize: 10, 
-        display: 'inline-block'
+        display: 'inline-block',
+        paddingLeft: '20px'
     }, 
     input: {
         width: '50%',
-        height: '30%'
+        height: '50px',
+        margin: '-7%',
+        fontSize: '10px'
     }, 
     button: {
         float: 'right',
-        margin: '-5% 0%'
-    }
+        margin: '-13% 0%'
+    }, 
+    resize:{
+      fontSize:12
+    },
 })
 
 class LogInForm extends Component {
@@ -80,20 +87,37 @@ state = {
         )}
         <Card className={classes.card}>
           <CardContent>
+              {/* <TextField className={classes.input} */}
               <TextField className={classes.input}
-                type="text"
-                name="username"
-                placeholder="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
+              onChange={this.handleInputChangeFor('username')}
+              type="text"
+              name="username"
+              value={this.state.username}
+              id="with-placeholder"
+              placeholder="username"
+              InputProps={{
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+              // className={classes.textField}
+              // margin="normal"
               />
               <br/>
               <TextField className={classes.input}
-                type="password"
-                name="password"
-                placeholder="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
+              onChange={this.handleInputChangeFor('password')}
+              type="text"
+              name="password"
+              value={this.state.password}
+              id="with-placeholder"
+              placeholder="password"
+              InputProps={{
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+              // className={classes.textField}
+              // margin="normal"
               />
             <Button 
                 onClick={(event) => this.login()}
