@@ -19,7 +19,7 @@ const UpperNav = (props) => (
       {/* </Link> */}
       {/* Always show this link since the about page is not protected */}
       <Link className="nav-link" to="/profile">
-      <img src="images/MayhemLogo.png" alt="3rdHalf" className="teamLogoNav"/>
+        <img className="teamLogoNav" src={props.state.teamDataReducer.logo} />
       </Link>
       <Link className="nav-link" to="/teams">
         Teams
@@ -41,6 +41,7 @@ const UpperNav = (props) => (
 // const mapStateToProps = ({ user }) => ({ user });
 const mapStateToProps = (state) => ({
   user: state.user,
+  state
 });
 
 export default connect(mapStateToProps)(UpperNav);
