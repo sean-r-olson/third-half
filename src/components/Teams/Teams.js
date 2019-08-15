@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import UpperNav from '../UpperNav/UpperNav';
 import '../App/App.css';
+import Grid from '@material-ui/core/Grid';
+
 class Teams extends Component {
 
     componentDidMount () {
@@ -22,6 +24,11 @@ render() {
         )
       })}
       <br/>
+      <Grid container spacing={24}>
+      <Grid item xs={3}>
+      </Grid>
+      <Grid item xs={6}>
+        <center>
         {this.props.reduxStore.teamsReducer.map(item => {
         return(
           <div className="teamInfo" key={item.id}>
@@ -32,7 +39,12 @@ render() {
           </div>
         )
       })}
-        </>
+      </center>
+      </Grid>
+      <Grid item xs={3}>
+      </Grid>
+      </Grid>
+      </>
     )
 }
 }
