@@ -18,7 +18,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 
-
 const styles = theme => ({
   root: {
     background: 'linear-gradient(45deg, #1d2c69 30%, #ff66c4 90%)',
@@ -78,7 +77,8 @@ class TeamPlayers extends Component {
 
 
   componentDidMount(){
-    this.props.dispatch({type:'FETCH_TEAM'})
+    console.log('IN TEAM PLAYERS COMP DID MOUNT WITH:', this.props.reduxStore.user.team)
+    this.props.dispatch({type:'FETCH_TEAM', payload: this.props.reduxStore.user.team})
   }
 // handleToggle = (item) => {
 //     if (this.state.showPicture === true) {
@@ -290,17 +290,48 @@ render() {
         <Grid item xs={10}>
       <br/>
       <br/>
+      <img className="teamPlayersTeamLogo" src={this.props.reduxStore.teamDataReducer.logo} />
+      <h1 className={classes.playerRole}>Coaches</h1>
       {this.props.reduxStore.playersListReducer.map(item => {
-        return(
+          if (item.role === 'coach') {
+            return (
           <div className="playersDiv" key={item.id}>
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
              <br/>
              <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
              {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
              <br/>
-          </div>
-        )
+          </div> 
+          )}
       })}
+      <br/>
+      <h1 className={classes.playerRole}>Forwards</h1>
+       {this.props.reduxStore.playersListReducer.map(item => {
+          if (item.role === 'forward') {
+            return (
+          <div className="playersDiv" key={item.id}>
+            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+             <br/>
+             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
+             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+             <br/>
+          </div> 
+          )}
+      })}
+      <br/>
+      <h1 className={classes.playerRole}>Backs</h1>
+        {this.props.reduxStore.playersListReducer.map(item => {
+          if (item.role === 'back') {
+            return (
+          <div className="playersDiv" key={item.id}>
+            <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+            <br/>
+            <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
+            {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+            <br/>
+          </div> 
+          )}
+        })}
        <Dialog className={classes.dialog}
       //  className={classes.modal}
                   open={this.state.open_edit}

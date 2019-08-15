@@ -21,13 +21,14 @@ const styles = theme => ({
         color: '#1d2c69',
         textShadow: '1px 1px #ff66c4',
         backgroundColor: 'white',
-        maxHeight: '100px',
+        height: '100px',
         maxWidth: '100%',
         fontSize: 10, 
         display: 'inline-block'
     }, 
     input: {
         width: '50%',
+        height: '30%'
     }, 
     button: {
         float: 'right',
@@ -77,7 +78,7 @@ state = {
             {this.props.errors.loginMessage} 
           </h2>
         )}
-        <Card className={classes.card}  >
+        <Card className={classes.card}>
           <CardContent>
               <TextField className={classes.input}
                 type="text"

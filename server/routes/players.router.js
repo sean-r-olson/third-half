@@ -3,9 +3,10 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 // GET to db (get players data from players table)
-router.get('/', (req, res) => {
-    const sqlText=`select * from players where team_id=1;`;
-    pool.query(sqlText)
+router.get('/userTeam/:id', (req, res) => {
+    const sqlText=`select * from players where team_id=$1;`;
+    const values = [req.params.id];
+    pool.query(sqlText, values)
       .then( (response) => {
         res.send(response.rows);
       })

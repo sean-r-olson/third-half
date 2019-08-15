@@ -24,6 +24,9 @@ const styles = theme => ({
     },
     modal: {
         margin: theme.spacing.unit
+    },
+    editBtn: {
+        margin: 'auto'
     }
   })
 
@@ -52,6 +55,7 @@ this.setState({
     id: this.props.reduxStore.user.id,
     player_name: this.props.reduxStore.playerProfileReducer.player_name,
     position: this.props.reduxStore.playerProfileReducer.position,
+    picture: this.props.reduxStore.playerProfileReducer.picture,
     })
 }
 
@@ -83,6 +87,7 @@ handleCloseEdit = () => {
 render() {
     console.log(this.props.reduxStore.playerProfileReducer);
     console.log(this.state)
+    const {classes} = this.props;
     return (
         <>
         <UpperNav /> 
@@ -107,14 +112,22 @@ render() {
                 >
                     <DialogTitle id="form-dialog-title">Edit Player</DialogTitle>
                     <DialogContent>
+                          <center>
                               <TextField onChange={event => this.handleChange(event, 'player_name')} label={this.props.reduxStore.playerProfileReducer.player_name}>
                               </TextField>
+                              <br/>
                               <TextField onChange={event => this.handleChange(event, 'position')} label={this.props.reduxStore.playerProfileReducer.position}>
                               </TextField>
+                              <br/>
+                              <br/>
+                              <img className="playerImages" src={this.props.reduxStore.playerProfileReducer.picture} alt="playerProfilePic"/>
+                              <DialogActions>
+                              <Button className={classes.editBtn} variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
+                              </DialogActions>
                               <DialogActions>
                               <Button variant="outlined" color="secondary" onClick={this.handleDelete}>Delete Profile</Button>
-                              <Button variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
                               </DialogActions>
+                          </center>
                     </DialogContent>
                     <br />
                 </Dialog> 
@@ -130,5 +143,5 @@ const mapStateToProps = (reduxStore) => ({
     reduxStore
   })
 
-export default connect(mapStateToProps)(Profile);
+export default withStyles(styles)(connect(mapStateToProps)(Profile));
 

@@ -12,7 +12,8 @@ function* playersSaga(){
 
 function* getPlayersSaga(action) {
     try {
-        const response = yield Axios.get('/players');
+        console.log(action.payload)
+        const response = yield Axios.get(`/players/userTeam/${action.payload}`);
         yield put ({type: 'SET_PLAYERS', payload: response.data})
         console.log(response.data);
     } catch (error) {
