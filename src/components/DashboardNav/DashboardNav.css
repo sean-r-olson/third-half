@@ -16,13 +16,11 @@
     the nav bar look like another link */
     cursor: pointer;
     outline:0;
-    max-height: 20px;
+    height: 20px;
     text-align: inherit;
-    padding: 20px 0px;
     width: 100%;
+    padding: 5% 0%;
     text-align: center;
-    border-right: solid 0.5px white;
-
   }
 
   .dashboardNavLink:hover {
@@ -36,13 +34,12 @@
     the nav bar look like another link */
     cursor: pointer;
     outline:0;
-    max-height: 20px;
+    height: 20px;
     text-align: inherit;
     width: 100%;
     text-align: center;
-    padding: 20px 0px;
-    border-right: solid 0.5px white;
-
+    padding: 5% 0%;
+    
   }
 
   .highlightProfile {
@@ -55,13 +52,12 @@
     /* these last two make the logout button in
     the nav bar look like another link */
     cursor: pointer;
-    max-height: 20px;
+    height: 20px;
     text-align: inherit;
     width: 100%;
     text-align: center;
-    padding: 20px 0px;
-    border-right: solid 0.5px white;
-
+    padding: 5% 0%;
+    
   }
 
   .highlightTeam {
@@ -74,11 +70,12 @@
     /* these last two make the logout button in
     the nav bar look like another link */
     cursor: pointer;
-    max-height: 20px;
+    height: 20px;
     text-align: inherit;
     width: 100%;
     text-align: center;
-    padding: 20px 0px;
+    padding: 5% 0%;
+    
   }
 
   .highlightPrivate {
@@ -91,11 +88,12 @@
     /* these last two make the logout button in
     the nav bar look like another link */
     cursor: pointer;
-    max-height: 20px;
+    height: 20px;
     text-align: inherit;
     width: 100%;
     text-align: center;
-    padding: 20px 0px;
+    padding: 5% 0%;
+    
   }
 
   .highlightAbout {
@@ -108,11 +106,12 @@
     /* these last two make the logout button in
     the nav bar look like another link */
     cursor: pointer;
-    max-height: 20px;
+    height: 20px;
     text-align: inherit;
     width: 100%;
     text-align: center;
-    padding: 20px 0px;
+    padding: 5% 0%;
+    
   }
 
 .dashboardNav { 
@@ -138,7 +137,6 @@
   border:none;
   cursor: pointer;
   outline:0;
-  max-height: 20px;
 }
 
 .nav-link:hover {

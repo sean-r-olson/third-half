@@ -25,10 +25,28 @@ const styles = theme => ({
     padding: '5%',
     color: '#ff66c4',
     textShadow: '1px 1px #1d2c69',
+    backgroundColor: 'white',
+    opacity: '0.75', 
+    fontSize: 25,
+    borderRadius: '3px'
   }, 
   register: {
+    width: '100%',
     margin: '10% 0%',
+    backgroundImage: 'url(images/3rdHalf.png)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    border: 'solid 3px #ff66c4'
     }, 
+  registerInput: {
+    backgroundColor: 'white',
+    opacity: '0.75', 
+    marginBottom: '10%', 
+    marginRight: '10%', 
+    marginLeft: '10%', 
+    borderRadius: '3px'
+    }
 });
 
 class RegisterPage extends Component {
@@ -126,8 +144,7 @@ class RegisterPage extends Component {
                   </Grid>
                       <Grid item xs={8}>
                       <Card className={classes.register}>
-                      <center>
-                      <CardContent >
+                      <CardContent>
                         <center>
                         <h3 className={classes.registerTitle}>
                         New to 3rd Half?
@@ -135,6 +152,9 @@ class RegisterPage extends Component {
                         Register!
                         </h3>
                         </center>
+                        </CardContent>
+                        <CardContent className={classes.registerInput}>
+                          <center>
                         <div>
                             <TextField
                               label={this.state.username}
@@ -204,9 +224,9 @@ class RegisterPage extends Component {
                           value="Register"
                         > Register 
                         </Button>
-                        </div>  
-                      </CardContent>
-                      </center>
+                        </div> 
+                        </center>
+                        </CardContent>                      
                       </Card>
                       </Grid>
               <Grid item xs={2}>
