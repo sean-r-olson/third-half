@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './UpperNav.css';
-import '../App/App.css';
 
 const UpperNav = (props) => (
   <div className="nav">
@@ -18,16 +17,16 @@ const UpperNav = (props) => (
         {/* {props.user.id ? 'Home' : 'Login / Register'} */} 
       {/* </Link> */}
       {/* Always show this link since the about page is not protected */}
-      <Link className="nav-link" to="/profile">
+      <Link to="/profile">
         <img className="teamLogoNav" src={props.state.teamDataReducer.logo} />
       </Link>
-      <Link className="nav-link" to="/teams">
+      <Link className="upperNavLink" to="/teams">
         Teams
       </Link>
       {/* Show the link to the logout button if the user is logged in */}
       {props.user.id && (
         <>
-      <LogOutButton className="link-button"/>
+      <LogOutButton className="logOutButton"/>
         </>
       )}
     </div>

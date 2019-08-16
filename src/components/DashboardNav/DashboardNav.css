@@ -138,7 +138,9 @@
   the nav bar look like another link */
   border:none;
   cursor: pointer;
-  outline:0;
+  outline: 0;
+  width: 30px;
+  word-wrap: initial;
 }
 
 .nav-link:hover {
