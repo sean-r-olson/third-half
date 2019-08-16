@@ -56,10 +56,18 @@ const styles = theme => ({
     position: 'sticky',
     top: '0px',
   }, 
-  newMessage: {
+  sentMessage: {
     backgroundColor: '#ff66c4',
     borderRadius: '3px',
-    padding: '2px'
+    padding: '2px',
+    margin: '5px'
+  },
+  recievedMessage: {
+    backgroundColor: '#1d2c69',
+    borderRadius: '3px',
+    padding: '2px',
+    margin: '5px'
+
   }
 })
 
@@ -259,34 +267,44 @@ render() {
               onClose={this.handleCloseMessages}
               >
                 <DialogTitle id="form-dialog-title">Messages</DialogTitle>
-                <DialogContent>
+                
                 {this.props.reduxStore.messageReducer.map(item => {
                   console.log(item)
                   // if the user id (user that's logged in) matches the sender's id, 
                   if (
+                    // CHECK IF:
+                    // the user either recieved or sent a message from or to the clicked player AND 
+                    // the user's id matches the recieved message id AND 
+                    // the recieved message is a new message
                     (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
-                    && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
+                    && 
+                    (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
                     && (item.new_message === true)) {
                   return(
                     <div key={item.id}>
+                      <DialogContent className={classes.recievedMessage}>
                       <Typography>{item.from_name} | {item.to_char}</Typography>
-                      <Typography className={classes.newMessage}>{item.message}
+                      <Typography >{item.message}
                       <label class="container">
                       <input onClick={(event) => {this.updateMessageStatus(item)}} type="checkbox"></input>
                       <span class="checkmark"></span>
                       </label>
                       </Typography>
+                      </DialogContent>
                     </div>
                     
                   )} else if (
                     (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
-                    && (this.props.reduxStore.playerProfileReducer.id === item.from_id)
+                    && 
+                    (this.props.reduxStore.playerProfileReducer.id === item.from_id)
                     && (item.new_message === true)) {
                     return(
                       <div key={item.id}>
+                      <DialogContent className={classes.sentMessage}>
                       <Typography>{item.from_name} | {item.to_char}</Typography>
-                      <Typography className={classes.newMessage}>{item.message}</Typography>
-                    </div>
+                      <Typography >{item.message}</Typography>
+                      </DialogContent>
+                      </div>
                     )
                     } else if (
                     (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
@@ -297,8 +315,10 @@ render() {
                     //  && item.from_id === this.state.from_id
                     return(
                     <div key={item.id}>
+                      <DialogContent className={classes.sentMessage}>
                       <Typography>{item.from_name} | {item.to_char}</Typography>
-                      <Typography>{item.message}</Typography>
+                      <Typography >{item.message}</Typography>
+                      </DialogContent>
                     </div>
                     )
                   }
@@ -307,7 +327,6 @@ render() {
                   <DialogActions>
                     <Button variant="contained" color="primary" onClick={(event)=>{this.sendMessage()}}>Send</Button>
                     </DialogActions>
-                </DialogContent>
                 </Dialog>
                 </Grid>
               </Grid>
@@ -387,29 +406,39 @@ render() {
                   console.log(item)
                   // if the user id (user that's logged in) matches the sender's id, 
                   if (
+                    // CHECK IF:
+                    // the user either recieved or sent a message from or to the clicked player AND 
+                    // the user's id matches the recieved message id AND 
+                    // the recieved message is a new message
                     (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
-                    && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
+                    && 
+                    (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
                     && (item.new_message === true)) {
                   return(
                     <div key={item.id}>
+                      <DialogContent className={classes.recievedMessage}>
                       <Typography>{item.from_name} | {item.to_char}</Typography>
-                      <Typography className={classes.newMessage}>{item.message}
+                      <Typography >{item.message}
                       <label class="container">
                       <input onClick={(event) => {this.updateMessageStatus(item)}} type="checkbox"></input>
                       <span class="checkmark"></span>
                       </label>
                       </Typography>
+                      </DialogContent>
                     </div>
                     
                   )} else if (
                     (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
-                    && (this.props.reduxStore.playerProfileReducer.id === item.from_id)
+                    && 
+                    (this.props.reduxStore.playerProfileReducer.id === item.from_id)
                     && (item.new_message === true)) {
                     return(
                       <div key={item.id}>
+                      <DialogContent className={classes.sentMessage}>
                       <Typography>{item.from_name} | {item.to_char}</Typography>
-                      <Typography className={classes.newMessage}>{item.message}</Typography>
-                    </div>
+                      <Typography >{item.message}</Typography>
+                      </DialogContent>
+                      </div>
                     )
                     } else if (
                     (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
@@ -420,8 +449,10 @@ render() {
                     //  && item.from_id === this.state.from_id
                     return(
                     <div key={item.id}>
+                      <DialogContent className={classes.sentMessage}>
                       <Typography>{item.from_name} | {item.to_char}</Typography>
-                      <Typography>{item.message}</Typography>
+                      <Typography >{item.message}</Typography>
+                      </DialogContent>
                     </div>
                     )
                   }

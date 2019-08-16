@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 // GET to db (get team data from team table)
 router.get('/', (req, res) => {
     const sqlText=`select id, from_id, recieved_id, to_char(date_time, 'Mon DD, YYYY HH:MI'), message, from_name, recieved_name, new_message
-     from messages order by to_char desc;`;
+     from messages order by to_char asc;`;
     pool.query(sqlText)
       .then( (response) => {
         res.send(response.rows);
