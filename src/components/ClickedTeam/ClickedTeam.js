@@ -237,7 +237,7 @@ render() {
                      ) {
                   return(
                     <div key={item.id}>
-                      <Typography>{item.from_name}{item.date_time}</Typography>
+                      <Typography>{item.from_name}{item.to_char}</Typography>
                       <Typography>{item.message}</Typography>
                     </div>
                   )} else {
@@ -267,9 +267,9 @@ render() {
         <Grid item xs={12}>
       <br/>
       <br/>
-      <img className="teamPlayersTeamLogo" src={this.props.reduxStore.teamDataReducer.logo} />
+      {/* <img className="teamPlayersTeamLogo" src={this.props.reduxStore.teamDataReducer.logo} /> */}
       <h1 className={classes.playerRole}>Coaches</h1>
-      {this.props.reduxStore.playersListReducer.map(item => {
+      {this.props.reduxStore.clickedTeamReducer.map(item => {
           if (item.role === 'coach') {
             return (
           <div className="playersDiv" key={item.id}>
@@ -283,7 +283,7 @@ render() {
       })}
       <br/>
       <h1 className={classes.playerRole}>Forwards</h1>
-       {this.props.reduxStore.playersListReducer.map(item => {
+       {this.props.reduxStore.clickedTeamReducer.map(item => {
           if (item.role === 'forward') {
             return (
           <div className="playersDiv" key={item.id}>
@@ -297,7 +297,7 @@ render() {
       })}
       <br/>
       <h1 className={classes.playerRole}>Backs</h1>
-        {this.props.reduxStore.playersListReducer.map(item => {
+        {this.props.reduxStore.clickedTeamReducer.map(item => {
           if (item.role === 'back') {
             return (
           <div className="playersDiv" key={item.id}>
@@ -338,7 +338,7 @@ render() {
                        ) {
                     return(
                       <div key={item.id}>
-                        <Typography>{item.from_name}{item.date_time}</Typography>
+                        <Typography>{item.from_name}{item.to_char}</Typography>
                         <Typography>{item.message}</Typography>
                       </div>
                     )} else {
@@ -364,9 +364,6 @@ render() {
 }
 }
 }
-
-
-
 
 const mapStateToProps = (reduxStore) => ({
   reduxStore

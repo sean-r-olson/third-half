@@ -31,7 +31,8 @@ function* sendMessageSaga(action) {
 
 function* updateMessageStatusSaga(action) {
     try {
-        yield Axios.put(`/messages/${action.payload.id}`);
+        console.log(action.payload)
+        yield Axios.put(`/messages/${action.payload}`);
         yield put({type: 'FETCH_MESSAGES'})
     } catch (error) {
         console.log('error updating message', error);

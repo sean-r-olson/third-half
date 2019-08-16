@@ -134,7 +134,8 @@ handleCloseMessages = () => {
 }
 
 updateMessageStatus = (item) => {
-  this.props.dispatch({type: 'UPDATE_MESSAGE_STATUS', payload: item})
+  console.log(item)
+  this.props.dispatch({type: 'UPDATE_MESSAGE_STATUS', payload: item.id})
 }
 
 handleEdit = () => {

@@ -121,7 +121,9 @@
   position: sticky;
   top: 0px;
   display:inline-block;
-  border: solid white 3px;
+  border-right: solid white 3px;
+  border-left: solid white 3px;
+  border-bottom: solid white 3px;
 }
 
 .nav-link {
