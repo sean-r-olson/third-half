@@ -112,15 +112,15 @@ class DashboardNav extends Component {
     <Grid container spacing={24}>
       {/* <div className="nav-right"> */}
         <Link onClick={(event) => this.toggleProfile()} to="/profile" className="highlightProfile">
-          Profile 
+          PROFILE 
         </Link> 
         <br/>
         <Link onClick={(event) => this.toggleTeam()} to="/teamPlayers" className="dashboardNavLink">
-          Team
+          TEAM
         </Link>
         <br/>
         <Link onClick={(event) => this.togglePrivate()} to="/privatePosts" className="dashboardNavLink">
-          Private Posts
+          PRIVATE POSTS
         </Link>
         <br/>
         {/* <Link to="/directMessage" className="dashboardNavLink">
@@ -128,7 +128,7 @@ class DashboardNav extends Component {
         </Link>
         <br/> */}
         <Link onClick={(event) => this.toggleAbout()} to="/aboutUs" className="dashboardNavLink">
-          About Us
+          ABOUT US
         </Link>
         <br/>
         <Button className={classes.button} variant="outlined" color="primary" onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
@@ -161,15 +161,15 @@ class DashboardNav extends Component {
     <Grid container spacing={24}>
       {/* <div className="nav-right"> */}
         <Link onClick={(event) => this.toggleProfile()} to="/profile" className="dashboardNavLink">
-          Profile
+          PROFILE
         </Link> 
         <br/>
         <Link onClick={(event) => this.toggleTeam()} to="/teamPlayers" className="highlightTeam">
-          Team
+          TEAM
         </Link>
         <br/>
         <Link onClick={(event) => this.togglePrivate()} to="/privatePosts" className="dashboardNavLink">
-          Private Posts
+          PRIVATE POSTS
         </Link>
         <br/>
         {/* <Link to="/directMessage" className="dashboardNavLink">
@@ -177,7 +177,7 @@ class DashboardNav extends Component {
         </Link>
         <br/> */}
         <Link onClick={(event) => this.toggleAbout()} to="/aboutUs" className="dashboardNavLink">
-          About Us
+          ABOUT US
         </Link>
         <br/>
         <Button className={classes.button} variant="outlined" color="primary" onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
@@ -209,15 +209,15 @@ class DashboardNav extends Component {
     <Grid container spacing={24}>
       {/* <div className="nav-right"> */}
         <Link onClick={(event) => this.toggleProfile()} to="/profile" className="dashboardNavLink">
-          Profile
+          PROFILE
         </Link> 
         <br/>
         <Link onClick={(event) => this.toggleTeam()} to="/teamPlayers" className="dashboardNavLink">
-          Team
+          TEAM
         </Link>
         <br/>
         <Link onClick={(event) => this.togglePrivate()} to="/privatePosts" className="highlightPrivate">
-          Private Posts
+          PRIVATE POSTS
         </Link>
         <br/>
         {/* <Link to="/directMessage" className="dashboardNavLink">
@@ -225,7 +225,7 @@ class DashboardNav extends Component {
         </Link>
         <br/> */}
         <Link onClick={(event) => this.toggleAbout()} to="/aboutUs" className="dashboardNavLink">
-          About Us
+         ABOUT US
         </Link>
         <br/>
         <Button className={classes.button} variant="outlined" color="primary" onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
@@ -257,15 +257,15 @@ class DashboardNav extends Component {
        <Grid container spacing={24}>
       {/* <div className="nav-right"> */}
         <Link onClick={(event) => this.toggleProfile()}  to="/profile" className="dashboardNavLink">
-          Profile
+          PROFILE
         </Link> 
         <br/>
         <Link onClick={(event) => this.toggleTeam()} to="/teamPlayers" className="dashboardNavLink">
-          Team
+          TEAM
         </Link>
         <br/>
         <Link onClick={(event) => this.togglePrivate()} to="/privatePosts" className="dashboardNavLink">
-          Private Posts
+          PRIVATE POSTS
         </Link>
         <br/>
         {/* <Link to="/directMessage" className="dashboardNavLink">
@@ -273,7 +273,7 @@ class DashboardNav extends Component {
         </Link>
         <br/> */}
         <Link onClick={(event) => this.toggleAbout()} to="/aboutUs" className="highlightAbout">
-          About Us
+          ABOUT US
         </Link>
         <br/>
         <Button className={classes.button} variant="outlined" color="primary" onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
@@ -305,15 +305,15 @@ class DashboardNav extends Component {
           <Grid container spacing={24}>
             {/* <div className="nav-right"> */}
               <Link onClick={(event) => this.toggleProfile()}  to="/profile" className="dashboardNavLink">
-                Profile
+                PROFILE
               </Link> 
               <br/>
               <Link onClick={(event) => this.toggleTeam()} to="/teamPlayers" className="dashboardNavLink">
-                Team
+                TEAM
               </Link>
               <br/>
               <Link onClick={(event) => this.togglePrivate()} to="/privatePosts" className="dashboardNavLink">
-                Private Posts
+                PRIVATE POSTS
               </Link>
               <br/>
               {/* <Link to="/directMessage" className="dashboardNavLink">
@@ -321,7 +321,7 @@ class DashboardNav extends Component {
               </Link>
               <br/> */}
               <Link onClick={(event) => this.toggleAbout()} to="/aboutUs" className="dashboardNavLink">
-                About Us
+                ABOUT US
               </Link>
               <br/>
               <Button className={classes.button} variant="outlined" color="primary" onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>

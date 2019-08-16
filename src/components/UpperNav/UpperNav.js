@@ -21,7 +21,7 @@ const UpperNav = (props) => (
         <img className="teamLogoNav" src={props.state.teamDataReducer.logo} />
       </Link>
       <Link className="upperNavLink" to="/teams">
-        Teams
+        TEAMS
       </Link>
       {/* Show the link to the logout button if the user is logged in */}
       {props.user.id && (

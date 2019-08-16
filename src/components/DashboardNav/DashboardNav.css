@@ -6,25 +6,29 @@
 }
 
 .dashboardNavLink {
-    color: #f2f2f2;
-    background-color:#1d2c69;
-    /* text-align: center; */
-    text-decoration: none;
-    /* text-align: initial; */
-    font-size: 15px;
-    /* these last two make the logout button in
-    the nav bar look like another link */
-    cursor: pointer;
-    outline:0;
-    height: 20px;
-    text-align: inherit;
-    width: 100%;
-    padding: 5% 0%;
-    text-align: center;
+  color: #ff66c4;
+  text-shadow: 2px 2px #000000;
+  font-weight: 550;
+  background-color:#1d2c69;
+  /* text-align: center; */
+  text-decoration: none;
+  /* text-align: initial; */
+  font-size: 15px;
+  /* these last two make the logout button in
+  the nav bar look like another link */
+  cursor: pointer;
+  outline:0;
+  height: 20px;
+  text-align: inherit;
+  width: 100%;
+  padding: 5% 0%;
+  text-align: center;
   }
 
   .dashboardNavLink:hover {
-    color: black;
+    color: #1d2c69;
+    text-shadow: 1px 1px #ff66c4;
+    font-weight: 900;
     background-color:#ffffff;
     /* text-align: center; */
     text-decoration: none;
@@ -43,7 +47,9 @@
   }
 
   .highlightProfile {
-    color: black;
+    color: #1d2c69;
+    text-shadow: 1px 1px #ff66c4;
+    font-weight: 900;
     background-color:#ffffff;
     /* text-align: center; */
     text-decoration: none;
@@ -61,7 +67,9 @@
   }
 
   .highlightTeam {
-    color: black;
+    color: #1d2c69;
+    text-shadow: 1px 1px #ff66c4;
+    font-weight: 900;
     background-color:#ffffff;
     /* text-align: center; */
     text-decoration: none;
@@ -79,7 +87,9 @@
   }
 
   .highlightPrivate {
-    color: black;
+    color: #1d2c69;
+    text-shadow: 1px 1px #ff66c4;
+    font-weight: 900;
     background-color:#ffffff;
     /* text-align: center; */
     text-decoration: none;
@@ -97,7 +107,9 @@
   }
 
   .highlightAbout {
-    color: black;
+    color: #1d2c69;
+    text-shadow: 1px 1px #ff66c4;
+    font-weight: 900;
     background-color:#ffffff;
     /* text-align: center; */
     text-decoration: none;
@@ -111,7 +123,6 @@
     width: 100%;
     text-align: center;
     padding: 5% 0%;
-    
   }
 
 .dashboardNav { 
@@ -128,7 +139,8 @@
 
 .nav-link {
   float: left;
-  color: #f2f2f2;
+  color: #ff66c4;
+  text-shadow: 2px 2px #000000;
   background-color:#1d2c69;
   text-align: center;
   /* padding: 24px 75px 24px 10px; */

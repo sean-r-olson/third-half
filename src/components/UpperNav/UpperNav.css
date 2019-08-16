@@ -31,6 +31,7 @@
 .upperNavLink {
   float: left;
   color: #ff66c4;
+  text-shadow: 2px 2px #000000;
   background-color:#1d2c69;
   /* padding: 24px 75px 24px 10px; */
   text-decoration: none;
@@ -45,7 +46,7 @@
   width: 100px;
   display: inline-block;
   text-align: initial;
-  word-wrap: normal;
+  font-weight: 900;
   margin: 25px 0px 0px 35px;
 }
 
@@ -80,4 +81,6 @@
   margin: 25px 20px 0px 0px;
   text-decoration: none;
   font-size: 15px;
+  text-shadow: 2px 2px #000000;
+  font-weight: 900;
 }
