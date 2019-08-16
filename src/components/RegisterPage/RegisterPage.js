@@ -37,7 +37,7 @@ const styles = theme => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    border: 'solid 3px #ff66c4'
+    border: 'solid 3px white'
     }, 
   registerInput: {
     backgroundColor: 'white',

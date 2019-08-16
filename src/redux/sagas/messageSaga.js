@@ -4,6 +4,7 @@ import Axios from 'axios';
 function* messagesSaga(){
     yield takeEvery('FETCH_MESSAGES', fetchMessagesSaga);
     yield takeEvery('SEND_MESSAGE', sendMessageSaga);
+    yield takeEvery('UPDATE_MESSAGE_STATUS', updateMessageStatusSaga)
 }
 
 function* fetchMessagesSaga(action) {
@@ -25,6 +26,16 @@ function* sendMessageSaga(action) {
     } catch (error) {
         console.log('error sending message', error);
         alert('Error sending message, try again later');
+    }
+}
+
+function* updateMessageStatusSaga(action) {
+    try {
+        yield Axios.put(`/messages/${action.payload.id}`);
+        yield put({type: 'FETCH_MESSAGES'})
+    } catch (error) {
+        console.log('error updating message', error);
+        alert('error updating message status, try again later');
     }
 }
 

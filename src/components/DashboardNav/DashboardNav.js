@@ -8,7 +8,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SvgIcon from '@material-ui/core/SvgIcon';
-
+import { Typography } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
@@ -19,9 +24,19 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  notifications: {
+    float: 'left',
+  }, 
+  button: {
+    margin: '0px 25px'
+  }
 });
 
 class DashboardNav extends Component {
+
+  componentDidMount(){
+    this.props.dispatch({type: 'FETCH_MESSAGES'})
+  }
 
   state = {
     highlightNone: true,
@@ -29,6 +44,7 @@ class DashboardNav extends Component {
     team: false,
     private: false,
     about: false,
+    open_notifications: false,
   }
 
   toggleProfile = () => {
@@ -75,8 +91,21 @@ class DashboardNav extends Component {
     })
   }
 
+  handleOpenNotifications = () => {
+    this.setState({
+      open_notifications: true,
+    })
+  }
+
+  handleCloseNotifications = () => {
+    this.setState({
+      open_notifications: false,
+    })
+  }
+
   render() {
     console.log(this.state)
+    const {classes} = this.props;
     if (this.props.profile === true) {
     return (
  <div className="dashboardNav">
@@ -102,10 +131,27 @@ class DashboardNav extends Component {
           About Us
         </Link>
         <br/>
-        <Link to="/follow" className="dashboardNavLink">
-          Follow Team
-        </Link>
-        {/* </div> */}
+        <Button className={classes.button} variant="outlined" color="primary" onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
+        <Grid xs item={1}>
+              <Dialog
+                className={classes.notifications}
+                open={this.state.open_notifications}
+                onClose={this.handleCloseNotifications}
+                >
+                  {this.props.reduxStore.messageReducer.map(item => {
+                        if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
+                            && item.new_message === true){
+                        return (
+                        <DialogContent key={item.id}>
+                          <DialogContentText> 
+                            New Message from: {item.from_name}
+                          </DialogContentText>
+                        </DialogContent>
+                        )}
+                      })}
+                  {/* </div> */}
+            </Dialog>
+            </Grid>
       </Grid>
      </div>
     )
@@ -134,10 +180,27 @@ class DashboardNav extends Component {
           About Us
         </Link>
         <br/>
-        <Link to="/follow" className="dashboardNavLink">
-          Follow Team
-        </Link>
-        {/* </div> */}
+        <Button className={classes.button} variant="outlined" color="primary" onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
+        <Grid xs item={1}>
+              <Dialog
+                className={classes.notifications}
+                open={this.state.open_notifications}
+                onClose={this.handleCloseNotifications}
+                >
+                  {this.props.reduxStore.messageReducer.map(item => {
+                        if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
+                            && item.new_message === true){
+                        return (
+                        <DialogContent key={item.id}>
+                          <DialogContentText> 
+                            New Message from: {item.from_name}
+                          </DialogContentText>
+                        </DialogContent>
+                        )}
+                      })}
+                  {/* </div> */}
+            </Dialog>
+            </Grid>
       </Grid>
      </div>
     )} else if (this.props.private === true) {
@@ -165,10 +228,27 @@ class DashboardNav extends Component {
           About Us
         </Link>
         <br/>
-        <Link to="/follow" className="dashboardNavLink">
-          Follow Team
-        </Link>
-        {/* </div> */}
+        <Button className={classes.button} variant="outlined" color="primary" onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
+        <Grid xs item={1}>
+              <Dialog
+                className={classes.notifications}              
+                open={this.state.open_notifications}
+                onClose={this.handleCloseNotifications}
+                >
+                  {this.props.reduxStore.messageReducer.map(item => {
+                        if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
+                            && item.new_message === true){
+                        return (
+                        <DialogContent key={item.id}>
+                          <DialogContentText> 
+                            New Message from: {item.from_name}
+                          </DialogContentText>
+                        </DialogContent>
+                        )}
+                      })}
+                  {/* </div> */}
+            </Dialog>
+            </Grid>
       </Grid>
      </div>
       )} else if (this.props.about === true) {
@@ -196,10 +276,27 @@ class DashboardNav extends Component {
           About Us
         </Link>
         <br/>
-        <Link to="/follow" className="dashboardNavLink">
-          Follow Team
-        </Link>
-        {/* </div> */}
+        <Button className={classes.button} variant="outlined" color="primary" onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
+        <Grid xs item={1}>
+              <Dialog
+                className={classes.notifications}
+                open={this.state.open_notifications}
+                onClose={this.handleCloseNotifications}
+                >
+                  {this.props.reduxStore.messageReducer.map(item => {
+                        if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
+                            && item.new_message === true){
+                        return (
+                        <DialogContent key={item.id}>
+                          <DialogContentText> 
+                            New Message from: {item.from_name}
+                          </DialogContentText>
+                        </DialogContent>
+                        )}
+                      })}
+                  {/* </div> */}
+            </Dialog>
+            </Grid>
       </Grid>
      </div>
         )} else if (this.state.highlightNone === true) {
@@ -227,10 +324,27 @@ class DashboardNav extends Component {
                 About Us
               </Link>
               <br/>
-              <Link to="/follow" className="dashboardNavLink">
-                Follow Team
-              </Link>
-              {/* </div> */}
+              <Button className={classes.button} variant="outlined" color="primary" onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
+              <Grid xs item={1}>
+              <Dialog
+                className={classes.notifications}
+                open={this.state.open_notifications}
+                onClose={this.handleCloseNotifications}
+                >
+                  {this.props.reduxStore.messageReducer.map(item => {
+                        if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
+                            && item.new_message === true){
+                        return (
+                        <DialogContent key={item.id}>
+                          <DialogContentText> 
+                            New Message from: {item.from_name}
+                          </DialogContentText>
+                        </DialogContent>
+                        )}
+                      })}
+                  {/* </div> */}
+            </Dialog>
+            </Grid>
             </Grid>
            </div>
           )}
@@ -246,8 +360,8 @@ class DashboardNav extends Component {
 //   user: state.user,
 // });
 
-// export default connect(mapStateToProps)(DashboardNav);
+const mapStateToProps = (reduxStore) => ({
+  reduxStore
+})
 
-export default compose(
-  withStyles(styles), connect(),
-)(DashboardNav);
+export default withStyles(styles)(connect(mapStateToProps)(DashboardNav));

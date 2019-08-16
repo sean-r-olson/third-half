@@ -56,6 +56,11 @@ const styles = theme => ({
     position: 'sticky',
     top: '0px',
   }, 
+  newMessage: {
+    backgroundColor: '#ff66c4',
+    borderRadius: '3px',
+    padding: '2px'
+  }
 })
 
 class TeamPlayers extends Component {
@@ -67,12 +72,13 @@ class TeamPlayers extends Component {
     recieved_id: '',
     from_name: '',
     recieved_name: '',
-    id: 0, 
+    id: '', 
     player_name: '',
     position: '',
     message: '',
     picture: '',
     team: true,
+    new_message: true,
   }
 
   componentDidMount(){
@@ -127,6 +133,10 @@ handleCloseMessages = () => {
   })
 }
 
+updateMessageStatus = (item) => {
+  this.props.dispatch({type: 'UPDATE_MESSAGE_STATUS', payload: item})
+}
+
 handleEdit = () => {
   this.setState({
     ...this.state,
@@ -141,6 +151,7 @@ handleDelete = () => {
 }
 
 handleOpenMessages = (item) => {
+  this.props.dispatch({type: 'FETCH_MESSAGES'})
   this.setState({
     open_messages: true,
     from_id: this.props.reduxStore.playerProfileReducer.id,
@@ -148,8 +159,10 @@ handleOpenMessages = (item) => {
     from_name: this.props.reduxStore.playerProfileReducer.player_name,
     recieved_name: item.player_name,
     player_name: item.player_name,
-    position: item.position
+    position: item.position, 
+    new_message: true
   })
+  
   console.log(this.state)
 }
 
@@ -160,13 +173,14 @@ sendMessage = () => {
 
 render() {
     console.log(this.state);
-    console.log(this.props.reduxStore.playerProfileReducer)
-    console.log(this.props.reduxStore.playersListReducer)
-    console.log(this.props.reduxStore.messageReducer)
-    console.log(this.props.reduxStore.user)
-    console.log(this.props.reduxStore.teamDataReducer)
-    console.log(this.props.reduxStore.clickedTeamReducer)
-    console.log(this.props.reduxStore.clickedTeamIdReducer)
+    console.log(this.props.reduxStore.playerProfileReducer.id)
+    // console.log(this.props.reduxStore.playerProfileReducer)
+    // console.log(this.props.reduxStore.playersListReducer)
+    // console.log(this.props.reduxStore.messageReducer)
+    // console.log(this.props.reduxStore.user)
+    // console.log(this.props.reduxStore.teamDataReducer)
+    // console.log(this.props.reduxStore.clickedTeamReducer)
+    // console.log(this.props.reduxStore.clickedTeamIdReducer)
     const {classes} = this.props;
     // IF USER'S ADMIN LEVEL IS 1, return the team page with access to editing player information 
     if (this.props.reduxStore.user.admin_level === 1) {
@@ -246,33 +260,51 @@ render() {
                 <DialogTitle id="form-dialog-title">Messages</DialogTitle>
                 <DialogContent>
                 {this.props.reduxStore.messageReducer.map(item => {
+                  console.log(item)
                   // if the user id (user that's logged in) matches the sender's id, 
                   if (
-                  // (item.recieved_id === this.props.reduxStore.playerProfileReducer.id
-                  //    && item.recieved_id === this.state.recieved_id
-                     this.state.recieved_id === item.recieved_id 
-                     || this.state.recieved_id === item.from_id 
-                     && this.props.reduxStore.playerProfileReducer.id === item.recieved_id 
-                     || this.props.reduxStore.playerProfileReducer === item.from_id
-                     ) {
+                    (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
+                    && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
+                    && (item.new_message === true)) {
                   return(
                     <div key={item.id}>
-                      <Typography>{item.from_name}{item.date_time}</Typography>
-                      <Typography>{item.message}</Typography>
+                      <Typography>{item.from_name} | {item.to_char}</Typography>
+                      <Typography className={classes.newMessage}>{item.message}
+                      <label class="container">
+                      <input onClick={(event) => {this.updateMessageStatus(item)}} type="checkbox"></input>
+                      <span class="checkmark"></span>
+                      </label>
+                      </Typography>
                     </div>
-                  )} else {
+                    
+                  )} else if (
+                    (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
+                    && (this.props.reduxStore.playerProfileReducer.id === item.from_id)
+                    && (item.new_message === true)) {
+                    return(
+                      <div key={item.id}>
+                      <Typography>{item.from_name} | {item.to_char}</Typography>
+                      <Typography className={classes.newMessage}>{item.message}</Typography>
+                    </div>
+                    )
+                    } else if (
+                    (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
+                  && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id || this.props.reduxStore.playerProfileReducer.id === item.from_id)
+                  && (item.new_message === false)
+                  ) {
                   //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
                     //  && item.from_id === this.state.from_id
                     return(
-                      <div key={item.id}>
-                      <Typography></Typography>
+                    <div key={item.id}>
+                      <Typography>{item.from_name} | {item.to_char}</Typography>
+                      <Typography>{item.message}</Typography>
                     </div>
                     )
                   }
                 })}
                     <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
                   <DialogActions>
-                    <Button variant="contained" color="primary" onClick={this.sendMessage}>Send</Button>
+                    <Button variant="contained" color="primary" onClick={(event)=>{this.sendMessage()}}>Send</Button>
                     </DialogActions>
                 </DialogContent>
                 </Dialog>
@@ -350,36 +382,54 @@ render() {
                 >
                   <DialogTitle id="form-dialog-title">Messages</DialogTitle>
                   <DialogContent>
-                  {this.props.reduxStore.messageReducer.map(item => {
+                {this.props.reduxStore.messageReducer.map(item => {
+                  console.log(item)
                   // if the user id (user that's logged in) matches the sender's id, 
                   if (
-                    // (item.recieved_id === this.props.reduxStore.playerProfileReducer.id
-                    //    && item.recieved_id === this.state.recieved_id
-                       this.state.recieved_id === item.recieved_id 
-                       || this.state.recieved_id === item.from_id 
-                       && this.props.reduxStore.playerProfileReducer.id === item.recieved_id 
-                       || this.props.reduxStore.playerProfileReducer === item.from_id
-                       ) {
+                    (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
+                    && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
+                    && (item.new_message === true)) {
+                  return(
+                    <div key={item.id}>
+                      <Typography>{item.from_name} | {item.to_char}</Typography>
+                      <Typography className={classes.newMessage}>{item.message}
+                      <label class="container">
+                      <input onClick={(event) => {this.updateMessageStatus(item)}} type="checkbox"></input>
+                      <span class="checkmark"></span>
+                      </label>
+                      </Typography>
+                    </div>
+                    
+                  )} else if (
+                    (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
+                    && (this.props.reduxStore.playerProfileReducer.id === item.from_id)
+                    && (item.new_message === true)) {
                     return(
                       <div key={item.id}>
-                        <Typography>{item.from_name}{item.date_time}</Typography>
-                        <Typography>{item.message}</Typography>
-                      </div>
-                    )} else {
-                    //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
-                      //  && item.from_id === this.state.from_id
-                      return(
-                        <div key={item.id}>
-                        <Typography></Typography>
-                      </div>
-                      )
-                    }
+                      <Typography>{item.from_name} | {item.to_char}</Typography>
+                      <Typography className={classes.newMessage}>{item.message}</Typography>
+                    </div>
+                    )
+                    } else if (
+                    (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
+                  && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id || this.props.reduxStore.playerProfileReducer.id === item.from_id)
+                  && (item.new_message === false)
+                  ) {
+                  //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
+                    //  && item.from_id === this.state.from_id
+                    return(
+                    <div key={item.id}>
+                      <Typography>{item.from_name} | {item.to_char}</Typography>
+                      <Typography>{item.message}</Typography>
+                    </div>
+                    )
+                  }
                 })}
-                      <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
-                    <DialogActions>
-                      <Button variant="contained" color="primary" onClick={this.sendMessage}>Send</Button>
-                      </DialogActions>
-                  </DialogContent>
+                    <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
+                  <DialogActions>
+                    <Button variant="contained" color="primary" onClick={(event)=>{this.sendMessage()}}>Send</Button>
+                    </DialogActions>
+                </DialogContent>
                   </Dialog>
                 </Grid>
                 </Grid>
