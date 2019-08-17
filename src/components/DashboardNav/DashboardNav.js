@@ -131,17 +131,8 @@ class DashboardNav extends Component {
           ABOUT US
         </Link>
         <br/>
-        {this.props.reduxStore.messageReducer.map(item => {
-          if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
-            && item.new_message === true
-            ) {
-              return (
-                <div key={item.id}>
-                <Button className={classes.button} variant="contained" color="primary" 
-                onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
-                </div>
-              )
-            }})}
+            <Button className={classes.button} variant="contained" color="primary" 
+            onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
               <Grid xs item={1}>
               <Dialog
                 className={classes.notifications}
@@ -190,17 +181,8 @@ class DashboardNav extends Component {
           ABOUT US
         </Link>
         <br/>
-        {this.props.reduxStore.messageReducer.map(item => {
-          if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
-            && item.new_message === true
-            ) {
-              return (
-                <div key={item.id}>
-                <Button className={classes.button} variant="contained" color="primary" 
-                onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
-                </div>
-              )
-            }})}
+        <Button className={classes.button} variant="contained" color="primary" 
+            onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
         <Grid xs item={1}>
               <Dialog
                 className={classes.notifications}
@@ -248,17 +230,9 @@ class DashboardNav extends Component {
          ABOUT US
         </Link>
         <br/>
-{this.props.reduxStore.messageReducer.map(item => {
-  if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
-    && item.new_message === true
-    ) {
-      return (
-        <div key={item.id}>
-                <Button className={classes.button} variant="contained" color="primary" 
-                onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
-                </div>
-      )
-    }})}        <Grid xs item={1}>
+        <Button className={classes.button} variant="contained" color="primary" 
+            onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
+             <Grid xs item={1}>
               <Dialog
                 className={classes.notifications}              
                 open={this.state.open_notifications}
@@ -305,17 +279,9 @@ class DashboardNav extends Component {
           ABOUT US
         </Link>
         <br/>
-{this.props.reduxStore.messageReducer.map(item => {
-  if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
-    && item.new_message === true
-    ) {
-      return (
-        <div key={item.id}>
-                <Button className={classes.button} variant="contained" color="primary" 
-                onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
-                </div>
-      )
-    }})}        <Grid xs item={1}>
+        <Button className={classes.button} variant="contained" color="primary" 
+            onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
+            <Grid xs item={1}>
               <Dialog
                 className={classes.notifications}
                 open={this.state.open_notifications}
@@ -362,17 +328,9 @@ class DashboardNav extends Component {
                 ABOUT US
               </Link>
               <br/>
-{this.props.reduxStore.messageReducer.map(item => {
-  if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
-    && item.new_message === true
-    ) {
-      return (
-        <div key={item.id}>
-                <Button className={classes.button} variant="contained" color="primary" 
-                onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
-                </div>
-      )
-    }})}              <Grid xs item={1}>
+              <Button className={classes.button} variant="contained" color="primary" 
+            onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
+             <Grid xs item={1}>
               <Dialog
                 className={classes.notifications}
                 open={this.state.open_notifications}

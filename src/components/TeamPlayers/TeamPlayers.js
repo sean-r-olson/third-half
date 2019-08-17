@@ -29,7 +29,8 @@ const styles = theme => ({
     textAlign: 'center'
   },
   input: {
-      margin: theme.spacing.unit
+      margin: '5px',
+      maxWidth: '400px'
   },
   modal: {
       margin: theme.spacing.unit
@@ -57,17 +58,20 @@ const styles = theme => ({
     top: '0px',
   }, 
   sentMessage: {
-    backgroundColor: '#ff66c4',
+    backgroundColor: '#1d2c69',
+    color: '#ff66c4',
     borderRadius: '3px',
     padding: '2px',
-    margin: '5px'
+    margin: '5px',
+    maxWidth: '400px'
   },
   recievedMessage: {
-    backgroundColor: '#1d2c69',
+    backgroundColor: '#ff66c4',
+    color: '#1d2c69',
     borderRadius: '3px',
     padding: '2px',
-    margin: '5px'
-
+    margin: '5px',
+    maxWidth: '400px'
   }
 })
 
@@ -261,7 +265,8 @@ render() {
                               </DialogActions>
                     </DialogContent>
                     <br />
-                </Dialog> 
+                </Dialog>
+                <center>
     <Dialog
               open={this.state.open_messages}
               onClose={this.handleCloseMessages}
@@ -284,7 +289,10 @@ render() {
                     <div key={item.id}>
                       <DialogContent className={classes.recievedMessage}>
                       <Typography>{item.from_name} | {item.to_char}</Typography>
-                      <Typography >{item.message}
+                      <Typography 
+                      multiline
+                      rowsMax="6">
+                      {item.message}
                       <label class="container">
                       <input onClick={(event) => {this.updateMessageStatus(item)}} type="checkbox"></input>
                       <span class="checkmark"></span>
@@ -301,14 +309,17 @@ render() {
                     return(
                       <div key={item.id}>
                       <DialogContent className={classes.sentMessage}>
-                      <Typography>{item.from_name} | {item.to_char}</Typography>
+                      <Typography 
+                      multiline
+                      rowsMax="6">
+                      {item.from_name} | {item.to_char}</Typography>
                       <Typography >{item.message}</Typography>
                       </DialogContent>
                       </div>
                     )
                     } else if (
                     (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
-                  && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id || this.props.reduxStore.playerProfileReducer.id === item.from_id)
+                  && (this.props.reduxStore.playerProfileReducer.id === item.from_id)
                   && (item.new_message === false)
                   ) {
                   //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
@@ -316,18 +327,44 @@ render() {
                     return(
                     <div key={item.id}>
                       <DialogContent className={classes.sentMessage}>
-                      <Typography>{item.from_name} | {item.to_char}</Typography>
+                      <Typography 
+                      multiline
+                      rowsMax="6">
+                      {item.from_name} | {item.to_char}</Typography>
                       <Typography >{item.message}</Typography>
                       </DialogContent>
                     </div>
                     )
-                  }
-                })}
-                    <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
+                  } else if (
+                    (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
+                  && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
+                  && (item.new_message === false)
+                  ) {
+                  //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
+                    //  && item.from_id === this.state.from_id
+                    return(
+                    <div key={item.id}>
+                      <DialogContent className={classes.recievedMessage}>
+                      <Typography 
+                      multiline
+                      rowsMax="6">
+                      {item.from_name} | {item.to_char}</Typography>
+                      <Typography >{item.message}</Typography>
+                      </DialogContent>
+                    </div>
+                    )
+                }})}
+                    <TextField multiline
+                    rowsMax="6" 
+                    onChange={event => this.handleChange(event, 'message')} label="Enter Text"
+                    className={classes.input}
+                    >
+                    </TextField>
                   <DialogActions>
                     <Button variant="contained" color="primary" onClick={(event)=>{this.sendMessage()}}>Send</Button>
                     </DialogActions>
                 </Dialog>
+                </center>
                 </Grid>
               </Grid>
     </>
@@ -396,12 +433,12 @@ render() {
                         </Typography>
                       </DialogContent>                      
                   </Dialog> 
-      <Dialog
-                open={this.state.open_messages}
-                onClose={this.handleCloseMessages}
-                >
-                  <DialogTitle id="form-dialog-title">Messages</DialogTitle>
-                  <DialogContent>
+          <Dialog
+              open={this.state.open_messages}
+              onClose={this.handleCloseMessages}
+              >
+                <DialogTitle id="form-dialog-title">Messages</DialogTitle>
+                
                 {this.props.reduxStore.messageReducer.map(item => {
                   console.log(item)
                   // if the user id (user that's logged in) matches the sender's id, 
@@ -417,7 +454,10 @@ render() {
                   return(
                     <div key={item.id}>
                       <DialogContent className={classes.recievedMessage}>
-                      <Typography>{item.from_name} | {item.to_char}</Typography>
+                      <Typography 
+                      multiline
+                      rowsMax="6">
+                      {item.from_name} | {item.to_char}</Typography>
                       <Typography >{item.message}
                       <label class="container">
                       <input onClick={(event) => {this.updateMessageStatus(item)}} type="checkbox"></input>
@@ -435,14 +475,17 @@ render() {
                     return(
                       <div key={item.id}>
                       <DialogContent className={classes.sentMessage}>
-                      <Typography>{item.from_name} | {item.to_char}</Typography>
+                      <Typography 
+                      multiline
+                      rowsMax="6">
+                      {item.from_name} | {item.to_char}</Typography>
                       <Typography >{item.message}</Typography>
                       </DialogContent>
                       </div>
                     )
                     } else if (
                     (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
-                  && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id || this.props.reduxStore.playerProfileReducer.id === item.from_id)
+                  && (this.props.reduxStore.playerProfileReducer.id === item.from_id)
                   && (item.new_message === false)
                   ) {
                   //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
@@ -450,18 +493,42 @@ render() {
                     return(
                     <div key={item.id}>
                       <DialogContent className={classes.sentMessage}>
-                      <Typography>{item.from_name} | {item.to_char}</Typography>
+                      <Typography 
+                      multiline
+                      rowsMax="6">
+                      {item.from_name} | {item.to_char}</Typography>
                       <Typography >{item.message}</Typography>
                       </DialogContent>
                     </div>
                     )
-                  }
-                })}
-                    <TextField onChange={event => this.handleChange(event, 'message')} label="Enter Text"></TextField>
+                  } else if (
+                    (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
+                  && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
+                  && (item.new_message === false)
+                  ) {
+                  //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
+                    //  && item.from_id === this.state.from_id
+                    return(
+                    <div key={item.id}>
+                      <DialogContent className={classes.recievedMessage}>
+                      <Typography 
+                      multiline
+                      rowsMax="6">
+                      {item.from_name} | {item.to_char}</Typography>
+                      <Typography >{item.message}</Typography>
+                      </DialogContent>
+                    </div>
+                    )
+                }})}
+                    <TextField multiline
+                    rowsMax="6" 
+                    onChange={event => this.handleChange(event, 'message')} label="Enter Text"
+                    className={classes.input}
+                    >
+                    </TextField>
                   <DialogActions>
                     <Button variant="contained" color="primary" onClick={(event)=>{this.sendMessage()}}>Send</Button>
                     </DialogActions>
-                </DialogContent>
                   </Dialog>
                 </Grid>
                 </Grid>
