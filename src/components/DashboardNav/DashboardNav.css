@@ -127,6 +127,7 @@
 .dashboardNav { 
   background-color: #1d2c69;
   height: 1000px;
+  max-width: 150px;
   position: -webkit-sticky;
   position: sticky;
   top: 0px;

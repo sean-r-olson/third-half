@@ -20,13 +20,38 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
     input: {
-        margin: theme.spacing.unit
+        margin: '0px'
+    },
+    playerInfo: {
+      color: '#ff66c4',
+      textShadow: '2px 2px #1d2c69',
+      margin: '40px 25% 0px 25%',
+      fontSize: '30px',
+      textAlign: 'left',
+      minWidth: '200px',
+      maxWidth: '250px',
+      padding: '3px'
+    },
+    playerImages: {
+      minWidth: '120px',
+      maxWidth: '120px',
+      minHeight: '160px',
+      maxHeight: '160px',
+      border: 'solid  #1d2c69 3px',
     },
     modal: {
         margin: theme.spacing.unit
     },
-    editBtn: {
-        margin: 'auto'
+    editButton: {
+        float: 'right',
+        margin: '40px 10px', 
+    },
+    submitEditButton: {
+        marginRight: '17px',
+    }, 
+    horizontalRow: {
+      border: '1px solid white',
+      borderRradius: '0px'    
     }
   })
 
@@ -91,20 +116,33 @@ render() {
     return (
         <>
         <UpperNav /> 
+        <Grid item xs={12}>
         <Grid container spacing={24}>
           <Grid item xs={2}>
         {/* <div className="profileLayout"> */}
             <DashboardNav profile={this.state.profile}/>
           </Grid>
         <Grid item xs={3}>
+          <Typography className={classes.playerInfo}>
+            {this.props.reduxStore.playerProfileReducer.player_name}
+            <hr className={classes.horizontalRow}/>
+          </Typography>
+          <Typography className={classes.playerInfo}>
+            {this.props.reduxStore.playerProfileReducer.team_name}
+            <hr className={classes.horizontalRow}/>
+          </Typography>
+          <Typography className={classes.playerInfo}>
+            {this.props.reduxStore.playerProfileReducer.position}
+            <hr className={classes.horizontalRow}/>
+          </Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <img 
           className="profilePicture"
           src={this.props.reduxStore.playerProfileReducer.picture} />
-         </Grid>
-         <Grid item xs={4}>
-         <Button variant="outlined" color="primary" className="editButton" onClick={(event) => this.handleEditProfile()}>Edit Profile</Button>
+        </Grid>
+         <Grid item xs={2}>
+         <Button variant="contained" color="primary" className={classes.editButton} onClick={(event) => this.handleEditProfile()}>Edit Profile</Button>
           </Grid>
         <Dialog 
                 open={this.state.open_edit}
@@ -113,16 +151,24 @@ render() {
                     <DialogTitle id="form-dialog-title">Edit Player</DialogTitle>
                     <DialogContent>
                           <center>
-                              <TextField onChange={event => this.handleChange(event, 'player_name')} label={this.props.reduxStore.playerProfileReducer.player_name}>
+                              <TextField 
+                              className={classes.input}
+                              onChange={event => this.handleChange(event, 'player_name')} 
+                              label={this.props.reduxStore.playerProfileReducer.player_name}>
                               </TextField>
                               <br/>
-                              <TextField onChange={event => this.handleChange(event, 'position')} label={this.props.reduxStore.playerProfileReducer.position}>
+                              <TextField
+                              className={classes.input}
+                              onChange={event => this.handleChange(event, 'position')} 
+                              label={this.props.reduxStore.playerProfileReducer.position}>
                               </TextField>
                               <br/>
                               <br/>
-                              <img className="playerImages" src={this.props.reduxStore.playerProfileReducer.picture} alt="playerProfilePic"/>
+                              <img className={classes.playerImages} src={this.props.reduxStore.playerProfileReducer.picture} alt="playerProfilePic"/>
                               <DialogActions>
-                              <Button className={classes.editBtn} variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
+                              <center>
+                              <Button className={classes.submitEditButton} variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
+                              </center>
                               </DialogActions>
                               <DialogActions>
                               <Button variant="outlined" color="secondary" onClick={this.handleDelete}>Delete Profile</Button>
@@ -131,7 +177,7 @@ render() {
                     </DialogContent>
                     <br />
                 </Dialog> 
-                
+                </Grid>
               </Grid>
         </>
         
