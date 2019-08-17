@@ -28,8 +28,10 @@ const styles = theme => ({
     float: 'left',
   }, 
   button: {
-    margin: '0px 25px'
-  }
+    margin: '0px 5px',
+    color: 'white',
+    textShadow: '1px 1px black'
+  }, 
 });
 
 class DashboardNav extends Component {

@@ -8,7 +8,8 @@
 .dashboardNavLink {
   color: #ff66c4;
   text-shadow: 2px 2px #000000;
-  font-weight: 550;
+  font-family: 'Cabin', sans-serif;
+  font-weight: bolder;
   background-color:#1d2c69;
   /* text-align: center; */
   text-decoration: none;
@@ -28,6 +29,7 @@
   .dashboardNavLink:hover {
     color: #1d2c69;
     text-shadow: 1px 1px #ff66c4;
+    font-family: 'Cabin', sans-serif;
     font-weight: 900;
     background-color:#ffffff;
     /* text-align: center; */
@@ -49,7 +51,8 @@
   .highlightProfile {
     color: #1d2c69;
     text-shadow: 1px 1px #ff66c4;
-    font-weight: 900;
+    font-family: 'Cabin', sans-serif;
+    font-weight: 700;
     background-color:#ffffff;
     /* text-align: center; */
     text-decoration: none;
@@ -69,6 +72,7 @@
   .highlightTeam {
     color: #1d2c69;
     text-shadow: 1px 1px #ff66c4;
+    font-family: 'Cabin', sans-serif;
     font-weight: 900;
     background-color:#ffffff;
     /* text-align: center; */
@@ -89,6 +93,7 @@
   .highlightPrivate {
     color: #1d2c69;
     text-shadow: 1px 1px #ff66c4;
+    font-family: 'Cabin', sans-serif;
     font-weight: 900;
     background-color:#ffffff;
     /* text-align: center; */
@@ -108,6 +113,7 @@
   .highlightAbout {
     color: #1d2c69;
     text-shadow: 1px 1px #ff66c4;
+    font-family: 'Cabin', sans-serif;
     font-weight: 900;
     background-color:#ffffff;
     /* text-align: center; */
@@ -141,6 +147,7 @@
   float: left;
   color: #ff66c4;
   text-shadow: 2px 2px #000000;
+  font-family: 'Cabin', sans-serif;
   background-color:#1d2c69;
   text-align: center;
   /* padding: 24px 75px 24px 10px; */
@@ -157,6 +164,7 @@
 
 .nav-link:hover {
   background-color: #1d2c69;
+  font-family: 'Cabin', sans-serif;
 }
 
 .nav-right {

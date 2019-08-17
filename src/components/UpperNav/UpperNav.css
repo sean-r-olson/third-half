@@ -32,6 +32,7 @@
   float: left;
   color: #ff66c4;
   text-shadow: 2px 2px #000000;
+  font-family: 'Cabin';
   background-color:#1d2c69;
   /* padding: 24px 75px 24px 10px; */
   text-decoration: none;
@@ -75,6 +76,7 @@
 .logOutButton {
   color: #ff66c4;
   background-color:#1d2c69;
+  font-family: 'Cabin';
   border:none;
   cursor: pointer;
   outline: 0;

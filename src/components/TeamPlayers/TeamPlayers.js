@@ -42,6 +42,7 @@ const styles = theme => ({
     color: '#ff66c4',
     textShadow: '2px 2px #1d2c69',
     margin: '5% 0% 0% 0%',
+    fontFamily: 'Bungee'
   }, 
   teamName: {
     color: '#1d2c69',
@@ -61,7 +62,7 @@ const styles = theme => ({
     backgroundColor: '#1d2c69',
     color: '#ff66c4',
     borderRadius: '3px',
-    padding: '2px',
+    padding: '5px',
     margin: '5px',
     maxWidth: '400px'
   },
@@ -69,10 +70,31 @@ const styles = theme => ({
     backgroundColor: '#ff66c4',
     color: '#1d2c69',
     borderRadius: '3px',
-    padding: '2px',
+    padding: '5px',
     margin: '5px',
     maxWidth: '400px'
+  }, 
+  messageButton: {
+    textAlign: 'center',
+    minWidth: '130px',
+    maxWidth: '130px',
+    textShadow: '1px 1px black',
+    color: 'white',
+    fontSize: '11px',
+    paddingTop: '5px',
+    paddingLeft: '0px',
+    paddingRight: '0px',
+  }, 
+  deleteButton: {
+    float: 'left',
+    marginLeft: '4%',
+    
+  },
+  submitEditButton: {
+    float: 'right',
+    marginRight: '9%'
   }
+  
 })
 
 class TeamPlayers extends Component {
@@ -214,8 +236,10 @@ render() {
           <div className="playersDiv" key={item.id}>
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
              <br/>
-             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+             <center>
+             <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+             </center>
+             {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
              <br/>
           </div> 
           )}
@@ -228,8 +252,8 @@ render() {
           <div className="playersDiv" key={item.id}>
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
              <br/>
-             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+             <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+             {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
              <br/>
           </div> 
           )}
@@ -242,8 +266,8 @@ render() {
           <div className="playersDiv" key={item.id}>
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
             <br/>
-            <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-            {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+            <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+            {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
             <br/>
           </div> 
           )}
@@ -253,14 +277,18 @@ render() {
                 open={this.state.open_edit}
                 onClose={this.handleCloseEdit}
                 >
-                    <DialogTitle id="form-dialog-title">Edit Player</DialogTitle>
+                    <DialogTitle id="formAialog-title">Edit Player</DialogTitle>
                     <DialogContent>
-                              <TextField onChange={event => this.handleChange(event, 'player_name')} label={this.state.player_name}>
+                              <TextField className={classes.input} onChange={event => this.handleChange(event, 'player_name')} label={this.state.player_name}>
                               </TextField>
-                              <TextField onChange={event => this.handleChange(event, 'position')} label={this.state.position}>
+                              <TextField className={classes.input} onChange={event => this.handleChange(event, 'position')} label={this.state.position}>
                               </TextField>
-                              <DialogActions>
-                              <Button variant="outlined" color="secondary" onClick={this.handleDelete}>Delete Player</Button>
+                    </DialogContent>
+                    <DialogContent>
+                              <DialogActions className={classes.deleteButton}>
+                              <Button variant="contained" color="secondary" onClick={this.handleDelete}>Delete Player</Button>
+                              </DialogActions>
+                              <DialogActions className={classes.submitEditButton}>
                               <Button variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
                               </DialogActions>
                     </DialogContent>
@@ -271,8 +299,10 @@ render() {
               open={this.state.open_messages}
               onClose={this.handleCloseMessages}
               >
-                <DialogTitle id="form-dialog-title">Messages</DialogTitle>
-                
+                 <DialogTitle id="form-dialog-title">
+                   Messages
+                   </DialogTitle>
+   
                 {this.props.reduxStore.messageReducer.map(item => {
                   console.log(item)
                   // if the user id (user that's logged in) matches the sender's id, 
@@ -388,8 +418,8 @@ render() {
           <div className="playersDiv" key={item.id}>
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
              <br/>
-             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+             <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+             {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
              <br/>
           </div> 
           )}
@@ -402,8 +432,8 @@ render() {
           <div className="playersDiv" key={item.id}>
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
              <br/>
-             <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-             {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+             <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+             {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
              <br/>
           </div> 
           )}
@@ -416,8 +446,8 @@ render() {
           <div className="playersDiv" key={item.id}>
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
             <br/>
-            <Button variant="outlined" color="primary" className="messageButton" onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-            {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+            <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+            {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
             <br/>
           </div> 
           )}

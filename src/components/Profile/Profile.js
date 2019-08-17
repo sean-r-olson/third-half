@@ -30,7 +30,8 @@ const styles = theme => ({
       textAlign: 'left',
       minWidth: '200px',
       maxWidth: '250px',
-      padding: '3px'
+      padding: '0px',
+      fontFamily: 'Bungee'
     },
     playerImages: {
       minWidth: '120px',
