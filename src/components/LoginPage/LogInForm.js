@@ -10,6 +10,7 @@ import Card from '@material-ui/core/Card';
 import { TextField } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 
 const styles = theme => ({
@@ -119,6 +120,7 @@ state = {
               // className={classes.textField}
               // margin="normal"
               />
+              <Link to="/profile">
             <Button 
                 onClick={(event) => this.login()}
                 className={classes.button}
@@ -127,6 +129,7 @@ state = {
                 value="Log In">   
                 Log In    
             </Button>
+            </Link>
           </CardContent>
         </Card>
         {/* <center>

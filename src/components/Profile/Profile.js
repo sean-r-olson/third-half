@@ -79,6 +79,7 @@ const styles = theme => ({
 class Profile extends Component {
 
 componentDidMount () {
+    this.props.dispatch({type: 'FETCH_USER'})
     this.props.dispatch({type: 'FETCH_PLAYER_PROFILE', payload: this.props.reduxStore.user.id});
 }
 

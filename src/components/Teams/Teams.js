@@ -39,7 +39,6 @@ render() {
         <center>
         {this.props.reduxStore.teamsReducer.map(item => {
         return(
-          
           <div className="teamInfo" key={item.id}>
             <Link to="/clickedTeam">
             <img onClick={(event) => this.handleLogoClick(item)} className="teamLogo" src={item.logo} alt="team_logo" />
