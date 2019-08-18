@@ -132,6 +132,7 @@ class TeamPlayers extends Component {
     picture: '',
     team: true,
     new_message: true,
+    team_name: this.props.reduxStore.playerProfileReducer.team_name,
   }
 
   componentDidMount(){
@@ -214,7 +215,7 @@ handleOpenMessages = (item) => {
     recieved_name: item.player_name,
     player_name: item.player_name,
     position: item.position, 
-    new_message: true
+    new_message: true,
   })
   
   console.log(this.state)
@@ -227,7 +228,7 @@ sendMessage = () => {
 
 render() {
     console.log(this.state);
-    console.log(this.props.reduxStore.playerProfileReducer.id)
+    console.log(this.props.reduxStore.playerProfileReducer)
     // console.log(this.props.reduxStore.playerProfileReducer)
     // console.log(this.props.reduxStore.playersListReducer)
     // console.log(this.props.reduxStore.messageReducer)

@@ -126,7 +126,7 @@ class ClickedTeam extends Component {
     picture: '',
     team: true,
     new_message: true,
-
+    team_name: this.props.reduxStore.playerProfileReducer.team_name,
   }
 
 handleChange = (event, propertyToChange) => {
@@ -214,10 +214,13 @@ render() {
         return (
           <>
           <Grid container spacing={24}>
-          <Grid item xs={12}>
+          <Grid item xs={1}>
+          </Grid>
+          <Grid item xs={10}>
         <br/>
         <br/>
         {/* <img className="teamPlayersTeamLogo" src={this.props.reduxStore.teamDataReducer.logo} /> */}
+        <img className="teamPlayersTeamLogo" src={item.team_logo} />
         <h1 className={classes.playerRoleMinneapolis}>Coaches</h1>
         {this.props.reduxStore.clickedTeamReducer.map(item => {
             if (item.role === 'coach') {
@@ -225,8 +228,8 @@ render() {
             <div className="playersDiv" key={item.id}>
               <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
                <br/>
-               <Button variant="outlined" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-               {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+               <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+               {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
                <br/>
             </div> 
             )}
@@ -239,8 +242,8 @@ render() {
             <div className="playersDiv" key={item.id}>
               <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
                <br/>
-               <Button variant="outlined" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-               {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+               <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+               {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
                <br/>
             </div> 
             )}
@@ -253,8 +256,8 @@ render() {
             <div className="playersDiv" key={item.id}>
               <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
               <br/>
-              <Button variant="outlined" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>Message</Button>
-              {/* <Button variant="outlined" color="secondary">Delete Player</Button> */}
+              <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+              {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
               <br/>
             </div> 
             )}
@@ -376,10 +379,12 @@ render() {
     return (
       <>
       <Grid container spacing={24}>
+      <Grid item xs={1}>
+      </Grid>
       <Grid item xs={10}>
     <br/>
     <br/>
-    <img className="teamPlayersTeamLogo" src={this.props.reduxStore.teamDataReducer.logo} />
+    <img className="teamPlayersTeamLogo" src={item.team_logo} />
     <h1 className={classes.playerRoleMadison}>Coaches</h1>
     {this.props.reduxStore.clickedTeamReducer.map(item => {
         if (item.role === 'coach') {

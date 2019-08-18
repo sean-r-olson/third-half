@@ -147,7 +147,7 @@ class DashboardNav extends Component {
                         return (
                         <DialogContent key={item.id}>
                           <DialogContentText> 
-                            New Message from: {item.from_name}
+                          New Message from: {item.from_name} ({item.team_name})
                           </DialogContentText>
                         </DialogContent>
                         )}
@@ -197,7 +197,7 @@ class DashboardNav extends Component {
                         return (
                         <DialogContent key={item.id}>
                           <DialogContentText> 
-                            New Message from: {item.from_name}
+                          New Message from: {item.from_name} ({item.team_name})
                           </DialogContentText>
                         </DialogContent>
                         )}
@@ -246,7 +246,7 @@ class DashboardNav extends Component {
                         return (
                         <DialogContent key={item.id}>
                           <DialogContentText> 
-                            New Message from: {item.from_name}
+                          New Message from: {item.from_name} ({item.team_name})
                           </DialogContentText>
                         </DialogContent>
                         )}
@@ -295,7 +295,7 @@ class DashboardNav extends Component {
                         return (
                         <DialogContent key={item.id}>
                           <DialogContentText> 
-                            New Message from: {item.from_name}
+                          New Message from: {item.from_name} ({item.team_name})
                           </DialogContentText>
                         </DialogContent>
                         )}
@@ -344,7 +344,7 @@ class DashboardNav extends Component {
                         return (
                         <DialogContent key={item.id}>
                           <DialogContentText> 
-                            New Message from: {item.from_name}
+                          New Message from: {item.from_name} ({item.team_name})
                           </DialogContentText>
                         </DialogContent>
                         )}

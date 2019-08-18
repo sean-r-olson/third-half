@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 // GET to db (get team data from team table)
 router.get('/', (req, res) => {
-    const sqlText=`select id, from_id, recieved_id, to_char(date_time, 'Mon DD, YYYY HH:MI'), message, from_name, recieved_name, new_message
+    const sqlText=`select id, from_id, recieved_id, to_char(date_time, 'Mon DD, YYYY HH:MI'), message, from_name, recieved_name, new_message, team_name
      from messages order by to_char asc;`;
     pool.query(sqlText)
       .then( (response) => {
@@ -17,9 +17,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const sqlText=`insert into messages ("from_id", "recieved_id", "date_time", "message", "from_name", "recieved_name", "new_message")
-  values ($1, $2, clock_timestamp(), $3, $4, $5, $6);`;
-  const values = [req.body.from_id, req.body.recieved_id, req.body.message, req.body.from_name, req.body.recieved_name, req.body.new_message];
+  const sqlText=`insert into messages ("from_id", "recieved_id", "date_time", "message", "from_name", "recieved_name", "new_message", "team_name")
+  values ($1, $2, clock_timestamp(), $3, $4, $5, $6, $7);`;
+  const values = [req.body.from_id, req.body.recieved_id, req.body.message, req.body.from_name, req.body.recieved_name, req.body.new_message, req.body.team_name];
   console.log(req.body)
   pool.query(sqlText, values)
     .then((results)=> {
