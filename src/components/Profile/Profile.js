@@ -22,9 +22,20 @@ const styles = theme => ({
     input: {
         margin: '0px'
     },
-    playerInfo: {
-      color: '#ff66c4',
-      textShadow: '2px 2px #1d2c69',
+    playerInfoMinneapolis: {
+      color: '#00B7FF',
+      textShadow: '2px 2px white',
+      margin: '40px 25% 0px 25%',
+      fontSize: '30px',
+      textAlign: 'left',
+      minWidth: '200px',
+      maxWidth: '250px',
+      padding: '0px',
+      fontFamily: 'Bungee'
+    },
+    playerInfoMadison: {
+      color: '#9B0E27',
+      textShadow: '2px 2px #DAA520',
       margin: '40px 25% 0px 25%',
       fontSize: '30px',
       textAlign: 'left',
@@ -39,6 +50,15 @@ const styles = theme => ({
       minHeight: '160px',
       maxHeight: '160px',
       border: 'solid  #1d2c69 3px',
+    },
+    profileImage: {
+      border: 'solid #222 5px',
+      margin: '10% 15%',
+      minHeight: '300px',
+      maxHeight: '350px',
+      maxWidth: '300px',
+      display: 'inline-block',
+      boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)',
     },
     modal: {
         margin: theme.spacing.unit
@@ -112,8 +132,10 @@ handleCloseEdit = () => {
     
 render() {
     console.log(this.props.reduxStore.playerProfileReducer);
+    console.log(this.props.reduxStore.teamDataReducer);
     console.log(this.state)
     const {classes} = this.props;
+    if (this.props.reduxStore.teamDataReducer.team_id === 1){
     return (
         <>
         <UpperNav /> 
@@ -124,22 +146,22 @@ render() {
             <DashboardNav profile={this.state.profile}/>
           </Grid>
         <Grid item xs={3}>
-          <Typography className={classes.playerInfo}>
+          <Typography className={classes.playerInfoMinneapolis}>
             {this.props.reduxStore.playerProfileReducer.player_name}
             <hr className={classes.horizontalRow}/>
           </Typography>
-          <Typography className={classes.playerInfo}>
+          <Typography className={classes.playerInfoMinneapolis}>
             {this.props.reduxStore.playerProfileReducer.team_name}
             <hr className={classes.horizontalRow}/>
           </Typography>
-          <Typography className={classes.playerInfo}>
+          <Typography className={classes.playerInfoMinneapolis}>
             {this.props.reduxStore.playerProfileReducer.position}
             <hr className={classes.horizontalRow}/>
           </Typography>
         </Grid>
         <Grid item xs={4}>
           <img 
-          className="profilePicture"
+          className={classes.profileImage}
           src={this.props.reduxStore.playerProfileReducer.picture} />
         </Grid>
          <Grid item xs={2}>
@@ -181,8 +203,77 @@ render() {
                 </Grid>
               </Grid>
         </>
-        
-    )
+    )} else if (this.props.reduxStore.teamDataReducer.team_id === 2){
+      return(
+        <>
+        <UpperNav /> 
+        <Grid item xs={12}>
+        <Grid container spacing={24}>
+          <Grid item xs={2}>
+        {/* <div className="profileLayout"> */}
+            <DashboardNav profile={this.state.profile}/>
+          </Grid>
+        <Grid item xs={3}>
+          <Typography className={classes.playerInfoMadison}>
+            {this.props.reduxStore.playerProfileReducer.player_name}
+            <hr className={classes.horizontalRow}/>
+          </Typography>
+          <Typography className={classes.playerInfoMadison}>
+            {this.props.reduxStore.playerProfileReducer.team_name}
+            <hr className={classes.horizontalRow}/>
+          </Typography>
+          <Typography className={classes.playerInfoMadison}>
+            {this.props.reduxStore.playerProfileReducer.position}
+            <hr className={classes.horizontalRow}/>
+          </Typography>
+        </Grid>
+        <Grid item xs={4}>
+          <img 
+          className={classes.profileImage}
+          src={this.props.reduxStore.playerProfileReducer.picture} />
+        </Grid>
+         <Grid item xs={2}>
+         <Button variant="contained" color="primary" className={classes.editButton} onClick={(event) => this.handleEditProfile()}>Edit Profile</Button>
+          </Grid>
+        <Dialog 
+                open={this.state.open_edit}
+                onClose={this.handleCloseEdit}
+                >
+                    <DialogTitle id="form-dialog-title">Edit Player</DialogTitle>
+                    <DialogContent>
+                          <center>
+                              <TextField 
+                              className={classes.input}
+                              onChange={event => this.handleChange(event, 'player_name')} 
+                              label={this.props.reduxStore.playerProfileReducer.player_name}>
+                              </TextField>
+                              <br/>
+                              <TextField
+                              className={classes.input}
+                              onChange={event => this.handleChange(event, 'position')} 
+                              label={this.props.reduxStore.playerProfileReducer.position}>
+                              </TextField>
+                              <br/>
+                              <br/>
+                              <img className={classes.playerImages} src={this.props.reduxStore.playerProfileReducer.picture} alt="playerProfilePic"/>
+                              <DialogActions>
+                              <center>
+                              <Button className={classes.submitEditButton} variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
+                              </center>
+                              </DialogActions>
+                              <DialogActions>
+                              <Button variant="outlined" color="secondary" onClick={this.handleDelete}>Delete Profile</Button>
+                              </DialogActions>
+                          </center>
+                    </DialogContent>
+                    <br />
+                </Dialog> 
+                </Grid>
+              </Grid>
+        </>
+
+      )
+    }
 }
 }
 
