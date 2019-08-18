@@ -53,6 +53,18 @@ const styles = theme => ({
     margin: '5% 0% 0% 0%',
     textAlign: 'center',
   },
+  teamDescription: {
+    color: '#DAA520',
+    textShadow: '1px 1px #9B0E27', 
+  },
+  teamName: {
+    color: '#9B0E27',
+    textShadow: '2px 2px #DAA520',
+    fontSize: '30px',
+    textAlign: 'left',
+    padding: '0px',
+    fontFamily: 'Bungee',   
+  },
   input: {
       margin: theme.spacing.unit
   },
@@ -67,12 +79,6 @@ const styles = theme => ({
     textShadow: '2px 2px #1d2c69',
     margin: '5% 0% 0% 0%',
   }, 
-  teamName: {
-    color: '#1d2c69',
-    textShadow: '2px 2px #ff66c4',
-    margin: '5% 0% 0% 0%',
-    fontSize: '30px'
-  }, 
   logo: {
     maxWidth: '50%',
     maxHeight: '50%',
@@ -80,6 +86,7 @@ const styles = theme => ({
     position: '-webkit-sticky',
     position: 'sticky',
     top: '0px',
+    float: 'right'
   }, 
   sentMessage: {
     backgroundColor: '#1d2c69',
@@ -193,6 +200,10 @@ updateMessageStatus = (item) => {
 sendMessage = () => {
   console.log('hit sendMessage Btn')
   this.props.dispatch({type: 'SEND_MESSAGE', payload: this.state})
+  this.setState({
+    ...this.state,
+    message: ''
+  })
 }
 
 render() {
@@ -364,6 +375,7 @@ render() {
                       rowsMax="6" 
                       onChange={event => this.handleChange(event, 'message')} label="Enter Text"
                       className={classes.input}
+                      value={this.state.message}
                       >
                       </TextField>
                       <DialogActions>
@@ -379,12 +391,29 @@ render() {
     return (
       <>
       <Grid container spacing={24}>
+      <Grid item xs={3}>
+      </Grid>
+      <Grid item xs={4}>
+          <h1 className={classes.teamName}>{item.team_name}</h1>
+      </Grid>
+      <Grid item xs={2}>
+            <img className="teamPlayersTeamLogo" src={item.team_logo} />
+      </Grid>
+      <Grid item xs={3}>
+      </Grid>
+      <Grid item xs={3}>
+      </Grid>
+      <Grid item xs={6}>
+           <Typography className={classes.teamDescription}>{item.team_description}</Typography>
+      </Grid>
+      <Grid item xs={3}> 
+      </Grid>
       <Grid item xs={1}>
       </Grid>
       <Grid item xs={10}>
     <br/>
     <br/>
-    <img className="teamPlayersTeamLogo" src={item.team_logo} />
+    
     <h1 className={classes.playerRoleMadison}>Coaches</h1>
     {this.props.reduxStore.clickedTeamReducer.map(item => {
         if (item.role === 'coach') {
@@ -528,6 +557,7 @@ render() {
                   rowsMax="6" 
                   onChange={event => this.handleChange(event, 'message')} label="Enter Text"
                   className={classes.input}
+                  value={this.state.message}
                   >
                   </TextField>
                 <DialogActions>

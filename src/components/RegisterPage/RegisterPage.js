@@ -23,6 +23,8 @@ const styles = theme => ({
   registerTitle: {
     textAlign: 'initial',
     padding: '5%',
+    marginBottom: '-2%',
+    marginTop: '4%',
     color: '#ff66c4',
     textShadow: '1px 1px #1d2c69',
     backgroundColor: 'white',
@@ -31,10 +33,11 @@ const styles = theme => ({
     borderRadius: '3px'
   }, 
   register: {
-    width: '100%',
+    width: '350px',
+    height: '350px',
     margin: '10% 0%',
     backgroundImage: 'url(images/3rdHalf.png)',
-    backgroundSize: 'cover',
+    backgroundSize: 'contain',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     border: 'solid 3px white'
@@ -43,9 +46,20 @@ const styles = theme => ({
     backgroundColor: 'white',
     opacity: '0.75', 
     marginBottom: '10%', 
-    marginRight: '10%', 
-    marginLeft: '10%', 
-    borderRadius: '3px'
+    marginRight: '15%', 
+    marginLeft: '5%', 
+    borderRadius: '3px',
+    width: '285px',
+    },
+    registerButton: {
+      marginTop: '3px',
+      opacity: '1',
+      width: '150px'
+    },
+    selectTeamButton: {
+      marginTop: '10px',
+      opacity: '1',
+      width: '150px'
     }
 });
 
@@ -175,7 +189,10 @@ class RegisterPage extends Component {
                               onChange={this.handleInputChangeFor('password')}
                             />
                         </div>    
-                        <Button 
+                        <Button
+                          className={classes.selectTeamButton}
+                          variant="contained"
+                          color="primary"
                           buttonRef={node => {
                             this.anchorEl = node;
                           }}
@@ -217,7 +234,10 @@ class RegisterPage extends Component {
                           {this.state.team_name}
                         </div>
                         <div>
-                        <Button onClick={(event) => this.registerUser(event)}
+                        <Button 
+                          variant="contained"
+                          color="primary"
+                          onClick={(event) => this.registerUser(event)}
                           className={classes.registerButton}
                           type="submit"
                           name="submit"

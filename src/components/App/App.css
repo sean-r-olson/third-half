@@ -220,3 +220,44 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     max-height: 100px;
     margin-left: 5%;
 }
+
+.aboutUsTeamLogo {
+    top: 0px;
+    max-width: 200;
+    max-height: 200px;
+    margin-left: 20%;
+    margin-right: 10px;
+    margin-top: 10%;
+
+}
+
+.teamPicture {
+    width: 350px;
+    height:200px;
+    margin-left: 100px;
+    margin-top: 20px;
+    margin-bottom: -135px;
+    border: solid 3px #012635;
+}
+
+.aboutUsTitle {
+    color: #00B7FF;
+    text-shadow: 1px 1px white;
+    font-family: 'Bungee';
+    margin-top: 30%;
+    margin-left: 20%
+}
+
+.aboutUsTeamInfo {
+    color: #00B7FF;
+    text-shadow: 1px 1px white;
+    font-family: 'Bungee';
+    margin-left: 20%
+  
+}
+
+.aboutUs {
+    color:white;
+    text-shadow: 1px 1px #00B7FF;
+    margin-left: 20%
+}

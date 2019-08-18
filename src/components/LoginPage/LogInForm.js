@@ -20,27 +20,42 @@ const styles = theme => ({
         marginRight: '5px',
         border: 'solid 3px #1d2c69', 
         borderRadius: '5px',
-        color: '#1d2c69',
-        textShadow: '1px 1px #ff66c4',
-        backgroundColor: 'white',
+        // color: '#1d2c69',
+        // textShadow: '1px 1px #ff66c4',
+        // backgroundColor: 'white',
         height: '60px',
-        maxWidth: '100%',
-        fontSize: 10, 
-        display: 'inline-block',
-        paddingLeft: '20px'
+        // maxWidth: '100%',
+        // fontSize: 10, 
+        // display: 'inline-block',
+        // paddingLeft: '20px'
+        paddingTop: '-5px'
     }, 
     input: {
         width: '50%',
         height: '50px',
-        margin: '-7%',
+        
         fontSize: '10px'
     }, 
     button: {
         float: 'right',
-        margin: '-13% 0%'
+        marginTop: '-12%',
     }, 
     resize:{
-      fontSize:12
+      fontSize:10
+    },
+    textFieldBottom: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 100,
+      marginTop: theme.spacing(-2),
+      paddingTop: theme.spacing(1.5),
+    },
+    textFieldTop: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 100,
+      marginTop: theme.spacing(-3),
+      paddingTop: theme.spacing(1.5),
     },
 })
 
@@ -89,13 +104,13 @@ state = {
         <Card className={classes.card}>
           <CardContent>
               {/* <TextField className={classes.input} */}
-              <TextField className={classes.input}
+              <TextField className={classes.textFieldTop}
               onChange={this.handleInputChangeFor('username')}
               type="text"
               name="username"
               value={this.state.username}
               id="with-placeholder"
-              placeholder="username"
+              placeholder="Username"
               InputProps={{
                 classes: {
                   input: classes.resize,
@@ -105,13 +120,14 @@ state = {
               // margin="normal"
               />
               <br/>
-              <TextField className={classes.input}
+              <TextField 
+              id="standard-password-input"
+              placeholder="Password"
+              className={classes.textFieldBottom}
+              type="password"
+              autoComplete="current-password"
+              margin="normal"
               onChange={this.handleInputChangeFor('password')}
-              type="text"
-              name="password"
-              value={this.state.password}
-              id="with-placeholder"
-              placeholder="password"
               InputProps={{
                 classes: {
                   input: classes.resize,
@@ -122,6 +138,8 @@ state = {
               />
               <Link to="/profile">
             <Button 
+                variant="contained"
+                color="primary"
                 onClick={(event) => this.login()}
                 className={classes.button}
                 type="submit"

@@ -224,6 +224,10 @@ handleOpenMessages = (item) => {
 sendMessage = () => {
   console.log('hit sendMessage Btn')
   this.props.dispatch({type: 'SEND_MESSAGE', payload: this.state})
+  this.setState({
+    ...this.state,
+    message: ''
+  })
 }
 
 render() {
@@ -407,6 +411,7 @@ render() {
                     <TextField multiline
                     rowsMax="6" 
                     onChange={event => this.handleChange(event, 'message')} label="Enter Text"
+                    value={this.state.message}
                     className={classes.input}
                     >
                     </TextField>
@@ -737,6 +742,7 @@ render() {
                     <TextField multiline
                     rowsMax="6" 
                     onChange={event => this.handleChange(event, 'message')} label="Enter Text"
+                    value={this.state.message}
                     className={classes.input}
                     >
                     </TextField>
