@@ -219,60 +219,80 @@ render() {
     return(
     <>
     <UpperNav/>
-    // IF USER'S ADMIN LEVEL IS 1, return the team page with access to editing player information 
+    <Grid container spacing={24}>
+        <Grid item xs={1}>
+        </Grid>
+        <Grid item xs={10}>
+    // IF USER'S ADMIN LEVEL IS 1, return the team page with access to editing player information
+
+
+    <h1 className={classes.playerRole}>Coaches</h1>
     {this.props.reduxStore.clickedTeamReducer.map(item => {
-      if (item.team_id === 1) {
+      if (item.team_id === 1 && item.role === 'coach') {
         return (
-          <>
-          <Grid container spacing={24}>
-          <Grid item xs={1}>
-          </Grid>
-          <Grid item xs={10}>
-        <br/>
-        <br/>
-        {/* <img className="teamPlayersTeamLogo" src={this.props.reduxStore.teamDataReducer.logo} /> */}
-        <img className="teamPlayersTeamLogo" src={item.team_logo} />
-        <h1 className={classes.playerRoleMinneapolis}>Coaches</h1>
+            <div key={item.id} className="playersDiv">
+              <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+               <br/>
+               <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+               {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
+               <br/>
+            </div>
+      )} else if (item.team_id === 2 && item.role === 'coach') {
+        return (
+            <div key={item.id} className="playersDiv">
+              <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+               <br/>
+               <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+               {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
+               <br/>
+            </div>
+        )}})}
+
+    <h1 className={classes.playerRole}>Forwards</h1>
         {this.props.reduxStore.clickedTeamReducer.map(item => {
-            if (item.role === 'coach') {
-              return (
-            <div className="playersDiv" key={item.id}>
-              <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-               <br/>
-               <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-               {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
-               <br/>
-            </div> 
-            )}
-        })}
-        <br/>
-        <h1 className={classes.playerRoleMinneapolis}>Forwards</h1>
-         {this.props.reduxStore.clickedTeamReducer.map(item => {
-            if (item.role === 'forward') {
-              return (
-            <div className="playersDiv" key={item.id}>
-              <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-               <br/>
-               <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-               {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
-               <br/>
-            </div> 
-            )}
-        })}
-        <br/>
-        <h1 className={classes.playerRoleMinneapolis}>Backs</h1>
-          {this.props.reduxStore.clickedTeamReducer.map(item => {
-            if (item.role === 'back') {
-              return (
-            <div className="playersDiv" key={item.id}>
-              <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-              <br/>
-              <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-              {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
-              <br/>
-            </div> 
-            )}
-          })}
+          if (item.team_id === 1 && item.role === 'forward') {
+            return (
+                <div key={item.id} className="playersDiv">
+                  <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+                  <br/>
+                  <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+                  {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
+                  <br/>
+                </div>
+          )} else if (item.team_id === 2 && item.role === 'forward') {
+            return (
+                <div key={item.id} className="playersDiv">
+                  <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+                  <br/>
+                  <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+                  {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
+                  <br/>
+                </div>
+            )}})}
+
+      <h1 className={classes.playerRole}>Backs</h1>
+              {this.props.reduxStore.clickedTeamReducer.map(item => {
+                if (item.team_id === 1 && item.role === 'back') {
+                  return (
+                      <div key={item.id} className="playersDiv">
+                        <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+                        <br/>
+                        <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+                        {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
+                        <br/>
+                      </div>
+                )} else if (item.team_id === 2 && item.role === 'back') {
+                  return (
+                      <div key={item.id} className="playersDiv">
+                        <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
+                        <br/>
+                        <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
+                        {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
+                        <br/>
+                      </div>
+                  )}})}
+                  </Grid>
+                  </Grid>
          <Dialog className={classes.dialog}
         //  className={classes.modal}
                     open={this.state.open_edit}
@@ -383,195 +403,8 @@ render() {
                         </DialogActions>
                     </DialogContent>
                     </Dialog>
-                  </Grid>
-                  </Grid>
         </>
-
-      )} else if (item.team_id === 2) {
-    return (
-      <>
-      <Grid container spacing={24}>
-      <Grid item xs={3}>
-      </Grid>
-      <Grid item xs={4}>
-          <h1 className={classes.teamName}>{item.team_name}</h1>
-      </Grid>
-      <Grid item xs={2}>
-            <img className="teamPlayersTeamLogo" src={item.team_logo} />
-      </Grid>
-      <Grid item xs={3}>
-      </Grid>
-      <Grid item xs={3}>
-      </Grid>
-      <Grid item xs={6}>
-           <Typography className={classes.teamDescription}>{item.team_description}</Typography>
-      </Grid>
-      <Grid item xs={3}> 
-      </Grid>
-      <Grid item xs={1}>
-      </Grid>
-      <Grid item xs={10}>
-    <br/>
-    <br/>
-    
-    <h1 className={classes.playerRoleMadison}>Coaches</h1>
-    {this.props.reduxStore.clickedTeamReducer.map(item => {
-        if (item.role === 'coach') {
-          return (
-        <div className="playersDiv" key={item.id}>
-          <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-           <br/>
-           <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-           {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
-           <br/>
-        </div> 
-        )}
-    })}
-    <br/>
-    <h1 className={classes.playerRoleMadison}>Forwards</h1>
-     {this.props.reduxStore.clickedTeamReducer.map(item => {
-        if (item.role === 'forward') {
-          return (
-        <div className="playersDiv" key={item.id}>
-          <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-           <br/>
-           <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-           {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
-           <br/>
-        </div> 
-        )}
-    })}
-    <br/>
-    <h1 className={classes.playerRoleMadison}>Backs</h1>
-      {this.props.reduxStore.clickedTeamReducer.map(item => {
-        if (item.role === 'back') {
-          return (
-        <div className="playersDiv" key={item.id}>
-          <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
-          <br/>
-          <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-          {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
-          <br/>
-        </div> 
-        )}
-      })}
-     <Dialog className={classes.dialog}
-    //  className={classes.modal}
-                open={this.state.open_edit}
-                onClose={this.handleCloseEdit}
-                >
-                      <DialogContent className={classes.root}>
-                      <img className="playerCloseUp" src={this.state.picture} alt="PlayerPicture"/> 
-                      <Typography> {this.state.player_name}   |   {this.state.position}
-                      </Typography>
-                    </DialogContent>                      
-                </Dialog> 
-        <Dialog
-            open={this.state.open_messages}
-            onClose={this.handleCloseMessages}
-            >
-              <DialogTitle id="form-dialog-title">Messages</DialogTitle>
-              
-              {this.props.reduxStore.messageReducer.map(item => {
-                console.log(item)
-                // if the user id (user that's logged in) matches the sender's id, 
-                if (
-                  // CHECK IF:
-                  // the user either recieved or sent a message from or to the clicked player AND 
-                  // the user's id matches the recieved message id AND 
-                  // the recieved message is a new message
-                  (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
-                  && 
-                  (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
-                  && (item.new_message === true)) {
-                return(
-                  <div key={item.id}>
-                    <DialogContent className={classes.recievedMessage}>
-                    <Typography 
-                    multiline
-                    rowsMax="6">
-                    {item.from_name} | {item.to_char}</Typography>
-                    <Typography >{item.message}
-                    <label class="container">
-                    <input onClick={(event) => {this.updateMessageStatus(item)}} type="checkbox"></input>
-                    <span class="checkmark"></span>
-                    </label>
-                    </Typography>
-                    </DialogContent>
-                  </div>
-                  
-                )} else if (
-                  (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
-                  && 
-                  (this.props.reduxStore.playerProfileReducer.id === item.from_id)
-                  && (item.new_message === true)) {
-                  return(
-                    <div key={item.id}>
-                    <DialogContent className={classes.sentMessage}>
-                    <Typography 
-                    multiline
-                    rowsMax="6">
-                    {item.from_name} | {item.to_char}</Typography>
-                    <Typography >{item.message}</Typography>
-                    </DialogContent>
-                    </div>
-                  )
-                  } else if (
-                  (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
-                && (this.props.reduxStore.playerProfileReducer.id === item.from_id)
-                && (item.new_message === false)
-                ) {
-                //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
-                  //  && item.from_id === this.state.from_id
-                  return(
-                  <div key={item.id}>
-                    <DialogContent className={classes.sentMessage}>
-                    <Typography 
-                    multiline
-                    rowsMax="6">
-                    {item.from_name} | {item.to_char}</Typography>
-                    <Typography >{item.message}</Typography>
-                    </DialogContent>
-                  </div>
-                  )
-                } else if (
-                  (this.state.recieved_id === item.recieved_id || this.state.recieved_id === item.from_id) 
-                && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
-                && (item.new_message === false)
-                ) {
-                //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
-                  //  && item.from_id === this.state.from_id
-                  return(
-                  <div key={item.id}>
-                    <DialogContent className={classes.recievedMessage}>
-                    <Typography 
-                    multiline
-                    rowsMax="6">
-                    {item.from_name} | {item.to_char}</Typography>
-                    <Typography >{item.message}</Typography>
-                    </DialogContent>
-                  </div>
-                  )
-              }})}
-                  <TextField multiline
-                  rowsMax="6" 
-                  onChange={event => this.handleChange(event, 'message')} label="Enter Text"
-                  className={classes.input}
-                  value={this.state.message}
-                  >
-                  </TextField>
-                <DialogActions>
-                  <Button variant="contained" color="primary" onClick={(event)=>{this.sendMessage()}}>Send</Button>
-                  </DialogActions>
-                </Dialog>
-              </Grid>
-              </Grid> 
-              </>
-      )} 
-    })}
-    </>
-)}}
-
+    )}}
 
 const mapStateToProps = (reduxStore) => ({
   reduxStore
