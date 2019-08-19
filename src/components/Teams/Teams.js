@@ -33,9 +33,9 @@ render() {
       })}
       <br/>
       <Grid container spacing={24}>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={8}>
         <center>
         {this.props.reduxStore.teamsReducer.map(item => {
         return(
@@ -51,7 +51,7 @@ render() {
       })}
       </center>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
       </Grid>
       </Grid>
       </>

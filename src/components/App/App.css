@@ -72,6 +72,8 @@ display: inline-block;
     color: white;
     display: inline-block;
     text-align: center;
+    margin-right: 40px; 
+    margin-left: 40px ;
 }
 
 h1 {
@@ -88,6 +90,7 @@ h2 {
     min-height: 200px;
     max-height: 200px;
     margin: 1% 38%;
+    border-radius: 5px;
 }
 
 .profilePicture {
