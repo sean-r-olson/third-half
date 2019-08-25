@@ -79,7 +79,7 @@ class Profile extends Component {
 
 componentDidMount () {
     // this.props.dispatch({type: 'FETCH_USER'})
-    // this.props.dispatch({type: 'FETCH_PLAYER_PROFILE', payload: this.props.reduxStore.user.id});
+    this.props.dispatch({type: 'FETCH_PLAYER_PROFILE', payload: this.props.reduxStore.user.id});
 }
 
 state = {
@@ -133,9 +133,9 @@ handleCloseEdit = () => {
 render() {
     console.log(this.props.reduxStore.playerProfileReducer);
     console.log(this.props.reduxStore.teamDataReducer);
-    console.log(this.state)
+    console.log(this.props.reduxStore.user);
     const {classes} = this.props;
-    if (this.props.reduxStore.teamDataReducer.team_id === 1){
+    if (this.props.reduxStore.user.team === 1){
     return (
         <>
         <UpperNav /> 
@@ -203,7 +203,7 @@ render() {
                 </Grid>
               </Grid>
         </>
-    )} else if (this.props.reduxStore.teamDataReducer.team_id === 2){
+    )} else if (this.props.reduxStore.user.team === 2){
       return(
         <>
         <UpperNav /> 
