@@ -14,9 +14,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { objectExpression } from '@babel/types';
-import Paper from '@material-ui/core/Paper';
+import Paper from '@material-ui/core/Paper';    
 import Grid from '@material-ui/core/Grid';
-
 
 const styles = theme => ({
     input: {
@@ -79,8 +78,8 @@ const styles = theme => ({
 class Profile extends Component {
 
 componentDidMount () {
-    this.props.dispatch({type: 'FETCH_USER'})
-    this.props.dispatch({type: 'FETCH_PLAYER_PROFILE', payload: this.props.reduxStore.user.id});
+    // this.props.dispatch({type: 'FETCH_USER'})
+    // this.props.dispatch({type: 'FETCH_PLAYER_PROFILE', payload: this.props.reduxStore.user.id});
 }
 
 state = {
