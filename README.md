@@ -1,4 +1,4 @@
-# 3rd Half
+# Solo Project - 3rd Half
 In rugby, there are three halfs: The first two consist of the match, and the third consists of a social gathering between the same two teams after the match. 
 
 This is Third Half, an application that provides a safe space for rugby players playing for registered IGR (International Gay Rugby) teams to connect with each other through a messaging feature, whether it be with players from other teams, or players within their own team.
