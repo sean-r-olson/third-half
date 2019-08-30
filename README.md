@@ -33,9 +33,13 @@ Download the zip file of this repo, then, in the project:
 ## Screen Shot
 
 ![screenshot](public/images/3rdHalfScreenshot.png)
+
 ![screenshot](public/images/screenshot2.png)
+
 ![screenshot](public/images/screenshot3.png)
+
 ![screenshot](public/images/screenshot4.png)
+
 ![screenshot](public/images/screenshot5.png)
 
 ## Documentation
