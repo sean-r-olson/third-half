@@ -1,7 +1,9 @@
 # 3rd Half
-In rugby, there are three halfs: The first being played during the match, and the third being the social gathering between the same two teams after the match. 
+In rugby, there are three halfs: The first two consist of the match, and the third consists of a social gathering between the same two teams after the match. 
 
-This is Third Half, an application that provides a safe space for rugby players playing for a registered IGR (International Gay Rugby) team to connect with each other, whether it be with players from other teams, or players within their own team. 
+This is Third Half, an application that provides a safe space for rugby players playing for registered IGR (International Gay Rugby) teams to connect with each other through a messaging feature, whether it be with players from other teams, or players within their own team.
+
+Players can also stay up to date on the status of practices and matches through a private posts feature.
 
 ## Getting Started
 https://dry-scrubland-41324.herokuapp.com/#/home
