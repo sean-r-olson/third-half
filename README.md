@@ -1,22 +1,22 @@
-# Name of Application
+# 3rd Half
 In rugby, there are three halfs: The first being played during the match, and the third being the social gathering between the same two teams after the match. 
 
 This is Third Half, an application that provides a safe space for rugby players playing for a registered IGR (International Gay Rugby) team to connect with each other, whether it be with players from other teams, or players within their own team. 
 
-# Getting Started
+## Getting Started
 https://dry-scrubland-41324.herokuapp.com/#/home
 
 Login with these credentials: 
 username: guest-user
 password: bingham
 
-# Built With
+## Built With
 React.js, Node.js, PostgreSQL, Material UI, HTML/CSS 
 
-# Getting Started
+## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. 
 
-# Steps to get the development environment running.
+## Steps to get the development environment running.
 
 https://dry-scrubland-41324.herokuapp.com/#/home
 
@@ -28,11 +28,15 @@ Download the zip file of this repo, then, in the project:
 -   1: npm run server
 -   2: npm run client
 
-# Screen Shot
+## Screen Shot
 
 ![screenshot](public/images/3rdHalfScreenshot.png)
+![screenshot](public/images/screenshot2.png)
+![screenshot](public/images/screenshot3.png)
+![screenshot](public/images/screenshot4.png)
+![screenshot](public/images/screenshot5.png)
 
-# Documentation
+## Documentation
 
 https://docs.google.com/document/d/16jepGmchBoaHJyXu8MgXAETXTnc_1MbL0mTEriohD9M/edit#heading=h.stm015ij3yyj
 
