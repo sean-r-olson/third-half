@@ -3,7 +3,7 @@ In rugby, there are three halfs: The first two consist of the match, and the thi
 
 This is Third Half, an application that provides a safe space for rugby players playing for registered IGR (International Gay Rugby) teams to connect with each other through a messaging feature, whether it be with players from other teams, or players within their own team.
 
-Players can also stay up to date on the status of practices and matches through a private posts feature.
+Players can also stay up to date on the status of their own team's practices and matches through a private posts feature.
 
 ## Getting Started
 https://dry-scrubland-41324.herokuapp.com/#/home
