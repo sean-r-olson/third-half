@@ -12,9 +12,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { objectExpression } from '@babel/types';
-import Paper from '@material-ui/core/Paper';    
+import Typography from '@material-ui/core/Typography'; 
 import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
@@ -78,7 +76,6 @@ const styles = theme => ({
 class Profile extends Component {
 
 componentDidMount () {
-    // this.props.dispatch({type: 'FETCH_USER'})
     this.props.dispatch({type: 'FETCH_PLAYER_PROFILE', payload: this.props.reduxStore.user.id});
 }
 
@@ -131,9 +128,6 @@ handleCloseEdit = () => {
   }
     
 render() {
-    console.log(this.props.reduxStore.playerProfileReducer);
-    console.log(this.props.reduxStore.teamDataReducer);
-    console.log(this.props.reduxStore.user);
     const {classes} = this.props;
     if (this.props.reduxStore.user.team === 1){
     return (

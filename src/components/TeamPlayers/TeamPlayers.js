@@ -13,8 +13,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { objectExpression } from '@babel/types';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 
@@ -134,30 +132,15 @@ class TeamPlayers extends Component {
     new_message: true,
     team_name: this.props.reduxStore.playerProfileReducer.team_name,
   }
-
+  
+  // FETCH USER'S TEAM ON PAGE LOAD
   componentDidMount(){
       console.log('IN COMP DID MOUNT WITH:', this.props.reduxStore.user.team)
       this.props.dispatch({type:'FETCH_TEAM', payload: this.props.reduxStore.user.team})
     }
-  
-// handleToggle = (item) => {
-//     if (this.state.showPicture === true) {
-//     console.log(this.state);
-//     console.log(this.props.reduxStore.user)
-//     this.setState({
-//       showPicture: false,
-//       id: this.props.reduxStore.singlePlayerReducer.id,
-//       position: this.props.reduxStore.singlePlayerReducer.position
-//     })} else {
-//     console.log(this.state);
-//     this.setState({
-//       showPicture: true,
-//       id: this.props.reduxStore.singlePlayerReducer.id,
-//       position: this.props.reduxStore.singlePlayerReducer.position
-//     })
-//     }
-//   }
 
+// HANDLE INPUT FIELD CHANGES
+// Set state to designated propertie's value
 handleChange = (event, propertyToChange) => {
   this.setState({
     ...this.state, 
@@ -165,6 +148,8 @@ handleChange = (event, propertyToChange) => {
   })
 }
 
+// Open edit player modal
+// Set state to clicked item's property values
 handleClickOpen = (item) => {
   this.setState({
     open_edit: true, 
@@ -175,23 +160,29 @@ handleClickOpen = (item) => {
   })
 }
 
+
+// Closes edit player modal
 handleCloseEdit = () => {
   this.setState({
     open_edit: false
   })
 }
 
+// Close message modal
 handleCloseMessages = () => {
   this.setState({
     open_messages: false,
   })
 }
 
+// Upon send, dispatch item's id to message saga - change message status
 updateMessageStatus = (item) => {
   console.log(item)
   this.props.dispatch({type: 'UPDATE_MESSAGE_STATUS', payload: item.id})
 }
 
+// Upon submitting player edit, set state to clicked player
+// dispatch to players saga
 handleEdit = () => {
   this.setState({
     ...this.state,
@@ -201,10 +192,13 @@ handleEdit = () => {
   this.setState({ open_edit: false })
 }
 
+// Upon deleting player (button) --> send dispatch to players saga
 handleDelete = () => {
   this.props.dispatch({type: 'DELETE_PLAYER', payload: this.state})
 }
 
+// Open message modal
+// Dispatch fetch messages to message saga 
 handleOpenMessages = (item) => {
   this.props.dispatch({type: 'FETCH_MESSAGES'})
   this.setState({
@@ -221,6 +215,7 @@ handleOpenMessages = (item) => {
   console.log(this.state)
 }
 
+// Upon hitting send, dispatch send message to message saga with message value 
 sendMessage = () => {
   console.log('hit sendMessage Btn')
   this.props.dispatch({type: 'SEND_MESSAGE', payload: this.state})
@@ -233,13 +228,6 @@ sendMessage = () => {
 render() {
     console.log(this.state);
     console.log(this.props.reduxStore.playerProfileReducer)
-    // console.log(this.props.reduxStore.playerProfileReducer)
-    // console.log(this.props.reduxStore.playersListReducer)
-    // console.log(this.props.reduxStore.messageReducer)
-    // console.log(this.props.reduxStore.user)
-    // console.log(this.props.reduxStore.teamDataReducer)
-    // console.log(this.props.reduxStore.clickedTeamReducer)
-    // console.log(this.props.reduxStore.clickedTeamIdReducer)
     const {classes} = this.props;
     // IF USER'S ADMIN LEVEL IS 1, return the team page with access to editing player information 
     if (this.props.reduxStore.user.admin_level === 1 && this.props.reduxStore.user.team === 1) {
@@ -263,7 +251,6 @@ render() {
              <center>
              <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
              </center>
-             {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
              <br/>
           </div> 
           )}
@@ -277,7 +264,6 @@ render() {
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
              <br/>
              <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-             {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
              <br/>
           </div> 
           )}
@@ -291,13 +277,11 @@ render() {
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
             <br/>
             <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-            {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
             <br/>
           </div> 
           )}
         })}
      <Dialog 
-    //  className={classes.modal}
                 open={this.state.open_edit}
                 onClose={this.handleCloseEdit}
                 >
@@ -376,8 +360,6 @@ render() {
                   && (this.props.reduxStore.playerProfileReducer.id === item.from_id)
                   && (item.new_message === false)
                   ) {
-                  //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
-                    //  && item.from_id === this.state.from_id
                     return(
                     <div key={item.id}>
                       <DialogContent className={classes.sentMessage}>
@@ -394,8 +376,6 @@ render() {
                   && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
                   && (item.new_message === false)
                   ) {
-                  //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
-                    //  && item.from_id === this.state.from_id
                     return(
                     <div key={item.id}>
                       <DialogContent className={classes.recievedMessage}>
@@ -444,7 +424,6 @@ render() {
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
              <br/>
              <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-             {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
              <br/>
           </div> 
           )}
@@ -458,7 +437,6 @@ render() {
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
              <br/>
              <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-             {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
              <br/>
           </div> 
           )}
@@ -472,13 +450,11 @@ render() {
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
             <br/>
             <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-            {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
             <br/>
           </div> 
           )}
         })}
        <Dialog className={classes.dialog}
-      //  className={classes.modal}
                   open={this.state.open_edit}
                   onClose={this.handleCloseEdit}
                   >
@@ -561,8 +537,6 @@ render() {
                   && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
                   && (item.new_message === false)
                   ) {
-                  //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
-                    //  && item.from_id === this.state.from_id
                     return(
                     <div key={item.id}>
                       <DialogContent className={classes.recievedMessage}>
@@ -608,7 +582,6 @@ render() {
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
              <br/>
              <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-             {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
              <br/>
           </div> 
           )}
@@ -622,7 +595,6 @@ render() {
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
              <br/>
              <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-             {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
              <br/>
           </div> 
           )}
@@ -636,13 +608,11 @@ render() {
             <img onClick={(event) => this.handleClickOpen(item)} className="playerImages" src={item.picture} alt="player_picture"/>
             <br/>
             <Button variant="contained" color="primary" className={classes.messageButton} onClick={(event) => this.handleOpenMessages(item)}>{item.player_name}</Button>
-            {/* <Button variant="contained" color="secondary">Delete Player</Button> */}
             <br/>
           </div> 
           )}
         })}
        <Dialog className={classes.dialog}
-      //  className={classes.modal}
                   open={this.state.open_edit}
                   onClose={this.handleCloseEdit}
                   >
@@ -707,8 +677,6 @@ render() {
                   && (this.props.reduxStore.playerProfileReducer.id === item.from_id)
                   && (item.new_message === false)
                   ) {
-                  //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
-                    //  && item.from_id === this.state.from_id
                     return(
                     <div key={item.id}>
                       <DialogContent className={classes.sentMessage}>
@@ -725,8 +693,6 @@ render() {
                   && (this.props.reduxStore.playerProfileReducer.id === item.recieved_id)
                   && (item.new_message === false)
                   ) {
-                  //  (item.from_id === this.props.reduxStore.playerProfileReducer.id)
-                    //  && item.from_id === this.state.from_id
                     return(
                     <div key={item.id}>
                       <DialogContent className={classes.recievedMessage}>
