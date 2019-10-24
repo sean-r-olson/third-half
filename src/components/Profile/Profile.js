@@ -18,7 +18,7 @@ import Grid from '@material-ui/core/Grid';
 const styles = theme => ({
     input: {
         margin: '0px'
-    },
+    },  
     playerInfoMinneapolis: {
       color: '#00B7FF',
       textShadow: '2px 2px white',
