@@ -94,7 +94,7 @@ class PrivatePosts extends Component {
 
   render() {
     const {classes} = this.props;
-    console.log(this.props.reduxStore.privatePostsReducer);
+    console.log(this.props.reduxStore);
     const { alignItems, direction, justify } = this.state;
     return (
       <>

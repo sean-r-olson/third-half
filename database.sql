@@ -64,7 +64,7 @@ CREATE TABLE "public_posts" (
 	"message" varchar,
 	"date_time" timestamp, 
     "player_name" varchar, 
-    "username" varchar,
+    "username" varchar  
 );
 
 CREATE TABLE "countries" (

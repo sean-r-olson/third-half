@@ -128,6 +128,7 @@ handleCloseEdit = () => {
   }
     
 render() {
+    console.log(this.props.reduxStore.playerProfileReducer);
     const {classes} = this.props;
     if (this.props.reduxStore.user.team === 1){
     return (
