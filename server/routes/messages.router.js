@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
       })
 })
 
+// POST to db (add message)
 router.post('/', (req, res) => {
   const sqlText=`insert into messages ("from_id", "recieved_id", "date_time", "message", "from_name", "recieved_name", "new_message", "team_name")
   values ($1, $2, clock_timestamp(), $3, $4, $5, $6, $7);`;
@@ -30,6 +31,7 @@ router.post('/', (req, res) => {
     })
 })
 
+// PUT to db (update message status to read)
 router.put('/:id', (req, res) => {
   const sqlText=`update "messages" set "new_message"=false where id=$1;`;
   const values = [req.params.id];
@@ -41,20 +43,5 @@ router.put('/:id', (req, res) => {
       res.sendStatus(500);
     })
 })
-
-// router.post('/', (req, res) => {
-//   const sqlText=`INSERT INTO "private_posts"("username", "message", "team_id", "date_time") VALUES($1, $2, $3, clock_timestamp());`;
-//   const values = [req.body.username, req.body.message, req.body.team_id];
-//   console.log(req.body)
-//   pool.query(sqlText, values)
-//   .then((results)=> {
-//     res.sendStatus(201);
-//     console.log(values)
-//   }).catch((error) => {
-//     console.log('error with insert into private posts', error);
-//     res.sendStatus(500);
-//   })
-// })
-
 
 module.exports = router;

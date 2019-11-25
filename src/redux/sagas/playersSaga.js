@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 function* playersSaga(){
     yield takeEvery('FETCH_TEAM', getPlayersSaga);
-    yield takeEvery('FETCH_PLAYER', singlePlayerSaga);
+    // yield takeEvery('FETCH_PLAYER', singlePlayerSaga);
     yield takeEvery('FETCH_PLAYER_PROFILE', playerProfileSaga);
     yield takeEvery('EDIT_PLAYER_PROFILE', editPlayerProfileSaga);
     yield takeEvery('EDIT_PLAYER_INFO', editPlayerInfoSaga);
@@ -23,16 +23,16 @@ function* getPlayersSaga(action) {
     }
 }
 
-function* singlePlayerSaga(action) {
-    try {
-        const response = yield Axios.get(`/players/${action.payload.id}`);
-        yield put ({type: 'SET_SINGLE_PLAYER', payload: response.data})
-        console.log(response.data);
-    } catch (error) {
-        console.log('error getting single player data', error);
-        alert('Error getting team data, try again later');
-    }
-}
+// function* singlePlayerSaga(action) {
+//     try {
+//         const response = yield Axios.get(`/players/${action.payload.id}`);
+//         yield put ({type: 'SET_SINGLE_PLAYER', payload: response.data})
+//         console.log(response.data);
+//     } catch (error) {
+//         console.log('error getting single player data', error);
+//         alert('Error getting team data, try again later');
+//     }
+// }
 
 function* playerProfileSaga(action) {
     try {
@@ -71,8 +71,8 @@ function* editPlayerInfoSaga(action) {
 function* deletePlayerSaga(action) {
     try {
         console.log(action.payload);
-        yield Axios.put(`/players/delete/${action.payload.id}`, action.payload);
-        yield put ({type: 'FETCH_TEAM'})
+        yield Axios.delete(`/players/delete/${action.payload.id}`);
+        yield put ({type: 'CLEAR_PLAYER_PROFILE'})
     } catch (error) {
         console.log('error deleting player', error);
         alert('Error deleting player');
