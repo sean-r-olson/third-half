@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
-// GET to db (get team data from team table)
+// GET to db (get all country info from countries table)
 router.get('/', (req, res) => {
     const sqlText=`SELECT * FROM "countries"`;
     pool.query(sqlText)
