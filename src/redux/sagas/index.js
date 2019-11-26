@@ -14,7 +14,6 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import playersSaga from './playersSaga';
 import messageSaga from './messageSaga';
-import graphicsSaga from './graphicsSaga';
 import fetchClickedTeamSaga from './fetchClickedTeamSaga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -44,7 +43,6 @@ export default function* rootSaga() {
     countriesSaga(),
     messageSaga(),
     fetchClickedTeamSaga(),
-    graphicsSaga(),
     // singlePlayerSaga(),
     // teamsSaga(),
     // countriesSaga(),

@@ -10,7 +10,6 @@ import playerProfileReducer from './playerProfileReducer';
 import privatePostsReducer from './privatePostsReducer';
 import teamDataReducer from './teamDataReducer';
 import messageReducer from './messageReducer';
-import graphicsReducer from './graphicsReducer';
 import clickedTeamReducer from './clickedTeamReducer';
 import clickedTeamIdReducer from './clickedTeamIdReducer';
 
@@ -32,7 +31,6 @@ const rootReducer = combineReducers({
   privatePostsReducer,
   teamDataReducer,
   messageReducer,
-  graphicsReducer,
   clickedTeamReducer,
   clickedTeamIdReducer,
 });

@@ -15,7 +15,6 @@ const messagesRouter = require('./routes/messages.router');
 const playersRouter = require('./routes/players.router');
 const privatePostsRouter = require('./routes/privatePosts.router');
 const teamsRouter = require('./routes/teams.router');
-const graphicsRouter = require('./routes/graphics.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -35,7 +34,6 @@ app.use('/messages', messagesRouter);
 app.use('/players', playersRouter);
 app.use('/privatePosts', privatePostsRouter);
 app.use('/teams', teamsRouter);
-app.use('/graphics', graphicsRouter);
 
 // Serve static files
 app.use(express.static('build'));

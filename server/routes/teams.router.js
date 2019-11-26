@@ -5,7 +5,6 @@ const pool = require('../modules/pool');
 // GET to db (get team data from team table)
 router.get('/', (req, res) => {
     const sqlText=`SELECT * FROM "teams";`;
-    //  join players on teams.id = players.team_id
     pool.query(sqlText)
       .then( (response) => {
         res.send(response.rows);
@@ -16,6 +15,7 @@ router.get('/', (req, res) => {
       })
 })
 
+// GET to db (get logged in user's belonged team info)
 router.get('/:id', (req, res) => {
   const sqlText=`select teams.team_name, teams.about_us, teams.city, teams.state, players.id, players.team_id, teams.logo, teams.id, teams.color_1, teams.color_2, teams.team_picture
   from teams join players on teams.id = players.team_id where players.user_id = $1;`;

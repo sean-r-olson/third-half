@@ -16,30 +16,31 @@ router.get('/userTeam/:id', (req, res) => {
       })
 })
 
-// router.get('/:id', (req, res) => {
-//   let playerId = req.params.id;
-//   const sqlText = `select id, position from players where id=$1;`;
-//   const values = [playerId];
-//   pool.query(sqlText, values)
-//   .then((response) => {
-//     res.send(response.rows[0]);
-//     res.sendStatus(200);
-//   })
-//   .catch((error) => {
-//     console.log('error getting single player data from DB', error);
-//     res.sendStatus(500);
-//   })
-// })
-
 // GET to db (get logged in user's player info for profile page)
 router.get('/user/:id', (req, res) => {
   let playerId = req.params.id;
-  const sqlText = `select players.player_name, players."position", players.picture, teams.team_name from players join teams on players.team_id = teams.id where players.user_id=$1;
+  const sqlText = `select players.id, players.player_name, players."position", players.picture, teams.team_name from players join teams on players.team_id = teams.id where players.user_id=$1;
   `;
   const values = [playerId];
   pool.query(sqlText, values)
   .then((response) => {
     res.send(response.rows[0]);
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('error getting single player data from DB', error);
+    res.sendStatus(500);
+  })
+})
+
+// GET to db (get clicked team's player info)
+router.get('/clickedTeam/:id', (req, res) => {
+  let clickedId = req.params.id;
+  const sqlText = `select * from players where team_id=$1;`;
+  const values = [clickedId];
+  pool.query(sqlText, values)
+  .then((response) => {
+    res.send(response.rows);
     res.sendStatus(200);
   })
   .catch((error) => {
@@ -76,7 +77,7 @@ router.put('/editProfile/:id', (req, res) => {
   })
 })
 
-
+// DELETE to db (delete user's player info)
 router.delete('/delete/:id', (req, res) => {
   const sqlText = `delete from players where user_id=$1;`;
   const values = [req.params.id];
@@ -86,21 +87,6 @@ router.delete('/delete/:id', (req, res) => {
   })
   .catch((error) => {
     console.log('error updating player data for DB', error);
-    res.sendStatus(500);
-  })
-})
-
-router.get('/clickedTeam/:id', (req, res) => {
-  let clickedId = req.params.id;
-  const sqlText = `select * from players where team_id=$1;`;
-  const values = [clickedId];
-  pool.query(sqlText, values)
-  .then((response) => {
-    res.send(response.rows);
-    res.sendStatus(200);
-  })
-  .catch((error) => {
-    console.log('error getting single player data from DB', error);
     res.sendStatus(500);
   })
 })
