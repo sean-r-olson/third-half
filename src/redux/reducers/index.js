@@ -3,7 +3,6 @@ import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
 import playersListReducer from './playersReducer';
-import singlePlayerReducer from './singlePlayerReducer';
 import teamsReducer from './teamsReducer';
 import countriesReducer from './countriesReducer';
 import playerProfileReducer from './playerProfileReducer';
@@ -11,7 +10,6 @@ import privatePostsReducer from './privatePostsReducer';
 import teamDataReducer from './teamDataReducer';
 import messageReducer from './messageReducer';
 import clickedTeamReducer from './clickedTeamReducer';
-import clickedTeamIdReducer from './clickedTeamIdReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -24,7 +22,6 @@ const rootReducer = combineReducers({
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
   playersListReducer,
-  singlePlayerReducer,
   teamsReducer,
   countriesReducer,
   playerProfileReducer,
@@ -32,7 +29,6 @@ const rootReducer = combineReducers({
   teamDataReducer,
   messageReducer,
   clickedTeamReducer,
-  clickedTeamIdReducer,
 });
 
 export default rootReducer;
