@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+// import styles
 import '../App/App.css';
-import RegisterPage from '../RegisterPage/RegisterPage';
-import LogInNav from '../LogInNav/LogInNav';
+
+// material ui imports 
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import { TextField } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
-
 
 const styles = theme => ({
     card: {
@@ -20,14 +19,7 @@ const styles = theme => ({
         marginRight: '5px',
         border: 'solid 3px #1d2c69', 
         borderRadius: '5px',
-        // color: '#1d2c69',
-        // textShadow: '1px 1px #ff66c4',
-        // backgroundColor: 'white',
         height: '60px',
-        // maxWidth: '100%',
-        // fontSize: 10, 
-        // display: 'inline-block',
-        // paddingLeft: '20px'
         paddingTop: '-5px'
     }, 
     input: {
@@ -61,14 +53,12 @@ const styles = theme => ({
 
 class LogInForm extends Component {
 
-
 state = {
     username: '',
     password: '',
   };
 
   login = () => {
-      console.log('hit login btn', this.state)
     if (this.state.username && this.state.password) {
       this.props.dispatch({
         type: 'LOGIN',
@@ -82,6 +72,8 @@ state = {
     }
   } // end login
 
+  // HANDLE INPUT FIELD CHANGES
+  // Set state to designated property's value
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -90,7 +82,6 @@ state = {
 
   render() {
     const {classes} = this.props;
-    console.log(this.state)
       return (
         <div>
         {this.props.errors.loginMessage && (
@@ -103,7 +94,6 @@ state = {
         )}
         <Card className={classes.card}>
           <CardContent>
-              {/* <TextField className={classes.input} */}
               <TextField className={classes.textFieldTop}
               onChange={this.handleInputChangeFor('username')}
               type="text"
@@ -116,8 +106,6 @@ state = {
                   input: classes.resize,
                 },
               }}
-              // className={classes.textField}
-              // margin="normal"
               />
               <br/>
               <TextField 
@@ -133,8 +121,6 @@ state = {
                   input: classes.resize,
                 },
               }}
-              // className={classes.textField}
-              // margin="normal"
               />
               <Link to="/profile">
             <Button 
@@ -150,18 +136,7 @@ state = {
             </Link>
           </CardContent>
         </Card>
-        {/* <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
-          >
-            Register
-          </button>
-        </center> */}
       </div>
-
-
       )
   }
 }

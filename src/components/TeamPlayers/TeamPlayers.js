@@ -1,21 +1,25 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+
+// import components
 import UpperNav from '../UpperNav/UpperNav';
 import DashboardNav from '../DashboardNav/DashboardNav';
+
+// import styles
 import '../App/App.css';
-import Modal from '@material-ui/core/Modal';
+
+// material ui imports
 import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-
+// declare styles to incorporate css properties into component 
 const styles = theme => ({
   root: {
     background: 'linear-gradient(45deg, #1d2c69 30%, #ff66c4 90%)',
@@ -116,31 +120,30 @@ const styles = theme => ({
 
 class TeamPlayers extends Component {
 
-  state = {
-    open_edit: false,
-    open_messages: false,
-    from_id: '',
-    recieved_id: '',
-    from_name: '',
-    recieved_name: '',
-    id: '', 
-    player_name: '',
-    position: '',
-    message: '',
-    picture: '',
-    team: true,
-    new_message: true,
-    team_name: this.props.reduxStore.playerProfileReducer.team_name,
+state = {
+  open_edit: false,
+  open_messages: false,
+  from_id: '',
+  recieved_id: '',
+  from_name: '',
+  recieved_name: '',
+  id: '', 
+  player_name: '',
+  position: '',
+  message: '',
+  picture: '',
+  team: true,
+  new_message: true,
+  team_name: this.props.reduxStore.playerProfileReducer.team_name,
+}
+
+// FETCH USER'S TEAM ON PAGE LOAD
+componentDidMount(){
+    this.props.dispatch({type:'FETCH_TEAM', payload: this.props.reduxStore.user.team})
   }
-  
-  // FETCH USER'S TEAM ON PAGE LOAD
-  componentDidMount(){
-      console.log('IN COMP DID MOUNT WITH:', this.props.reduxStore.user.team)
-      this.props.dispatch({type:'FETCH_TEAM', payload: this.props.reduxStore.user.team})
-    }
 
 // HANDLE INPUT FIELD CHANGES
-// Set state to designated propertie's value
+// Set state to designated property's value
 handleChange = (event, propertyToChange) => {
   this.setState({
     ...this.state, 
@@ -160,8 +163,7 @@ handleClickOpen = (item) => {
   })
 }
 
-
-// Closes edit player modal
+// Close edit player modal
 handleCloseEdit = () => {
   this.setState({
     open_edit: false
@@ -177,7 +179,6 @@ handleCloseMessages = () => {
 
 // Upon send, dispatch item's id to message saga - change message status
 updateMessageStatus = (item) => {
-  console.log(item)
   this.props.dispatch({type: 'UPDATE_MESSAGE_STATUS', payload: item.id})
 }
 
@@ -211,13 +212,10 @@ handleOpenMessages = (item) => {
     position: item.position, 
     new_message: true,
   })
-  
-  console.log(this.state)
 }
 
 // Upon hitting send, dispatch send message to message saga with message value 
 sendMessage = () => {
-  console.log('hit sendMessage Btn')
   this.props.dispatch({type: 'SEND_MESSAGE', payload: this.state})
   this.setState({
     ...this.state,
@@ -226,8 +224,6 @@ sendMessage = () => {
 }
 
 render() {
-    console.log(this.state);
-    console.log(this.props.reduxStore.playerProfileReducer)
     const {classes} = this.props;
     // IF USER'S ADMIN LEVEL IS 1, return the team page with access to editing player information 
     if (this.props.reduxStore.user.admin_level === 1 && this.props.reduxStore.user.team === 1) {
@@ -720,7 +716,6 @@ render() {
                 </Grid> 
                 </>
       )}
-    // }
 }
 }
 

@@ -1,20 +1,23 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+
+// import components 
 import UpperNav from '../UpperNav/UpperNav';
 import DashboardNav from '../DashboardNav/DashboardNav';
+
+// import styles 
 import '../App/App.css';
+
+// material ui imports
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
 import { TextField } from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
 
+// declare styles to incorporate css properties into component
 const styles = theme => ({
   card: {
     margin: '5% 0% 0% 0%',
@@ -74,15 +77,14 @@ class PrivatePosts extends Component {
     private: true,
   }
 
-  // componentDidMount(){
-  //   this.props.dispatch({type: 'FETCH_PRIVATE_POSTS', payload: this.state.team_id})
-  // }
-
+  // handle submit button click --> send add private post dispatch with state
   handleSubmit = () => {
     console.log(this.state);
     this.props.dispatch({type: 'ADD_PRIVATE_POST', payload: this.state});
   }
 
+  // HANDLE INPUT FIELD CHANGES
+  // Set state to designated property's value
   handleChangeFor = (event, propertyName) => {
     this.setState({
       ...this.state,
@@ -152,7 +154,6 @@ class PrivatePosts extends Component {
     );
   }
 }
-
 
 const mapStateToProps = (reduxStore) => ({
   reduxStore

@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect} from 'react-redux';
-import { compose } from 'redux';
+
+// import styles
 import '../DashboardNav/DashboardNav.css';
-import PropTypes from 'prop-types';
+
+// material ui imports
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import SvgIcon from '@material-ui/core/SvgIcon';
-import { Typography } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Button from '@material-ui/core/Button';
@@ -49,6 +47,7 @@ class DashboardNav extends Component {
     open_notifications: false,
   }
 
+  // set profile to true to highlight profile in navbar
   toggleProfile = () => {
     this.setState({
     ...this.state,
@@ -60,6 +59,7 @@ class DashboardNav extends Component {
     })
   }
 
+  // set team to true to highlight team in navbar
   toggleTeam = () => {
     this.setState({
       ...this.state,
@@ -71,6 +71,7 @@ class DashboardNav extends Component {
     })
   }
 
+  // set private to true to highlight private posts in navbar
   togglePrivate = () => {
     this.setState({
       ...this.state,
@@ -82,6 +83,7 @@ class DashboardNav extends Component {
     })
   }
 
+  // set about to true to highlight about us in navbar
   toggleAbout = () => {
     this.setState({
       ...this.state,
@@ -93,12 +95,14 @@ class DashboardNav extends Component {
     })
   }
 
+  // open notifications model
   handleOpenNotifications = () => {
     this.setState({
       open_notifications: true,
     })
   }
 
+  // close notifications modal
   handleCloseNotifications = () => {
     this.setState({
       open_notifications: false,
@@ -106,55 +110,48 @@ class DashboardNav extends Component {
   }
 
   render() {
-    console.log(this.state)
     const {classes} = this.props;
     if (this.props.profile === true) {
     return (
- <div className="dashboardNav">
-    <Grid container spacing={24}>
-      {/* <div className="nav-right"> */}
-        <Link onClick={(event) => this.toggleProfile()} to="/profile" className="highlightProfile">
-          PROFILE 
-        </Link> 
-        <br/>
-        <Link onClick={(event) => this.toggleTeam()} to="/teamPlayers" className="dashboardNavLink">
-          TEAM
-        </Link>
-        <br/>
-        <Link onClick={(event) => this.togglePrivate()} to="/privatePosts" className="dashboardNavLink">
-          PRIVATE POSTS
-        </Link>
-        <br/>
-        {/* <Link to="/directMessage" className="dashboardNavLink">
-          Direct Message
-        </Link>
-        <br/> */}
-        <Link onClick={(event) => this.toggleAbout()} to="/aboutUs" className="dashboardNavLink">
-          ABOUT US
-        </Link>
-        <br/>
-            <Button className={classes.button} variant="contained" color="primary" 
-            onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
-              <Grid xs item={1}>
-              <Dialog
-                className={classes.notifications}
-                open={this.state.open_notifications}
-                onClose={this.handleCloseNotifications}
-                >
-                  {this.props.reduxStore.messageReducer.map(item => {
-                        if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
-                            && item.new_message === true){
-                        return (
-                        <DialogContent key={item.id}>
-                          <DialogContentText> 
-                          New Message from: {item.from_name} ({item.team_name})
-                          </DialogContentText>
-                        </DialogContent>
-                        )}
-                      })}
-                  {/* </div> */}
-            </Dialog>
-            </Grid>
+    <div className="dashboardNav">
+      <Grid container spacing={24}>
+          <Link onClick={(event) => this.toggleProfile()} to="/profile" className="highlightProfile">
+            PROFILE 
+          </Link> 
+          <br/>
+          <Link onClick={(event) => this.toggleTeam()} to="/teamPlayers" className="dashboardNavLink">
+            TEAM
+          </Link>
+          <br/>
+          <Link onClick={(event) => this.togglePrivate()} to="/privatePosts" className="dashboardNavLink">
+            PRIVATE POSTS
+          </Link>
+          <br/>
+          <Link onClick={(event) => this.toggleAbout()} to="/aboutUs" className="dashboardNavLink">
+            ABOUT US
+          </Link>
+          <br/>
+          <Button className={classes.button} variant="contained" color="primary" 
+          onClick={(event) => this.handleOpenNotifications()}>Notifications</Button>
+          <Grid xs item={1}>
+            <Dialog
+              className={classes.notifications}
+              open={this.state.open_notifications}
+              onClose={this.handleCloseNotifications}
+              >
+                {this.props.reduxStore.messageReducer.map(item => {
+                      if (this.props.reduxStore.playerProfileReducer.id === item.recieved_id
+                          && item.new_message === true){
+                      return (
+                      <DialogContent key={item.id}>
+                        <DialogContentText> 
+                        New Message from: {item.from_name} ({item.team_name})
+                        </DialogContentText>
+                      </DialogContent>
+                      )}
+                    })}
+          </Dialog>
+        </Grid>
       </Grid>
      </div>
     )
@@ -162,7 +159,6 @@ class DashboardNav extends Component {
     return (
 <div className="dashboardNav">
     <Grid container spacing={24}>
-      {/* <div className="nav-right"> */}
         <Link onClick={(event) => this.toggleProfile()} to="/profile" className="dashboardNavLink">
           PROFILE
         </Link> 
@@ -175,10 +171,6 @@ class DashboardNav extends Component {
           PRIVATE POSTS
         </Link>
         <br/>
-        {/* <Link to="/directMessage" className="dashboardNavLink">
-          Direct Message
-        </Link>
-        <br/> */}
         <Link onClick={(event) => this.toggleAbout()} to="/aboutUs" className="dashboardNavLink">
           ABOUT US
         </Link>
@@ -202,7 +194,6 @@ class DashboardNav extends Component {
                         </DialogContent>
                         )}
                       })}
-                  {/* </div> */}
             </Dialog>
             </Grid>
       </Grid>
@@ -211,7 +202,6 @@ class DashboardNav extends Component {
       return (
 <div className="dashboardNav">
     <Grid container spacing={24}>
-      {/* <div className="nav-right"> */}
         <Link onClick={(event) => this.toggleProfile()} to="/profile" className="dashboardNavLink">
           PROFILE
         </Link> 
@@ -224,10 +214,6 @@ class DashboardNav extends Component {
           PRIVATE POSTS
         </Link>
         <br/>
-        {/* <Link to="/directMessage" className="dashboardNavLink">
-          Direct Message
-        </Link>
-        <br/> */}
         <Link onClick={(event) => this.toggleAbout()} to="/aboutUs" className="dashboardNavLink">
          ABOUT US
         </Link>
@@ -251,7 +237,6 @@ class DashboardNav extends Component {
                         </DialogContent>
                         )}
                       })}
-                  {/* </div> */}
             </Dialog>
             </Grid>
       </Grid>
@@ -260,7 +245,6 @@ class DashboardNav extends Component {
         return (
       <div className="dashboardNav">
        <Grid container spacing={24}>
-      {/* <div className="nav-right"> */}
         <Link onClick={(event) => this.toggleProfile()}  to="/profile" className="dashboardNavLink">
           PROFILE
         </Link> 
@@ -273,10 +257,6 @@ class DashboardNav extends Component {
           PRIVATE POSTS
         </Link>
         <br/>
-        {/* <Link to="/directMessage" className="dashboardNavLink">
-          Direct Message
-        </Link>
-        <br/> */}
         <Link onClick={(event) => this.toggleAbout()} to="/aboutUs" className="highlightAbout">
           ABOUT US
         </Link>
@@ -300,7 +280,6 @@ class DashboardNav extends Component {
                         </DialogContent>
                         )}
                       })}
-                  {/* </div> */}
             </Dialog>
             </Grid>
       </Grid>
@@ -309,7 +288,6 @@ class DashboardNav extends Component {
           return (
        <div className="dashboardNav">
           <Grid container spacing={24}>
-            {/* <div className="nav-right"> */}
               <Link onClick={(event) => this.toggleProfile()}  to="/profile" className="dashboardNavLink">
                 PROFILE
               </Link> 
@@ -322,10 +300,6 @@ class DashboardNav extends Component {
                 PRIVATE POSTS
               </Link>
               <br/>
-              {/* <Link to="/directMessage" className="dashboardNavLink">
-                Direct Message
-              </Link>
-              <br/> */}
               <Link onClick={(event) => this.toggleAbout()} to="/aboutUs" className="dashboardNavLink">
                 ABOUT US
               </Link>
@@ -349,7 +323,6 @@ class DashboardNav extends Component {
                         </DialogContent>
                         )}
                       })}
-                  {/* </div> */}
             </Dialog>
             </Grid>
             </Grid>
@@ -357,15 +330,6 @@ class DashboardNav extends Component {
           )}
       }
     }
-
-// Instead of taking everything from state, we just want the user
-// object to determine if they are logged in
-// if they are logged in, we show them a few more links 
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({ user }) => ({ user });
-// const mapStateToProps = state => ({
-//   user: state.user,
-// });
 
 const mapStateToProps = (reduxStore) => ({
   reduxStore

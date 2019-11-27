@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+// import components 
 import LogOutButton from '../LogOutButton/LogOutButton';
+
+// import styles 
 import './UpperNav.css';
 
 const UpperNav = (props) => (
@@ -30,7 +34,7 @@ const UpperNav = (props) => (
         </>
       )}
     </div>
-    </div>
+</div>
 );
 
 // Instead of taking everything from state, we just want the user

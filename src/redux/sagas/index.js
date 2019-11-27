@@ -1,11 +1,4 @@
-import { all, takeEvery, takeLatest } from 'redux-saga/effects';
-// import singlePlayerSaga from './singlePlayerSaga';
-// import playerProfileSaga from './playerProfileSaga';
-// import addPrivatePostSaga from './addPrivatePostSaga';
-// import fetchPrivatePostsSaga from './fetchPrivatePostsSaga';
-// import fetchTeamDataSaga from './fetchTeamDataSaga';
-// import editPlayerInfoSaga from './editPlayerInfoSaga';
-// import deletePlayerSaga from './deletePlayerSaga';
+import { all } from 'redux-saga/effects';
 import countriesSaga from './countriesSaga';
 import privatePostsSaga from './privatePostsSaga';
 import teamsSaga from './teamsSaga';
@@ -23,16 +16,6 @@ import fetchClickedTeamSaga from './fetchClickedTeamSaga';
 // the registration triggers a login
 // and login triggers setting the user
 export default function* rootSaga() {
-  // yield takeEvery('FETCH_TEAM', playersSaga);
-  // yield takeEvery('FETCH_PLAYER', singlePlayerSaga);
-  // yield takeEvery('FETCH_ALL_TEAMS', teamsSaga);
-  // yield takeEvery('FETCH_COUNTRIES', countriesSaga);
-  // yield takeEvery('FETCH_PLAYER_PROFILE', playerProfileSaga);
-  // yield takeEvery('ADD_PRIVATE_POST', addPrivatePostSaga);
-  // yield takeEvery('FETCH_PRIVATE_POSTS', fetchPrivatePostsSaga);
-  // yield takeEvery('FETCH_TEAM_DATA', fetchTeamDataSaga);
-  // yield takeEvery('EDIT_PLAYER_INFO', editPlayerInfoSaga);
-  // yield takeEvery('DELETE_PLAYER', deletePlayerSaga);
   yield all([
     loginSaga(),
     registrationSaga(),
@@ -43,14 +26,5 @@ export default function* rootSaga() {
     countriesSaga(),
     messageSaga(),
     fetchClickedTeamSaga(),
-    // singlePlayerSaga(),
-    // teamsSaga(),
-    // countriesSaga(),
-    // playerProfileSaga(),
-    // addPrivatePostSaga(),
-    // fetchPrivatePostsSaga(),
-    // fetchTeamDataSaga(),
-    // editPlayerInfoSaga(),
-    // deletePlayerSaga(),
   ]);
 }

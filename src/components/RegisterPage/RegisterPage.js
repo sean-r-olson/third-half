@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+
+// material ui imports
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -8,13 +10,10 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import { TextField } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
-import { ThemeProvider } from '@material-ui/styles';
-
 
 const styles = theme => ({
   root: {
@@ -96,6 +95,8 @@ class RegisterPage extends Component {
     }
   } // end registerUser
 
+  // HANDLE INPUT FIELD CHANGES
+  // Set state to designated property's value
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -114,6 +115,9 @@ class RegisterPage extends Component {
     }
   };
 
+  // click handler for choosing team (dropdown menu)
+  // if new user chooses Mayhem --> set team in state to 1 
+  // if new user chooses Minotaurs --> set team in state to 2 
   handleTeamName = (item) => {
     this.setState({
       open: false,
@@ -131,11 +135,10 @@ class RegisterPage extends Component {
   }
 
   render() {
-  console.log(this.props.state.teamsReducer);
-  console.log(this.state)
   const { classes } = this.props;
   const { open } = this.state;
   const { alignItems, direction, justify } = this.state;
+  // *************************** IF USER DOESN'T SELECT TEAM **************************
   if (this.state.team === '') {
       return (
         <Grid container spacing={16}>
@@ -252,20 +255,12 @@ class RegisterPage extends Component {
               <Grid item xs={2}>
               </Grid>
           </Grid>
-          {/* <center>
-            <button
-              type="button"
-              className="link-button"
-              onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-            >
-              Login
-            </button>
-          </center> */}
         </Grid>
         <Grid xs item={4}>
         </Grid>
         </Grid>
       );
+  // *************************** IF USER SELECTS MAYHEM **************************
   } else if (this.state.team_name === 'Minneapolis Mayhem') {
     return (
         <Grid container spacing={16}>
@@ -374,20 +369,12 @@ class RegisterPage extends Component {
               <Grid item xs={2}>
               </Grid>
           </Grid>
-          {/* <center>
-            <button
-              type="button"
-              className="link-button"
-              onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-            >
-              Login
-            </button>
-          </center> */}
         </Grid>
         <Grid xs item={4}>
         </Grid>
         </Grid>
       );
+  // *************************** IF USER SELECTS MINOTAURS **************************
   } else if (this.state.team_name === 'Madison Minotaurs') {
     return (
       <Grid container spacing={16}>
@@ -496,15 +483,6 @@ class RegisterPage extends Component {
             <Grid item xs={2}>
             </Grid>
         </Grid>
-        {/* <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-          >
-            Login
-          </button>
-        </center> */}
       </Grid>
       <Grid xs item={4}>
       </Grid>

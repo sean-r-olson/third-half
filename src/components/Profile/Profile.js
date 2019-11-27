@@ -75,6 +75,8 @@ const styles = theme => ({
 
 class Profile extends Component {
 
+// on page load:
+// send fetch player profile dispatch w/ user's id to retrieve user's player info
 componentDidMount () {
     this.props.dispatch({type: 'FETCH_PLAYER_PROFILE', payload: this.props.reduxStore.user.id});
 }
@@ -84,6 +86,8 @@ state = {
     profile: true,
   }
 
+// HANDLE INPUT FIELD (edit) changes
+// Set state to designated property's value
 handleChange = (event, propertyToChange) => {
     this.setState({
         ...this.state, 
@@ -91,24 +95,26 @@ handleChange = (event, propertyToChange) => {
 })
 }
 
+// click handler for edit profile button
+// set state to user's player info
 handleEditProfile = () => {
-console.log('hit edit btn');
-this.setState({
-    open_edit: true,
-    id: this.props.reduxStore.user.id,
-    player_name: this.props.reduxStore.playerProfileReducer.player_name,
-    position: this.props.reduxStore.playerProfileReducer.position,
-    picture: this.props.reduxStore.playerProfileReducer.picture,
-    })
+  this.setState({
+      open_edit: true,
+      id: this.props.reduxStore.user.id,
+      player_name: this.props.reduxStore.playerProfileReducer.player_name,
+      position: this.props.reduxStore.playerProfileReducer.position,
+      picture: this.props.reduxStore.playerProfileReducer.picture,
+      })
 }
 
+// click handler for submit edit button
+// send edit player profile dispatch with state (updated/edited player info)
 handleEdit = () => {
-    console.log('in handle edit with:', this.state)
     this.setState({
       ...this.state,
         id: this.props.reduxStore.user.id
       })
-      this.props.dispatch({type: 'EDIT_PLAYER_PROFILE', payload: this.state})
+    this.props.dispatch({type: 'EDIT_PLAYER_PROFILE', payload: this.state})
     this.setState({
         ...this.state,
         player_name: this.props.reduxStore.playerProfileReducer.player_name,
@@ -116,11 +122,14 @@ handleEdit = () => {
         open_edit: false
     })
   }
-  
+
+// click handler for delete button 
+// send delete player dispatch with state (user's player info)
 handleDelete = () => {
     this.props.dispatch({type: 'DELETE_PLAYER', payload: this.state})
 }
   
+// close edit modal
 handleCloseEdit = () => {
     this.setState({
       open_edit: false
@@ -130,6 +139,7 @@ handleCloseEdit = () => {
 render() {
     console.log(this.props.reduxStore.playerProfileReducer);
     const {classes} = this.props;
+    {/********************* IF USER'S TEAM ID IS 1 (MINNEAPOLIS MAYHEM) *******************/}
     if (this.props.reduxStore.user.team === 1){
     return (
         <>
@@ -137,7 +147,6 @@ render() {
         <Grid item xs={12}>
         <Grid container spacing={24}>
           <Grid item xs={2}>
-        {/* <div className="profileLayout"> */}
             <DashboardNav profile={this.state.profile}/>
           </Grid>
         <Grid item xs={3}>
@@ -184,12 +193,12 @@ render() {
                               <br/>
                               <img className={classes.playerImages} src={this.props.reduxStore.playerProfileReducer.picture} alt="playerProfilePic"/>
                               <DialogActions>
-                              <center>
-                              <Button className={classes.submitEditButton} variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
-                              </center>
+                                <center>
+                                <Button className={classes.submitEditButton} variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
+                                </center>
                               </DialogActions>
                               <DialogActions>
-                              <Button variant="outlined" color="secondary" onClick={this.handleDelete}>Delete Profile</Button>
+                                <Button variant="outlined" color="secondary" onClick={this.handleDelete}>Delete Profile</Button>
                               </DialogActions>
                           </center>
                     </DialogContent>
@@ -198,14 +207,16 @@ render() {
                 </Grid>
               </Grid>
         </>
-    )} else if (this.props.reduxStore.user.team === 2){
+    
+    )}
+    // ***************** IF USER'S TEAM ID IS 2 (MADISON MINOTAURS) *****************
+    else if (this.props.reduxStore.user.team === 2){
       return(
         <>
         <UpperNav /> 
         <Grid item xs={12}>
         <Grid container spacing={24}>
           <Grid item xs={2}>
-        {/* <div className="profileLayout"> */}
             <DashboardNav profile={this.state.profile}/>
           </Grid>
         <Grid item xs={3}>
@@ -252,12 +263,12 @@ render() {
                               <br/>
                               <img className={classes.playerImages} src={this.props.reduxStore.playerProfileReducer.picture} alt="playerProfilePic"/>
                               <DialogActions>
-                              <center>
-                              <Button className={classes.submitEditButton} variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
-                              </center>
+                                <center>
+                                  <Button className={classes.submitEditButton} variant="contained" color="primary" onClick={this.handleEdit}>Submit Edit</Button>
+                                </center>
                               </DialogActions>
                               <DialogActions>
-                              <Button variant="outlined" color="secondary" onClick={this.handleDelete}>Delete Profile</Button>
+                                <Button variant="outlined" color="secondary" onClick={this.handleDelete}>Delete Profile</Button>
                               </DialogActions>
                           </center>
                     </DialogContent>
